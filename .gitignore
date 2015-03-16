@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+*.egg
+*.egg-info
+.DS_Store
+.log
+locale.py
