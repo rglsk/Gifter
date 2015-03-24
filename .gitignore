@@ -4,4 +4,4 @@ __pycache__
 *.egg-info
 .DS_Store
 .log
-locale.py
+locale_settings.py
