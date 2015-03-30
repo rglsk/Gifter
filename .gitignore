@@ -2,6 +2,11 @@
 __pycache__
 *.egg
 *.egg-info
+.eggs
 .DS_Store
 .log
+# let it be for now
 locale_settings.py
+local_settings.py
+# data for modeling
+/gifter/modeling/data.json

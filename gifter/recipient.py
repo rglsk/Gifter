@@ -1,5 +1,5 @@
 import tweepy
-from config import (
+from gifter.config import (
     TWITTER_CONSUMER_KEY,
     TWITTER_CONSUMER_SECRET,
     TWITTER_ACCESS_TOKEN,
@@ -21,7 +21,7 @@ list_of_finded_users = api.search_users(search_user)
 if api.search_users(search_user)==[]:
     print("We can not find such person on Twitter.")
 else:
-    #Printing all fitting users    
+    #Printing all fitting users
     for user in list_of_finded_users:
         if user.location:
             print "Location of user: " + user.screen_name + " is " + user.location

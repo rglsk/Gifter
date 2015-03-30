@@ -8,7 +8,7 @@ from errors import (
     FacebookApiError,
     NoAccesTokenError
 )
-from config import (
+from gifter.config import (
     FACEBOOK_APP_ID,
     FACEBOOK_APP_SECRET,
     FACEBOOK_PROFILE_ID,
