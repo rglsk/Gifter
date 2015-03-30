@@ -1,32 +1,42 @@
 import tweepy
+from config import (
+    TWITTER_CONSUMER_KEY,
+    TWITTER_CONSUMER_SECRET,
+    TWITTER_ACCESS_TOKEN,
+    TWITTER_ACCESS_TOKEN_SECRET
+)
 
-# Consumer keys and access tokens, used for OAuth
-consumer_key = 'gHWOQbi5Yu2CDhFQV115gDeBx'
-consumer_secret = 'zrL9nqFiMBiTRPnCSwroFwLHBejoPJ22T5U1hamTYR4AzWIQq3'
-access_token = '3102685905-pHHlMPIFkyRKJ7cF0OOaYqAyXNy6kwjoUyQqq2R'
-access_token_secret = 'osREvPUPuQPtZPMADHzLpPLQ0zaE1crw5HTCGUJCZGSoJ'
 
 # OAuth process, using the keys and tokens
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
+auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
 
 # Creation of the actual interface, using authentication
 api = tweepy.API(auth)
 
+#Searching for the recipent
 search_user = raw_input('Enter a name of  recipient: ')
-list = api.search_users(search_user)
-    
-for user in list:
-    if bool(user.location):
-        print "Location of user: " + user.screen_name + " is " + user.location
-    print user.screen_name
+list_of_finded_users = api.search_users(search_user)
 
-recipient = list[0]
-recipient.screen_name
-out = open("a.txt", 'w')
+if api.search_users(search_user)==[]:
+    print("We can not find such person on Twitter.")
+else:
+    #Printing all fitting users    
+    for user in list_of_finded_users:
+        if user.location:
+            print "Location of user: " + user.screen_name + " is " + user.location
+        print(api.get_user(user.screen_name).profile_image_url)
+        print "User screen name is: " + user.screen_name
+    recipient = list_of_finded_users[0]
+    print(api.get_user(recipient.screen_name))
+    print(api.get_user(recipient.screen_name).profile_image_url)
 
-for status in tweepy.Cursor(api.user_timeline,id=recipient.id,page=1).items(20):
-    print(status)
-    print >> out,status
+    #Saving status of recipent in a text file
+    with open("document_with_status.txt", 'w') as document_with_status:
+        for status in tweepy.Cursor(api.user_timeline,id=recipient.id,page=1).items(20):
+            print(status)
+            print >> document_with_status,status
 
-out.close()
+    #Print all people that recipient is following
+        for friend in recipient.friends():
+            print(friend.screen_name)
