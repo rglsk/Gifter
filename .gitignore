@@ -10,3 +10,4 @@ locale_settings.py
 local_settings.py
 # data for modeling
 /gifter/modeling/data.json
+.ipynb_checkpoints
