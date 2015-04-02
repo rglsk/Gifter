@@ -39,5 +39,6 @@ def timeline(api, screen_name):
 
 def main():
     api = setup_twitter_api()
-    df = pd.DataFrame(list(timeline(api, "fk_lx")))
+    tweets = list(timeline(api, "fk_lx"))
+    df = pd.DataFrame(tweets)
     df.to_json("gifter/modeling/data.json")
