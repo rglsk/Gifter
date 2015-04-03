@@ -3,7 +3,7 @@ try:
     from gifter.local_settings import *
 except ImportError:
     raise ImportError(
-        'Please create file locale_settings.py and set basic settings.'
+        'Please create file local_settings.py and set basic settings.'
     )
 
 
