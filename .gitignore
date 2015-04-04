@@ -10,3 +10,6 @@ local_settings.py
 # data for modeling
 /gifter/modeling/data.json
 .ipynb_checkpoints
+/gifter/static/bower_components
+/gifter/static/node_modules
+/gifter/static/www
