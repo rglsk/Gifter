@@ -26,9 +26,6 @@ form {
 
 .submit {
   margin-top: 1em;
-}
-
-.submit input {
   width: 100%;
   background: #F4E4B8;
   color: #361502;
@@ -36,8 +33,9 @@ form {
   border: .1em solid #F4E4B8;
 }
 
-.submit input:hover {
+.submit:hover {
   background: #F0E0B0;
+  outline-color: #F0E0B0;
 }
 
 @media screen and (max-width: 800px) {

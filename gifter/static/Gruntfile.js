@@ -51,7 +51,7 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: '<%= paths.public %>',
                         dest: '<%= paths.dist %>',
-                        src: 'common/images/*'
+                        src: 'assets/images/*'
                     }
                 ]
             },
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
                         cwd: '<%= paths.public %>',
                         dest: '<%= paths.dist %>',
                         src: [
-                            'app/{,*/}*.html',
+                            'app/{,*/}{,*/}{,*/}*.html',
                             'index.html'
                         ]
                     }

@@ -1,8 +1,8 @@
 angular.module('gifter.result', [])
 
-    .controller('ResultCtrl', ["$scope",
-    	function ($scope) {
+    .controller('ResultCtrl', ['$state', 'stateService',
+    	function ($state, stateService) {
 
-    		console.log("result");
+    		stateService.setState($state.current.name);
 
     }]);

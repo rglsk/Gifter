@@ -1,8 +1,12 @@
 angular.module('gifter.newPresent', [])
 
-    .controller('NewPresentCtrl', ["$scope",
-    	function ($scope) {
+    .controller('NewPresentCtrl', ['$state', 'stateService',
+    	function ($state, stateService) {
 
-    		console.log("find present");
+    		stateService.setState($state.current.name);
+
+    		this.find = function () {
+    			$state.go('main.result');
+    		};
 
     }]);
