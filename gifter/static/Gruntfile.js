@@ -31,7 +31,10 @@ module.exports = function(grunt) {
                     dest: '<%= paths.dist %>/main.js'
                 },
                 css: {
-                    src: '<%= paths.public %>/**/{,*/}*.css',
+                    src: [
+                        '<%= paths.public %>/**/{,*/}*.css',
+                        '<%= paths.public %>/*/{,*/}*.css'
+                    ],
                     dest: '<%= paths.dist %>/main.css'
                 }
         },
