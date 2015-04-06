@@ -1,39 +1,49 @@
-#!/usr/bin/python
-import facebook
-import urlparse
-import requests
-
-from errors import (
-    FacebookApiError,
-    NoAccesTokenError
+from flask import (
+    Flask,
+    flash,
+    request,
+    redirect,
+    render_template,
+    url_for
 )
 from gifter.config import (
-    FACEBOOK_APP_ID,
-    FACEBOOK_APP_SECRET,
-    # FACEBOOK_PROFILE_ID,
+    DEBUG,
+    SECRET_KEY,
+    FACEBOOK_AUTH
 )
 
 
-def get_fb_access_token():
-    params = {'grant_type': 'client_credentials',
-              'client_id': FACEBOOK_APP_ID,
-              'client_secret': FACEBOOK_APP_SECRET}
-    oauth_response = requests.post(
-        'https://graph.facebook.com/oauth/access_token?', params=params)
-    try:
-        return urlparse.parse_qs(
-            str(oauth_response.text)
-        )['access_token'][0]
-    except KeyError:
-        raise NoAccesTokenError('Unable to grab an access token!')
+app = Flask(__name__)
+app.config.from_object(__name__)
+
+
+@app.route('/')
+def index():
+    return render_template('login.html')
+
+
+@app.route('/facebook/login')
+def login():
+    redirect_uri = url_for('authorized', _external=True)
+    params = {'redirect_uri': redirect_uri}
+    return redirect(FACEBOOK_AUTH.get_authorize_url(**params))
+
+
+@app.route('/facebook/authorized')
+def authorized():
+    if not 'code' in request.args:
+        flash('You did not authorize the request')
+        return redirect(url_for('index'))
+
+    redirect_uri = url_for('authorized', _external=True)
+    data = dict(code=request.args['code'], redirect_uri=redirect_uri)
+
+    session = FACEBOOK_AUTH.get_auth_session(data=data)
+    me = session.get('me').json()
+
+    flash('Logged in as ' + me['name'])
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
-    """Only for testing"""
-    oauth_access_token = get_fb_access_token()
-    facebook_graph = facebook.GraphAPI(oauth_access_token)
-    try:
-        print facebook_graph.get_object("me")
-    except facebook.GraphAPIError as e:
-        raise FacebookApiError('Type error: {}, message: {}'.format(e.type,
-                                                                    e.message))
+    app.run(port=8000)
