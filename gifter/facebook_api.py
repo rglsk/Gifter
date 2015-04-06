@@ -9,7 +9,8 @@ from flask import (
 from gifter.config import (
     DEBUG,
     SECRET_KEY,
-    FACEBOOK_AUTH
+    FACEBOOK_AUTH,
+    FB_PERMISSIONS
 )
 
 
@@ -25,7 +26,7 @@ def index():
 @app.route('/facebook/login')
 def login():
     redirect_uri = url_for('authorized', _external=True)
-    params = {'redirect_uri': redirect_uri}
+    params = {'redirect_uri': redirect_uri, 'scope': FB_PERMISSIONS}
     return redirect(FACEBOOK_AUTH.get_authorize_url(**params))
 
 
