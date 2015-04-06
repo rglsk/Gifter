@@ -7,3 +7,6 @@ Jinja2==2.7.3
 tornado==4.1
 jsonschema==2.4.0
 Unidecode==0.4.17
+rauth==0.7.1
+Flask==0.10.
+facebook-sdk==0.4.0
