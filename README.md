@@ -38,3 +38,20 @@ $ python gifter/recipient.py
 ```
 $ ipython notebook .
 ```
+
+## Setting up frontend stuff:
+```
+$ cd /path/to/static
+$ sudo apt-get install npm
+
+$ npm install 
+$ npm install -g bower
+$ npm install -9 grunt-cli
+
+```
+
+## To run app in browser (default google-chrome):
+```
+$ cd /path/to/static
+$ grunt serve
+```
