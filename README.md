@@ -54,4 +54,7 @@ $ npm install -9 grunt-cli
 ```
 $ cd /path/to/static
 $ grunt serve
+
+If there will be an error "/usr/bin/env: node: No such file or directory " then:
+$ ln -s /usr/bin/nodejs /usr/bin/node 
 ```
