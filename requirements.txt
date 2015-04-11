@@ -10,3 +10,6 @@ jsonschema==2.4.0
 Unidecode==0.4.17
 mistune==0.5.1
 Pygments==2.0.2
+rauth==0.7.1
+Flask==0.10.
+facebook-sdk==0.4.0

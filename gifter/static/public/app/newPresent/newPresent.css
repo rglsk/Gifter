@@ -1,0 +1,51 @@
+form label {
+  font-size: .9em;
+}
+
+form {
+  margin: 2% auto;
+  padding: 1em;
+  width: 30%;
+  color: #643211;
+  border: .1em solid #F4E4B8;
+}
+
+.finder input {
+  width: 50%;
+  height: 2em;
+  text-indent: .5em;
+  border: .1em solid #F4E4B8;
+  outline-color: #643211;
+}
+
+.finder input[finder="TwitterName"],
+.finder input[finder="FbName"] {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.submit {
+  margin-top: 1em;
+  width: 100%;
+  background: #F4E4B8;
+  color: #361502;
+  font-size: 1em;
+  border: .1em solid #F4E4B8;
+}
+
+.submit:hover {
+  background: #F0E0B0;
+  outline-color: #F0E0B0;
+}
+
+@media screen and (max-width: 800px) {
+  form {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  form {
+    width: 50%;
+  }
+}

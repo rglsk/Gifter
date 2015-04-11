@@ -38,3 +38,23 @@ $ python gifter/recipient.py
 ```
 $ ipython notebook .
 ```
+
+## Setting up frontend stuff:
+```
+$ cd /path/to/static
+$ sudo apt-get install npm
+
+$ npm install 
+$ npm install -g bower
+$ npm install -9 grunt-cli
+
+```
+
+## To run app in browser (default google-chrome):
+```
+$ cd /path/to/static
+$ grunt serve
+
+If there will be an error "/usr/bin/env: node: No such file or directory " then:
+$ ln -s /usr/bin/nodejs /usr/bin/node 
+```

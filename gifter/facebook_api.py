@@ -1,56 +1,50 @@
-#!/usr/bin/python
-import facebook
-import urllib
-import urlparse
-import subprocess
-
-from errors import (
-    FacebookApiError,
-    NoAccesTokenError
+from flask import (
+    Flask,
+    flash,
+    request,
+    redirect,
+    render_template,
+    url_for
 )
 from gifter.config import (
-    FACEBOOK_APP_ID,
-    FACEBOOK_APP_SECRET,
-    FACEBOOK_PROFILE_ID,
-    FB_ACCESS_TOKEN_URL,
+    DEBUG,
+    SECRET_KEY,
+    FACEBOOK_AUTH,
+    FB_PERMISSIONS
 )
 
 
-def get_fb_access_token():
-    # Trying to get an access token. Very awkward.
-    oauth_args = dict(
-        client_id=FACEBOOK_APP_ID,
-        client_secret=FACEBOOK_APP_SECRET,
-        grant_type='client_credentials'
-    )
-    oauth_url = FB_ACCESS_TOKEN_URL.format(urllib.urlencode(oauth_args))
-    oauth_curl_cmd = ['curl', oauth_url]
-    oauth_response = subprocess.Popen(
-        oauth_curl_cmd,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    ).communicate()[0]
+app = Flask(__name__)
+app.config.from_object(__name__)
 
-    try:
-        return urlparse.parse_qs(
-            str(oauth_response)
-        )['access_token'][0]
-    except KeyError:
-        raise NoAccesTokenError('Unable to grab an access token!')
+
+@app.route('/')
+def index():
+    return render_template('login.html')
+
+
+@app.route('/facebook/login')
+def login():
+    redirect_uri = url_for('authorized', _external=True)
+    params = {'redirect_uri': redirect_uri, 'scope': FB_PERMISSIONS}
+    return redirect(FACEBOOK_AUTH.get_authorize_url(**params))
+
+
+@app.route('/facebook/authorized')
+def authorized():
+    if not 'code' in request.args:
+        flash('You did not authorize the request')
+        return redirect(url_for('index'))
+
+    redirect_uri = url_for('authorized', _external=True)
+    data = dict(code=request.args['code'], redirect_uri=redirect_uri)
+
+    session = FACEBOOK_AUTH.get_auth_session(data=data)
+    me = session.get('me').json()
+
+    flash('Logged in as ' + me['name'])
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
-    """Only for testing"""
-    oauth_access_token = get_fb_access_token()
-    facebook_graph = facebook.GraphAPI(oauth_access_token)
-
-    try:
-        # Try to post something on the wall.
-        fb_response = facebook_graph.put_wall_post(
-            'Test wall', profile_id=FACEBOOK_PROFILE_ID
-        )
-        print fb_response
-    except facebook.GraphAPIError as e:
-        raise FacebookApiError(
-            'Type error: {}, message: {}'.format(e.type, e.message)
-        )
+    app.run(port=8000)
