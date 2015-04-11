@@ -1,26 +1,12 @@
 import tweepy
 import pandas as pd
 
-from gifter.config import (
-    TWITTER_CONSUMER_KEY,
-    TWITTER_CONSUMER_SECRET,
-    TWITTER_ACCESS_TOKEN,
-    TWITTER_ACCESS_TOKEN_SECRET
-)
+from gifter.config import TWITTER_AUTH
 
 
 def setup_twitter_api():
-    twitter_auth = tweepy.OAuthHandler(
-        TWITTER_CONSUMER_KEY,
-        TWITTER_CONSUMER_SECRET
-    )
-    twitter_auth.set_access_token(
-        TWITTER_ACCESS_TOKEN,
-        TWITTER_ACCESS_TOKEN_SECRET
-    )
-
     return tweepy.API(
-        twitter_auth,
+        TWITTER_AUTH,
         wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True,
     )

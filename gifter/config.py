@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 from rauth.service import OAuth2Service
+import tweepy
+
 try:
     from gifter.local_settings import *
 except ImportError:
@@ -7,9 +9,11 @@ except ImportError:
         'Please create file local_settings.py and set basic settings.'
     )
 
-
-# FB_ACCESS_TOKEN_URL = 'https://graph.facebook.com/oauth/access_token?{}'
+# General
 DEBUG = True
+
+# Facebook
+# FB_ACCESS_TOKEN_URL = 'https://graph.facebook.com/oauth/access_token?{}'
 
 FB_GRAPH_URL = 'https://graph.facebook.com/'
 FB_AUTHORIZE_URL = 'https://www.facebook.com/dialog/oauth'
@@ -29,3 +33,13 @@ FB_PERMISSIONS = ['public_profile', 'user_friends', 'email', 'user_about_me',
                   'user_interests', 'user_likes', 'user_relationship_details',
                   'user_relationships', 'read_custom_friendlists',
                   'read_insights', 'publish_actions']
+
+# Twitter
+TWITTER_AUTH = tweepy.OAuthHandler(
+    TWITTER_CONSUMER_KEY,
+    TWITTER_CONSUMER_SECRET
+)
+TWITTER_AUTH.set_access_token(
+    TWITTER_ACCESS_TOKEN,
+    TWITTER_ACCESS_TOKEN_SECRET
+)
