@@ -26,11 +26,11 @@ def hashtags(entities):
 
 
 def camel_case_to_text(camel):
-    return re.sub(
-        "([a-z])([A-Z])",
+    return camel_case_to_text.pattern.sub(
         "\g<1> \g<2>",
         camel
     )
+camel_case_to_text.pattern = re.compile("([a-z])([A-Z])")
 
 
 def preprocess(text, entities):
