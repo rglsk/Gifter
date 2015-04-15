@@ -15,7 +15,9 @@ $ workon gifter
 Install dependencies:
 ```
 $ pip install -e .
+$ python -m textblob.download_corpora lite
 ```
+
 Define your settings:
 
 ```
@@ -44,7 +46,7 @@ $ ipython notebook .
 $ cd /path/to/static
 $ sudo apt-get install npm
 
-$ npm install 
+$ npm install
 $ npm install -g bower
 $ npm install -9 grunt-cli
 
@@ -56,5 +58,5 @@ $ cd /path/to/static
 $ grunt serve
 
 If there will be an error "/usr/bin/env: node: No such file or directory " then:
-$ ln -s /usr/bin/nodejs /usr/bin/node 
+$ ln -s /usr/bin/nodejs /usr/bin/node
 ```
