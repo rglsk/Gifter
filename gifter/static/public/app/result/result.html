@@ -1,3 +1,21 @@
 <div id="container" class="centered">
 
+	<div class="centered presentList">
+
+		<div class="present" ng-repeat="present in ResultCtrl.presents">
+			<div class="title">
+				{{present.name}}
+			</div>
+			<img class="centered presentImg" src="{{present.img}}" alt="present"/>
+			<div class="price">
+				{{present.price}}
+			</div>
+		</div>
+
+		<button class="submit">
+		  		See more
+		</button>
+
+	</div>
+
 </div>

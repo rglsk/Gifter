@@ -46,7 +46,8 @@ $ sudo apt-get install npm
 
 $ npm install 
 $ npm install -g bower
-$ npm install -9 grunt-cli
+$ npm install -g grunt-cli
+$ bower install
 
 ```
 
