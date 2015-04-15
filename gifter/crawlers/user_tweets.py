@@ -1,6 +1,6 @@
 import tweepy
 import pandas as pd
-
+import argparse
 from gifter.config import TWITTER_AUTH
 
 
@@ -24,7 +24,11 @@ def timeline(api, screen_name):
 
 
 def main():
+    parser = argparse.ArgumentParser(prog="Twitter crawler")
+    parser.add_argument("screen_name", type=str)
+
+    args = parser.parse_args()
     api = setup_twitter_api()
-    tweets = list(timeline(api, "fk_lx"))
+    tweets = list(timeline(api, args.screen_name))
     df = pd.DataFrame(tweets)
     df.to_json("gifter/modeling/data.json")
