@@ -49,7 +49,7 @@ def preprocess(text, entities):
         hashtag_list,
     )
     to_remove = "|".join(ignored)
-    pattern = re.compile("(#|rt|{})".format(to_remove), re.I)
+    pattern = re.compile("(#|RT |{})".format(to_remove), re.I)
     hashtag_text = " ".join(map(camel_case_to_text, hashtag_list))
     return " ".join([
         pattern.sub("", text),
