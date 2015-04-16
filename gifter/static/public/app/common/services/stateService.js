@@ -11,6 +11,9 @@ angular.module('gifter.services.stateService', [])
     					case 'main.result':
     						state = 'Result';
     						break;
+                        case 'main.analysis':
+                            state = 'Analysis';
+                            break;
     					default:
     						state = 'Gifter';
     					}

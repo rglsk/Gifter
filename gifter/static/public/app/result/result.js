@@ -5,6 +5,10 @@ angular.module('gifter.result', [])
 
     		stateService.setState($state.current.name);
 
+    		this.seeMore = function() {
+    			$state.go('main.analysis');
+    		};
+
     		this.presents = [
     			{
     				name: 'Ultra Funny Thing',

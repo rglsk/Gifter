@@ -3,16 +3,16 @@
 	<div class="centered presentList">
 
 		<div class="present" ng-repeat="present in ResultCtrl.presents">
-			<div class="title">
+			<div class="centered title">
 				{{present.name}}
 			</div>
-			<img class="centered presentImg" src="{{present.img}}" alt="present"/>
-			<div class="price">
+			<img class="centered presentImg" ng-src="{{present.img}}" alt="present"/>
+			<div class="centered price">
 				{{present.price}}
 			</div>
 		</div>
 
-		<button class="submit">
+		<button class="submit" ng-click="ResultCtrl.seeMore()">
 		  		See more
 		</button>
 

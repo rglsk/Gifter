@@ -11,17 +11,19 @@
 }
 
 .title {
-	font-size: .9em;
+	font-size: .8em;
 	color: #643211;
 }
 
 img {
-	padding: 2% 9.5%;
-	width: 80%;
+	padding: 2% 4.5%;
+	width: 90%;
 }
 
 .price {
 	font-size: .7em;
+	width: 90%;
+	text-align: right;
 }
 
 .submit {
