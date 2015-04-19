@@ -17,3 +17,11 @@ class NoAccesTokenError(BaseException):
 
 class FacebookApiError(BaseException):
     """Exception error class for facebook-sdk API"""
+
+
+class CategoryNotFoundError(BaseException):
+    """Exception error class for not found category id"""
+
+
+class ItemsNotFoundError(BaseException):
+    """Exception error class for not found items"""

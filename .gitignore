@@ -13,3 +13,5 @@ local_settings.py
 /gifter/static/bower_components
 /gifter/static/node_modules
 /gifter/static/www
+category_hierarchy.json
+ebay.yaml
