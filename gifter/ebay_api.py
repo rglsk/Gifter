@@ -1,12 +1,17 @@
+import json
+
 from ebaysdk.exception import ConnectionError
 from ebaysdk.finding import Connection as finding
 from ebaysdk.trading import Connection as trading
 
+import errors
 import config
-import pandas as pd
 
 
 class EbayApi(object):
+    """EbayApi provides connection with eBay API."""
+
+    _category_hierarchy_file = 'category_hierarchy.json'
 
     def __init__(self):
         config_file = '../ebay.yaml'
@@ -19,14 +24,48 @@ class EbayApi(object):
                                    devid=config.EBAY_SANDBOX_DEVID,
                                    config_file=config_file)
 
+    def setup_params(func):
+        def wrapper(self, **kwargs):
+            params = {
+                'keywords': ','.join,
+                'category_name': self.get_category_id,
+                'min_price': self.add_filter,
+                'max_price': self.add_filter,
+            }
+            for key, foo in params.iteritems():
+                if kwargs.get(key):
+                    kwargs[key] = foo(kwargs[key])
+
+            return func(self, **kwargs)
+        return wrapper
+
     @classmethod
     def add_filter(cls, name, value):
         return {'name': name, 'value': value}
+
+    def get_category_id(self, category_name):
+        """Gets a category id from given name.
+
+        :param category_name: Category name (String)
+
+        Returns an ID of category (Integer). Otherwise, this method should
+        raise CategoryNotFoundError.
+        """
+        with open(self._category_hierarchy_file, 'r') as data_file:
+            category_data = json.load(data_file)
+
+        for category in category_data:
+            if category_name == category['CategoryName']:
+                return int(category['CategoryID'])
+
+        raise errors.CategoryNotFoundError(
+            'Category: {} not found.'.format(category_name))
 
     def generate_category_hierarchy(self, level_limit=1):
         """Generate latest category hierarchy for the eBay site.
         (Retrieving the full set of eBay categories can be time-consuming
         and the result sets can be quite large.)
+
         :param level_limit: Specifies the maximum depth of the category
         hierarchy to retrieve, where the top-level categories (meta-categories)
         are at level 1
@@ -36,25 +75,43 @@ class EbayApi(object):
             'LevelLimit': level_limit,
         }
         resp = self.trading_api.execute('GetCategories', call_data)
-        df = pd.DataFrame(resp.dict()['CategoryArray']['Category'])
-        df.to_json('category_hierarchy.json')
+        with open(self._category_hierarchy_file, 'w') as json_file:
+            json_file.write(
+                json.dumps(resp.dict()['CategoryArray']['Category'])
+            )
 
-    def get_products(self, keywords, category_id=None, min_price=None,
-                     max_price=None):
+    @setup_params
+    def get_items(self, keywords=None, category_name=None, min_price=None,
+                  max_price=None):
+        """Retrieves items from eBay by given keywords (applies OR logic to
+            multiple keywords) or/and category name.
+
+        :param keywords: List of item keywords to search
+        :param category_name: Category name (String)
+        :param min_price: The minimum price of item (Integer)
+        :param max_price: The maximum price of item (Integer)
+
+        Returns a list of items.
+
+        .. Example usage:
+
+            EbayApi().ebay_api.get_items(
+                keywords=['baseball', 'card']
+                min_price=0,
+                category_name='Sports Mem, Cards & Fan Shop'
+            )
+
+        """
         try:
-            item_filters = []
-            if min_price:
-                item_filters.append(self.add_filter('MinPrice', min_price))
-            if max_price:
-                item_filters.append(self.add_filter('MaxPrice', max_price))
-
             api_request = {
-                'keywords': ','.join(keywords),
-                'itemFilter': item_filters,
-                'categoryId': category_id,
+                'keywords': '({})'.format(keywords),
+                'itemFilter': [min_price, max_price],
+                'categoryId': category_name,
             }
             response = self.finding_api.execute('findItemsAdvanced',
                                                 api_request)
             return response.dict()['searchResult']['item']
         except ConnectionError as e:
             return e
+        except KeyError as e:
+            raise errors.ItemsNotFoundError('Items not found.')
