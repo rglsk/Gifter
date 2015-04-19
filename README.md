@@ -24,6 +24,7 @@ Define your settings:
 $ cd gifter
 $ touch local_settings.py
 # open settings.py and change it
+# open ebay.yaml and set tokens/ID's
 ```
 
 ## Crawling
@@ -48,8 +49,7 @@ $ sudo apt-get install npm
 
 $ npm install
 $ npm install -g bower
-$ npm install -g grunt-cli
-$ bower install
+$ npm install -9 grunt-cli
 
 ```
 
