@@ -4,17 +4,17 @@ from ebaysdk.exception import ConnectionError
 from ebaysdk.finding import Connection as finding
 from ebaysdk.trading import Connection as trading
 
-import errors
-import config
+from gifter import errors
+from gifter import config
 
 
 class EbayApi(object):
     """EbayApi provides connection with eBay API."""
 
-    _category_hierarchy_file = 'category_hierarchy.json'
+    _category_hierarchy_file = '../category_hierarchy.json'
 
     def __init__(self):
-        config_file = '../ebay.yaml'
+        config_file = '../../ebay.yaml'
         self.finding_api = finding(domain=config.EBAY_SANDBOX_DOMAIN,
                                    appid=config.EBAY_SANDBOX_APP_ID,
                                    config_file=config_file)
@@ -27,21 +27,25 @@ class EbayApi(object):
     def setup_params(func):
         def wrapper(self, **kwargs):
             params = {
-                'keywords': ','.join,
+                'keywords': self.create_search_query,
                 'category_name': self.get_category_id,
-                'min_price': self.add_filter,
-                'max_price': self.add_filter,
+                'min_price': lambda x: self.add_filter('MinPrice', x),
+                'max_price': lambda x: self.add_filter('MaxPrice', x),
             }
+            if not isinstance(kwargs['keywords'], list):
+                kwargs['keywords'] = list(kwargs['keywords'])
             for key, foo in params.iteritems():
                 if kwargs.get(key):
                     kwargs[key] = foo(kwargs[key])
-
             return func(self, **kwargs)
         return wrapper
 
     @classmethod
     def add_filter(cls, name, value):
         return {'name': name, 'value': value}
+
+    def create_search_query(cls, keywords):
+        return ','.join(keywords)
 
     def get_category_id(self, category_name):
         """Gets a category id from given name.
@@ -110,7 +114,7 @@ class EbayApi(object):
             }
             response = self.finding_api.execute('findItemsAdvanced',
                                                 api_request)
-            return response.dict()['searchResult']['item']
+            return response.dict()#['searchResult']['item']
         except ConnectionError as e:
             return e
         except KeyError as e:

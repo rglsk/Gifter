@@ -1,3 +1,4 @@
+scipy==0.15.0
 requests==2.5.3
 matplotlib==1.4.3
 tweepy==3.3.0
@@ -17,3 +18,5 @@ facebook-sdk==0.4.0
 gensim==0.11.1
 textblob==0.9.0
 Pattern==2.6
+ebaysdk==2.1.11
+ipdb==0.8
