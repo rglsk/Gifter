@@ -71,8 +71,8 @@ class EbayApi(object):
         and the result sets can be quite large.)
 
         :param level_limit: Specifies the maximum depth of the category
-        hierarchy to retrieve, where the top-level categories (meta-categories)
-        are at level 1
+                            hierarchy to retrieve, where the top-level
+                            categories (meta-categories) are at level 1
         """
         call_data = {
             'DetailLevel': 'ReturnAll',
@@ -86,7 +86,7 @@ class EbayApi(object):
 
     @setup_params
     def get_items(self, keywords=None, category_name=None, min_price=None,
-                  max_price=None):
+                  max_price=None, sort_order='sortOrder'):
         """Retrieves items from eBay by given keywords (applies OR logic to
             multiple keywords) or/and category name.
 
@@ -94,27 +94,33 @@ class EbayApi(object):
         :param category_name: Category name (String)
         :param min_price: The minimum price of item (Integer)
         :param max_price: The maximum price of item (Integer)
+        :param sort_order: Sort the returned items according to a single
+                           specified sort order:
+                           - BestMatch: based on community buying activity and
+                                        other relevance-based factors
+                           - StartTimeNewest: the most recently listed (newest)
+                                              items appear first
 
         Returns a list of items.
 
         .. Example usage:
 
             EbayApi().ebay_api.get_items(
-                keywords=['baseball', 'card']
+                keywords=['baseball', 'card'],
                 min_price=0,
                 category_name='Sports Mem, Cards & Fan Shop'
             )
-
         """
         try:
             api_request = {
                 'keywords': '({})'.format(keywords),
                 'itemFilter': [min_price, max_price],
                 'categoryId': category_name,
+                'sortOrder': sort_order,
             }
             response = self.finding_api.execute('findItemsAdvanced',
                                                 api_request)
-            return response.dict()#['searchResult']['item']
+            return response.dict()['searchResult']['item']
         except ConnectionError as e:
             return e
         except KeyError as e:
