@@ -12,7 +12,7 @@ gifter_api = Blueprint('gifter_api', __name__)
 @gifter_api.route('/items/<query_name>/',
                   methods=['POST'])
 @use_args(config.ITEMS_ARGS_PARSER)
-def get_items(args, query_name):
+def items_handler(args, query_name):
     """Retrives items from eBay.
 
     :param query_name: Twitter @nick of user to whom we'd like to make a gift.

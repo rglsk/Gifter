@@ -15,13 +15,13 @@ class EbayApi(object):
 
     def __init__(self):
         config_file = '../../ebay.yaml'
-        self.finding_api = finding(domain=config.EBAY_SANDBOX_DOMAIN,
-                                   appid=config.EBAY_SANDBOX_APP_ID,
+        self.finding_api = finding(domain='svcs.ebay.com',
+                                   appid=config.EBAY_PRODUCTION_APP_ID,
                                    config_file=config_file)
 
-        self.trading_api = trading(appid=config.EBAY_SANDBOX_APP_ID,
-                                   certid=config.EBAY_SANDBOX_CERT_ID,
-                                   devid=config.EBAY_SANDBOX_DEVID,
+        self.trading_api = trading(appid=config.EBAY_PRODUCTION_APP_ID,
+                                   certid=config.EBAY_PRODUCTION_CERT_ID,
+                                   devid=config.EBAY_PRODUCTION_DEVID,
                                    config_file=config_file)
 
     def setup_params(func):
@@ -44,8 +44,14 @@ class EbayApi(object):
     def add_filter(cls, name, value):
         return {'name': name, 'value': value}
 
+    @classmethod
     def create_search_query(cls, keywords):
         return ','.join(keywords)
+
+    @classmethod
+    def _parse_items(cls, items):
+        return {'gifts': [{key: item[key] for key in config.ITEM_DETAILS}
+                for item in items]}
 
     def get_category_id(self, category_name):
         """Gets a category id from given name.
@@ -86,7 +92,8 @@ class EbayApi(object):
 
     @setup_params
     def get_items(self, keywords=None, category_name=None, min_price=None,
-                  max_price=None, sort_order='sortOrder'):
+                  max_price=None, sort_order='sortOrder',
+                  limit=config.ITEMS_LIMIT):
         """Retrieves items from eBay by given keywords (applies OR logic to
             multiple keywords) or/and category name.
 
@@ -111,6 +118,7 @@ class EbayApi(object):
                 category_name='Sports Mem, Cards & Fan Shop'
             )
         """
+
         try:
             api_request = {
                 'keywords': '({})'.format(keywords),
@@ -120,7 +128,8 @@ class EbayApi(object):
             }
             response = self.finding_api.execute('findItemsAdvanced',
                                                 api_request)
-            return response.dict()['searchResult']['item']
+            items = response.dict()['searchResult']['item']
+            return self._parse_items(items[:limit])
         except ConnectionError as e:
             return e
         except KeyError as e:

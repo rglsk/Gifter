@@ -46,6 +46,7 @@ TWITTER_AUTH.set_access_token(
 
 # eBay
 EBAY_SANDBOX_DOMAIN = 'svcs.sandbox.ebay.com'
+EBAY_PRODUCTION_DOMAIN = 'ebay.com'
 
 
 #gifter API
@@ -55,3 +56,5 @@ ITEMS_ARGS_PARSER = {
     'min_price': Arg(int, default=None),
     'max_price': Arg(int, default=None),
 }
+ITEM_DETAILS = ['title', 'sellingStatus', 'galleryURL']
+ITEMS_LIMIT = 6
