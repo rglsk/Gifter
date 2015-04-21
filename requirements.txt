@@ -18,5 +18,5 @@ facebook-sdk==0.4.0
 gensim==0.11.1
 textblob==0.9.0
 Pattern==2.6
-ebaysdk==2.1.11
+ebaysdk==2.1.1
 ipdb==0.8

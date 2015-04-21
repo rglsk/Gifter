@@ -18,8 +18,6 @@ class TestViews(BaseApiTest):
         params = {
             'min_price': 0,
             'max_price': 100,
-            'keywords': ['Potter'],
-            'category_name': 'Books',
         }
         query_name = 'TwojStary'
         result = self.post_json('/items/{}/'.format(query_name), data=params)

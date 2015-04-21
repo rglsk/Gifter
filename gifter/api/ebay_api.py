@@ -11,10 +11,10 @@ from gifter import config
 class EbayApi(object):
     """EbayApi provides connection with eBay API."""
 
-    _category_hierarchy_file = '../category_hierarchy.json'
+    _category_hierarchy_file = 'gifter/category_hierarchy.json'
 
     def __init__(self):
-        config_file = '../../ebay.yaml'
+        config_file = './ebay.yaml'
         self.finding_api = finding(domain='svcs.ebay.com',
                                    appid=config.EBAY_PRODUCTION_APP_ID,
                                    config_file=config_file)
@@ -92,7 +92,7 @@ class EbayApi(object):
 
     @setup_params
     def get_items(self, keywords=None, category_name=None, min_price=None,
-                  max_price=None, sort_order='sortOrder',
+                  max_price=None, sort_order='BestMatch',
                   limit=config.ITEMS_LIMIT):
         """Retrieves items from eBay by given keywords (applies OR logic to
             multiple keywords) or/and category name.
@@ -107,6 +107,7 @@ class EbayApi(object):
                                         other relevance-based factors
                            - StartTimeNewest: the most recently listed (newest)
                                               items appear first
+        :param limit: Limit of items to get (default 6) (Integer)
 
         Returns a list of items.
 
