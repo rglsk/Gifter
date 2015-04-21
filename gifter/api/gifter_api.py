@@ -20,6 +20,9 @@ def items_handler(args, query_name):
     :param max_price: Maximum price of a searched items.
 
     Returns a json data with items.
+
+    ..Example usage:
+        /items/Franek/?min_price=0&keywords=[Potter]&category_name=Books
     """
     ebay_api = EbayApi()
     items = ebay_api.get_items(**args)

@@ -132,5 +132,5 @@ class EbayApi(object):
             return self._parse_items(items[:limit])
         except ConnectionError as e:
             return e
-        except KeyError as e:
+        except KeyError:
             raise errors.ItemsNotFoundError('Items not found.')

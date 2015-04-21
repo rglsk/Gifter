@@ -16,6 +16,6 @@ class BaseApiTest(unittest.TestCase):
         params = self.get(url).data
         return json.loads(params)
 
-    def post_json(self, url, data):
+    def post_json(self, url, data=None):
         params = self.post(url, data=data).data
         return json.loads(params)
