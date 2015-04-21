@@ -23,12 +23,16 @@ def timeline(api, screen_name):
         yield tweet._json
 
 
+def get_user_tweets(screen_name):
+    api = setup_twitter_api()
+    tweets = list(timeline(api, screen_name))
+    return pd.DataFrame(tweets)
+
+
 def main():
     parser = argparse.ArgumentParser(prog="Twitter crawler")
     parser.add_argument("screen_name", type=str)
 
     args = parser.parse_args()
-    api = setup_twitter_api()
-    tweets = list(timeline(api, args.screen_name))
-    df = pd.DataFrame(tweets)
+    df = get_user_tweets(args.screen_name)
     df.to_json("gifter/modeling/data.json")

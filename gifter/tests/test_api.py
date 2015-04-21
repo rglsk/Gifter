@@ -19,8 +19,8 @@ class TestViews(BaseApiTest):
             'min_price': 0,
             'max_price': 100,
         }
-        query_name = 'TwojStary'
-        result = self.post_json('/items/{}/'.format(query_name), data=params)
+        screen_name = 'BarackObama'
+        result = self.post_json('/items/{}/'.format(screen_name), data=params)
         self.assertTrue(result['gifts'])
         self.assertEqual(len(result['gifts']), config.ITEMS_LIMIT)
         self.assertEqual(result['gifts'][0].keys(), config.ITEM_DETAILS)

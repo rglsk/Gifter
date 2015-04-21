@@ -6,19 +6,18 @@ from flask import jsonify
 from gifter import config
 from gifter.api.ebay_api import EbayApi
 from gifter.modeling.entities import get_hashtags_info
-import utils
+from gifter import utils
 
 
 gifter_api = Blueprint('gifter_api', __name__)
 
 
-@gifter_api.route('/items/<query_name>/',
-                  methods=['POST'])
+@gifter_api.route('/items/<screen_name>/', methods=['POST'])
 @use_args(config.ITEMS_ARGS_PARSER)
-def items_handler(args, query_name):
+def items_handler(args, screen_name):
     """Retrives items from eBay.
 
-    :param query_name: Twitter @nick of user to whom we'd like to make a gift.
+    :param screen_name: Twitter @nick of user to whom we'd like to make a gift.
     :param min_price: Minimum price of a searched items (Integer)
     :param max_price: Maximum price of a searched items (Integer)
     :param limit: Limit of items in response (default 6) (Integer)
@@ -45,7 +44,7 @@ def items_handler(args, query_name):
                        {u'count': 113, u'name': u'opportunityforall'}]}
     """
 
-    hashtags = get_hashtags_info()
+    hashtags = get_hashtags_info(screen_name)
     args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
 
     ebay_api = EbayApi()
