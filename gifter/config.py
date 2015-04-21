@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from webargs import Arg
+
 from rauth.service import OAuth2Service
 import tweepy
 
@@ -13,8 +15,6 @@ except ImportError:
 DEBUG = True
 
 # Facebook
-# FB_ACCESS_TOKEN_URL = 'https://graph.facebook.com/oauth/access_token?{}'
-
 FB_GRAPH_URL = 'https://graph.facebook.com/'
 FB_AUTHORIZE_URL = 'https://www.facebook.com/dialog/oauth'
 
@@ -46,3 +46,14 @@ TWITTER_AUTH.set_access_token(
 
 # eBay
 EBAY_SANDBOX_DOMAIN = 'svcs.sandbox.ebay.com'
+EBAY_PRODUCTION_DOMAIN = 'ebay.com'
+
+
+#gifter API
+ITEMS_LIMIT = 6
+ITEM_DETAILS = ['title', 'sellingStatus', 'galleryURL']
+ITEMS_ARGS_PARSER = {
+    'min_price': Arg(int, default=None),
+    'max_price': Arg(int, default=None),
+    'limit': Arg(int, default=ITEMS_LIMIT)
+}

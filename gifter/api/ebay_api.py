@@ -4,44 +4,54 @@ from ebaysdk.exception import ConnectionError
 from ebaysdk.finding import Connection as finding
 from ebaysdk.trading import Connection as trading
 
-import errors
-import config
+from gifter import errors
+from gifter import config
 
 
 class EbayApi(object):
     """EbayApi provides connection with eBay API."""
 
-    _category_hierarchy_file = 'category_hierarchy.json'
+    _category_hierarchy_file = 'gifter/category_hierarchy.json'
 
     def __init__(self):
-        config_file = '../ebay.yaml'
-        self.finding_api = finding(domain=config.EBAY_SANDBOX_DOMAIN,
-                                   appid=config.EBAY_SANDBOX_APP_ID,
+        config_file = './ebay.yaml'
+        self.finding_api = finding(domain='svcs.ebay.com',
+                                   appid=config.EBAY_PRODUCTION_APP_ID,
                                    config_file=config_file)
 
-        self.trading_api = trading(appid=config.EBAY_SANDBOX_APP_ID,
-                                   certid=config.EBAY_SANDBOX_CERT_ID,
-                                   devid=config.EBAY_SANDBOX_DEVID,
+        self.trading_api = trading(appid=config.EBAY_PRODUCTION_APP_ID,
+                                   certid=config.EBAY_PRODUCTION_CERT_ID,
+                                   devid=config.EBAY_PRODUCTION_DEVID,
                                    config_file=config_file)
 
     def setup_params(func):
         def wrapper(self, **kwargs):
             params = {
-                'keywords': ','.join,
+                'keywords': self.create_search_query,
                 'category_name': self.get_category_id,
-                'min_price': self.add_filter,
-                'max_price': self.add_filter,
+                'min_price': lambda x: self.add_filter('MinPrice', x),
+                'max_price': lambda x: self.add_filter('MaxPrice', x),
             }
+            if not isinstance(kwargs['keywords'], list):
+                kwargs['keywords'] = list(kwargs['keywords'])
             for key, foo in params.iteritems():
                 if kwargs.get(key):
                     kwargs[key] = foo(kwargs[key])
-
             return func(self, **kwargs)
         return wrapper
 
     @classmethod
     def add_filter(cls, name, value):
         return {'name': name, 'value': value}
+
+    @classmethod
+    def create_search_query(cls, keywords):
+        return ','.join(keywords)
+
+    @classmethod
+    def _parse_items(cls, items):
+        return {'gifts': [{key: item[key] for key in config.ITEM_DETAILS}
+                for item in items]}
 
     def get_category_id(self, category_name):
         """Gets a category id from given name.
@@ -67,8 +77,8 @@ class EbayApi(object):
         and the result sets can be quite large.)
 
         :param level_limit: Specifies the maximum depth of the category
-        hierarchy to retrieve, where the top-level categories (meta-categories)
-        are at level 1
+                            hierarchy to retrieve, where the top-level
+                            categories (meta-categories) are at level 1
         """
         call_data = {
             'DetailLevel': 'ReturnAll',
@@ -82,7 +92,8 @@ class EbayApi(object):
 
     @setup_params
     def get_items(self, keywords=None, category_name=None, min_price=None,
-                  max_price=None):
+                  max_price=None, sort_order='BestMatch',
+                  limit=config.ITEMS_LIMIT):
         """Retrieves items from eBay by given keywords (applies OR logic to
             multiple keywords) or/and category name.
 
@@ -90,28 +101,37 @@ class EbayApi(object):
         :param category_name: Category name (String)
         :param min_price: The minimum price of item (Integer)
         :param max_price: The maximum price of item (Integer)
+        :param sort_order: Sort the returned items according to a single
+                           specified sort order:
+                           - BestMatch: based on community buying activity and
+                                        other relevance-based factors
+                           - StartTimeNewest: the most recently listed (newest)
+                                              items appear first
+        :param limit: Limit of items to get (default 6) (Integer)
 
         Returns a list of items.
 
         .. Example usage:
 
             EbayApi().ebay_api.get_items(
-                keywords=['baseball', 'card']
+                keywords=['baseball', 'card'],
                 min_price=0,
                 category_name='Sports Mem, Cards & Fan Shop'
             )
-
         """
+
         try:
             api_request = {
                 'keywords': '({})'.format(keywords),
                 'itemFilter': [min_price, max_price],
                 'categoryId': category_name,
+                'sortOrder': sort_order,
             }
             response = self.finding_api.execute('findItemsAdvanced',
                                                 api_request)
-            return response.dict()['searchResult']['item']
+            items = response.dict()['searchResult']['item']
+            return self._parse_items(items[:limit])
         except ConnectionError as e:
             return e
-        except KeyError as e:
+        except KeyError:
             raise errors.ItemsNotFoundError('Items not found.')
