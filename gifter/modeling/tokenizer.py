@@ -57,9 +57,11 @@ def preprocess(text, entities):
     ])
 
 
-def lemmatize(text):
+def lemmatize(text, with_tags=True):
     lemmas = gensim.utils.lemmatize(text)
-    return [lemma for lemma in lemmas if lemma[:-3] not in STOPWORDS]
+    if with_tags:
+        return [lemma for lemma in lemmas if lemma[:-3] not in STOPWORDS]
+    return [lemma[:-3] for lemma in lemmas if lemma[:-3] not in STOPWORDS]
 
 
 if __name__ == '__main__':
