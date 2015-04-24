@@ -20,3 +20,4 @@ textblob==0.9.0
 Pattern==2.6
 ebaysdk==2.1.1
 ipdb==0.8
+webargs==0.13.0
