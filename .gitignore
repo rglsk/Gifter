@@ -17,3 +17,4 @@ ebay.yaml
 
 # Corpus and trained model
 /gifter/modeling/word2vec/text8*
+/gifter/modeling/word2vec/enwik*

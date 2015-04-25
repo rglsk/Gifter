@@ -12,7 +12,14 @@ Choose `corpora` and download:
 * movie_reviews
 * treebank
 
-Also you need to download and unpack [text8](http://mattmahoney.net/dc/text8.zip).
-Move file `text8` into this directory.
+External corpses:
+* [text8](http://mattmahoney.net/dc/text8.zip).
+* [enwiki](https://code.google.com/p/word2vec/#Where_to_obtain_the_training_data)
+After downloading move file into this directory.
+
+To preprocess wikipedia:
+```
+perl wikifil.pl enwik9 > enwiki_corpus
+```
 
 Run notebooks :)
