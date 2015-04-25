@@ -15,6 +15,7 @@ Choose `corpora` and download:
 External corpses:
 * [text8](http://mattmahoney.net/dc/text8.zip).
 * [enwiki](https://code.google.com/p/word2vec/#Where_to_obtain_the_training_data)
+
 After downloading move file into this directory.
 
 To preprocess wikipedia:
