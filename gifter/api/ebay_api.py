@@ -87,7 +87,7 @@ class EbayApi(object):
         resp = self.trading_api.execute('GetCategories', call_data)
         with open(self._category_hierarchy_file, 'w') as json_file:
             json_file.write(
-                json.dumps(resp.dict()['CategoryArray']['Category'])
+                json.dumps(resp.dict()['CategoryArray']['Category'], indent=4)
             )
 
     @setup_params

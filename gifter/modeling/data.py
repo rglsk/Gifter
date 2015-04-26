@@ -15,4 +15,4 @@ def lemmatized_frame(filename="./data.json", with_tags=True):
         lambda row: lemmatize_by_row(row, with_tags),
         axis=1
     )
-    return df
+    return df[df['lemmas'].apply(len) > 0]
