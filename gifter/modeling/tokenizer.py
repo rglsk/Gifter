@@ -41,7 +41,7 @@ def preprocess(text, entities):
     * remove mentions (@)
     * remove links
     """
-    text = gensim.utils.to_unicode(text, 'utf-8').strip()
+    text = text.strip()
     hashtag_list = hashtags(entities)
     ignored = chain(
         mentions(entities),
