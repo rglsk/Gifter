@@ -14,6 +14,7 @@ var app = angular.module("gifter", [
 
     'gifter.viewComponents.panel',
 
-    'gifter.services.stateService'
+    'gifter.services.stateService',
+    'gifter.services.storageService'
 
 ]);
