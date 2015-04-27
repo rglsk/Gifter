@@ -10,7 +10,7 @@ angular.module('gifter.newPresent', [])
     		this.to = '';
 
     		this.find = function () {
-    			var url = 'http://127.0.0.1:5000/items/' + this.twitterName + '/';
+    			var url = 'http://127.0.0.1:5000/api/items/' + this.twitterName + '/';
     			$http.post(url)
     			.success(function (res) {
         			console.log(res);
