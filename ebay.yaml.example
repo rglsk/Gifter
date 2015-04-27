@@ -3,18 +3,18 @@ name: ebay_api_config
 
 # Finding API - https://www.x.com/developers/ebay/products/finding-api
 svcs.ebay.com:
-    appid: EBAY_APPID
+    appid: EBAY_PRODUCTION_APP_ID
     version: 1.0.0
 
 # Shopping API - https://www.x.com/developers/ebay/products/shopping-api
 open.api.ebay.com:
-    appid: EBAY_APPID
+    appid: EBAY_PRODUCTION_APP_ID
     version: 671
 
 # Trading API - https://www.x.com/developers/ebay/products/trading-api
 api.ebay.com:
     version: 719
-    appid: EBAY_APPID
-    certid: EBAY_CERTID
-    devid: EBAY_DAVID
-    token: EBAY_CUSTOMER_TOKEN
+    appid: EBAY_PRODUCTION_APP_ID
+    certid: EBAY_PRODUCTION_CERT_ID
+    devid: EBAY_PRODUCTION_DEVID
+    token: EBAY_USER_TOKEN
