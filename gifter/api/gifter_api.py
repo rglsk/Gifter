@@ -2,6 +2,7 @@ from webargs.flaskparser import use_args
 
 from flask import Blueprint
 from flask import jsonify
+from flask.ext.cors import cross_origin
 
 from gifter import config
 from gifter.api.ebay_api import EbayApi
@@ -12,7 +13,8 @@ from gifter import utils
 gifter_api = Blueprint('gifter_api', __name__)
 
 
-@gifter_api.route('/items/<screen_name>/', methods=['POST'])
+@gifter_api.route('/api/items/<screen_name>/', methods=['POST'])
+@cross_origin()
 @use_args(config.ITEMS_ARGS_PARSER)
 def items_handler(args, screen_name):
     """Retrives items from eBay.
@@ -25,7 +27,7 @@ def items_handler(args, screen_name):
     Returns a json data with items.
 
     ..Example usage:
-        /items/rivinek/?min_price=0&max_price=100&limit=1
+        /api/items/rivinek/?min_price=0&max_price=100&limit=1
 
     .. Example response:
 

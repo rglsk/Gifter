@@ -2,7 +2,8 @@ from gifter.api.ebay_api import EbayApi
 
 
 def convert_hashtag_response(hashtags):
-    new = [{'name': key, 'count': value}for key, value in hashtags.iteritems()]
+    new = [{'name': key, 'count': str(value)}
+           for key, value in hashtags.iteritems()]
     return {'hashtags': new}
 
 
