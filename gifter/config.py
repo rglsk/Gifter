@@ -49,7 +49,7 @@ EBAY_SANDBOX_DOMAIN = 'svcs.sandbox.ebay.com'
 EBAY_PRODUCTION_DOMAIN = 'ebay.com'
 
 
-#gifter API
+# gifter API
 ITEMS_LIMIT = 6
 ITEM_DETAILS = ['title', 'sellingStatus', 'galleryURL']
 ITEMS_ARGS_PARSER = {
