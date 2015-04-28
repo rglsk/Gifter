@@ -44,6 +44,14 @@ TWITTER_AUTH.set_access_token(
     TWITTER_ACCESS_TOKEN_SECRET
 )
 
+
+def setup_twitter_api():
+    return tweepy.API(
+        TWITTER_AUTH,
+        wait_on_rate_limit=True,
+        wait_on_rate_limit_notify=True,
+    )
+
 # eBay
 EBAY_SANDBOX_DOMAIN = 'svcs.sandbox.ebay.com'
 EBAY_PRODUCTION_DOMAIN = 'ebay.com'

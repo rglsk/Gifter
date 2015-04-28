@@ -1,15 +1,8 @@
 import tweepy
 import pandas as pd
 import argparse
-from gifter.config import TWITTER_AUTH
 
-
-def setup_twitter_api():
-    return tweepy.API(
-        TWITTER_AUTH,
-        wait_on_rate_limit=True,
-        wait_on_rate_limit_notify=True,
-    )
+from gifter.config import setup_twitter_api
 
 
 def timeline(api, screen_name):
