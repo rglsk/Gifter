@@ -40,16 +40,16 @@ class EbayApi(object):
             return func(self, **kwargs)
         return wrapper
 
-    @classmethod
-    def add_filter(cls, name, value):
+    @staticmethod
+    def add_filter(name, value):
         return {'name': name, 'value': value}
 
-    @classmethod
-    def create_search_query(cls, keywords):
+    @staticmethod
+    def create_search_query(keywords):
         return ','.join(keywords)
 
-    @classmethod
-    def _parse_items(cls, items):
+    @staticmethod
+    def _parse_items(items):
         return {'gifts': [{key: item[key] for key in config.ITEM_DETAILS}
                 for item in items]}
 
