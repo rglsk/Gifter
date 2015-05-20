@@ -1,7 +1,10 @@
-from gensim.parsing.preprocessing import STOPWORDS
-from itertools import chain
-import gensim
 import re
+from itertools import chain
+
+import gensim
+from unidecode import unidecode
+
+from gensim.parsing.preprocessing import STOPWORDS
 
 
 def mentions(entities):
@@ -41,7 +44,7 @@ def preprocess(text, entities):
     * remove mentions (@)
     * remove links
     """
-    text = text.strip()
+    text = unidecode(text.strip())
     hashtag_list = hashtags(entities)
     ignored = chain(
         mentions(entities),
@@ -49,7 +52,7 @@ def preprocess(text, entities):
         hashtag_list,
     )
     to_remove = "|".join(ignored)
-    pattern = re.compile("(#|RT |{})".format(to_remove), re.I)
+    pattern = re.compile("(#|RT |{})".format(unidecode(to_remove)), re.I)
     hashtag_text = " ".join(map(camel_case_to_text, hashtag_list))
     return " ".join([
         pattern.sub("", text),
