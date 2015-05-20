@@ -7,6 +7,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-color: #fff;
+  font-size: 1.8vh;
 }
 
 #panel {
@@ -40,7 +41,7 @@ body {
   width: 100%;
   background: #F4E4B8;
   color: #361502;
-  font-size: 1em;
+  font-size: 1.1em;
   border: .1em solid #F4E4B8;
 }
 

@@ -4,26 +4,22 @@
 }
 
 .present {
-	display: inline-block;
 	border: .1em solid #F4E4B8;
-	margin: 1%;
-	width: 22.5%;
+  margin: .1em;
 }
 
 .title {
-	font-size: .8em;
+  padding: 2% 5%;
+	font-size: 1.2em;
 	color: #643211;
 }
 
 img {
-	padding: 2% 4.5%;
-	width: 90%;
+	padding: 2% 10%;
 }
 
 .price {
-	font-size: .7em;
-	width: 90%;
-	text-align: right;
+  padding: 0 5%;
 }
 
 .submit {
@@ -38,22 +34,4 @@ img {
 .submit:hover {
   background: #F0E0B0;
   outline-color: #F0E0B0;
-}
-
-@media screen and (max-width: 400px) {
-  .present {
-    width: 97.5%;
-  }
-}
-
-@media screen and (min-width: 401px) and (max-width: 800px) {
-  .present {
-    width: 46%;
-  }
-}
-
-@media screen and (min-width: 801px) and (max-width: 1150px) {
-  .present {
-    width: 22%;
-  }
 }
