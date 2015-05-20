@@ -1,6 +1,7 @@
 var app = angular.module("gifter", [
     
     'ui.router',
+    'ui.bootstrap',
     'gifter.route',
     
     'gifter.newPresent',
@@ -17,4 +18,8 @@ var app = angular.module("gifter", [
     'gifter.services.stateService',
     'gifter.services.storageService'
 
-]);
+])
+
+    .run(function($rootScope, $modalStack) {
+        $modalStack. dismissAll();
+    });

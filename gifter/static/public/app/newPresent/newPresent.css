@@ -16,6 +16,7 @@ form {
   text-indent: .5em;
   border: .1em solid #F4E4B8;
   outline-color: #643211;
+  font-size: .8em;
 }
 
 .finder input[finder="TwitterName"],

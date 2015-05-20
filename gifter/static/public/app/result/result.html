@@ -2,13 +2,15 @@
 
 	<div class="centered presentList">
 
-		<div class="present" ng-repeat="present in ResultCtrl.presents">
-			<div class="centered title">
-				{{present.name}}
-			</div>
-			<img class="centered presentImg" ng-src="{{present.img}}" alt="present"/>
-			<div class="centered price">
-				{{present.price}}
+		<div class="row" ng-repeat="present in ResultCtrl.presents">
+			<div class="present col-md-12">
+				<img class="centered presentImg col-md-2 col-sm-2 col-xs-12" ng-src="{{present.img}}" alt="present"/>
+				<div class="title col-md-10">
+					{{present.name}}
+				</div>
+				<div class="price col-md-10">
+					{{present.price}}
+				</div>
 			</div>
 		</div>
 

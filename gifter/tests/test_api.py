@@ -9,6 +9,7 @@ class TestViews(BaseApiTest):
     def setUp(self):
         super(TestViews, self).setUp()
 
+    @unittest.skip("Live test skipping")
     def test_items_handler_live(self):
         """Live test for retrieval items from eBay by gifter_api.
 
