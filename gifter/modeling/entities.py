@@ -3,7 +3,7 @@ from unidecode import unidecode
 
 import pandas as pd
 
-from gifter.crawlers.user_tweets import get_user_tweets
+from gifter.crawlers.user_tweets import get_users_tweets
 
 
 def get_entitie(obj, key, name):
@@ -16,7 +16,7 @@ def get_series(df_tweets, key, name):
 
 
 def get_hashtags_info(screen_name):
-    tweets = get_user_tweets(screen_name)
+    tweets = get_users_tweets(screen_name)
     hashtags = get_series(tweets, 'text', 'hashtags')
     hashtag_counts = hashtags.value_counts().head(10)
     hashtags_dict = hashtag_counts.to_dict()
