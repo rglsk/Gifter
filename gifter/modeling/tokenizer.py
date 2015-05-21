@@ -6,6 +6,8 @@ from unidecode import unidecode
 
 from gensim.parsing.preprocessing import STOPWORDS
 
+CAMMEL_CASE_PATTERN = re.compile("([a-z])([A-Z])")
+
 
 def mentions(entities):
     return [
@@ -29,11 +31,10 @@ def hashtags(entities):
 
 
 def camel_case_to_text(camel):
-    return camel_case_to_text.pattern.sub(
+    return CAMMEL_CASE_PATTERN.sub(
         "\g<1> \g<2>",
         camel
     )
-camel_case_to_text.pattern = re.compile("([a-z])([A-Z])")
 
 
 def preprocess(text, entities):

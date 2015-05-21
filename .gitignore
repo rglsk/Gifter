@@ -7,7 +7,7 @@ __pycache__
 .log
 local_settings.py
 # data for modeling
-/gifter/modeling/data.json
+/gifter/modeling/data/data.json
 .ipynb_checkpoints
 /gifter/static/bower_components
 /gifter/static/node_modules
@@ -16,5 +16,5 @@ category_hierarchy.json
 ebay.yaml
 
 # Corpus and trained model
-/gifter/modeling/word2vec/text8*
-/gifter/modeling/word2vec/enwik*
+/gifter/modeling/data/word2vec/model
+/gifter/modeling/data/word2vec/corpus

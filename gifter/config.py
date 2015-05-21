@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import os
+
 from webargs import Arg
 
 from rauth.service import OAuth2Service
@@ -65,3 +67,11 @@ ITEMS_ARGS_PARSER = {
     'max_price': Arg(int, default=None),
     'limit': Arg(int, default=ITEMS_LIMIT)
 }
+
+
+# Data directory
+DATA_DIRECTORY = os.path.join(
+  os.path.abspath(os.path.dirname(__file__)),
+  'modeling',
+  'data'
+)

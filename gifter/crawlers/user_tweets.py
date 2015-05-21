@@ -10,7 +10,7 @@ def timeline(api, screen_name):
         api.user_timeline,
         screen_name=screen_name,
         count=200,
-
+        lang='en',
     )
     for tweet in cur.items():
         yield tweet._json
@@ -28,4 +28,4 @@ def main():
 
     args = parser.parse_args()
     df = get_user_tweets(args.screen_name)
-    df.to_json("gifter/modeling/data.json")
+    df.to_json("gifter/modeling/data/data.json")
