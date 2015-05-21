@@ -21,7 +21,6 @@ def timeline(api, screen_name):
         api.user_timeline,
         screen_name=screen_name,
         count=200,
-        lang='en',
     )
 
     for tweet in cur.items():
@@ -42,4 +41,4 @@ def main():
 
     args = parser.parse_args()
     df = get_users_tweets(args.screen_name)
-    df.to_json(os.path.join(DATA_DIRECTORY, "data.json")
+    df.to_json(os.path.join(DATA_DIRECTORY, "data.json"))
