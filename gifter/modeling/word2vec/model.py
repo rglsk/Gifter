@@ -1,15 +1,20 @@
+import os
 from gensim.models import Word2Vec
-from gifter.modeling.word2vec.config import MODELS
+from gifter.config import DATA_DIRECTORY
 
 
-def train_word2vec():
-    for name, config in MODELS.iteritems():
-        if config['corpus']:
-            model = Word2Vec(config['corpus'], size=200, workers=4)
-            model.save_word2vec_format(config['model'], binary=True)
+MODELS_DIR = os.path.join(DATA_DIRECTORY, 'word2vec', 'model')
+MODELS = {
+    'brown': os.path.join(MODELS_DIR, 'brown.bin'),
+    'movie_reviews': os.path.join(MODELS_DIR, 'movie_reviews.bin'),
+    'treebank': os.path.join(MODELS_DIR, 'treebank.bin'),
+    'text8': os.path.join(MODELS_DIR, 'text8.bin'),
+    'enwiki': os.path.join(MODELS_DIR, 'enwiki.bin'),
+    'google': os.path.join(MODELS_DIR, 'google.bin.gz')
+}
 
 
 def get_by_name(name):
-    config = MODELS.get(name)
-    if config:
-        return Word2Vec.load_word2vec_format(config['model'], binary=True)
+    path = MODELS.get(name)
+    if path:
+        return Word2Vec.load_word2vec_format(path, binary=True)
