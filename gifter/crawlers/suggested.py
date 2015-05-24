@@ -23,12 +23,13 @@ def get_suggested_topics():
     """
     Creates file with suggested categories from twitter as a dict {name: slug}
     """
-    api = setup_twitter_api()
-    categories = {}
-    for category in api.suggested_categories():
-        categories[category.name] = category.slug
-    with open(CATEGORIES_FILENAME, 'w') as f:
-        json.dump(categories, f, indent=4)
+    if not os.path.exists(CATEGORIES_FILENAME):
+        api = setup_twitter_api()
+        categories = {}
+        for category in api.suggested_categories():
+            categories[category.name] = category.slug
+        with open(CATEGORIES_FILENAME, 'w') as f:
+            json.dump(categories, f, indent=4)
 
 
 def get_categories():
@@ -53,11 +54,12 @@ def get_suggested_nicknames():
             dirname,
             'screen_names.json'
         )
-        screen_names = [
-            user.screen_name for user in api.suggested_users(slug)
-        ]
-        with open(filename, 'w') as f:
-            json.dump(screen_names, f, indent=4)
+        if not os.path.exists(filename):
+            screen_names = [
+                user.screen_name for user in api.suggested_users(slug)
+            ]
+            with open(filename, 'w') as f:
+                json.dump(screen_names, f, indent=4)
 
 
 def get_screen_names_from_cat(slug):
@@ -70,6 +72,13 @@ def get_suggested_tweets():
     for slug, dirname in categories_dirnames(get_categories()):
         for screen_name in get_screen_names_from_cat(slug):
             filename = os.path.join(dirname, "{}.json".format(screen_name))
-            print "Saving: {}".format(filename)
-            df = get_users_tweets([screen_name])
-            df.to_json(filename)
+            if not os.path.exists(filename):
+                print "Saving: {}".format(filename)
+                df = get_users_tweets([screen_name])
+                df.to_json(filename)
+
+
+def crawl_all_suggested():
+    get_suggested_topics()
+    get_suggested_nicknames()
+    get_suggested_tweets()

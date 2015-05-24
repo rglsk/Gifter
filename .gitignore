@@ -18,4 +18,4 @@ ebay.yaml
 # Corpus and trained model
 /gifter/modeling/data/word2vec/model
 /gifter/modeling/data/word2vec/corpus
-/gifter/modeling/data/labeled_twitter/*.json
+/gifter/modeling/data/labeled_twitter/*
