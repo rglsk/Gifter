@@ -2,7 +2,7 @@ scipy==0.15.0
 requests==2.5.3
 matplotlib==1.4.3
 tweepy==3.3.0
-pandas==0.16.0
+pandas==0.16.1
 scikit-learn==0.16.0
 ipython==3.0.0
 pyzmq==14.5.0

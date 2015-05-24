@@ -79,7 +79,7 @@ def get_suggested_tweets():
                 df.to_json(filename)
 
 
-def crawl_all_suggested():
+def crawl_all():
     get_suggested_topics()
     get_suggested_nicknames()
     get_suggested_tweets()
@@ -93,6 +93,7 @@ def preprocess_all():
                 dirname,
                 "pre_{}.json".format(screen_name)
             )
-            if not os.path.exists(preprocess_filename):
+            if os.path.exists(filename) and not os.path.exists(preprocess_filename):
+                print 'Preprocessing: {}'.format(preprocess_filename)
                 df = lemmatized_frame(filename, with_tags=False)
                 df[['text', 'lemmas']].to_json(preprocess_filename)
