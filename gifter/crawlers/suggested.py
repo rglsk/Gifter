@@ -6,6 +6,7 @@ from gifter.config import (
     DATA_DIRECTORY
 )
 from gifter.crawlers.user_tweets import get_users_tweets
+from gifter.modeling.data import lemmatized_frame
 
 
 ROOT_DIR = os.path.join(
@@ -82,3 +83,16 @@ def crawl_all_suggested():
     get_suggested_topics()
     get_suggested_nicknames()
     get_suggested_tweets()
+
+
+def preprocess_all():
+    for slug, dirname in categories_dirnames(get_categories()):
+        for screen_name in get_screen_names_from_cat(slug):
+            filename = os.path.join(dirname, "{}.json".format(screen_name))
+            preprocess_filename = os.path.join(
+                dirname,
+                "pre_{}.json".format(screen_name)
+            )
+            if not os.path.exists(preprocess_filename):
+                df = lemmatized_frame(filename, with_tags=False)
+                df[['text', 'lemmas']].to_json(preprocess_filename)
