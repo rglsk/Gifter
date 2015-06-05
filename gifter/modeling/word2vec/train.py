@@ -9,7 +9,7 @@ from gensim.models.word2vec import Text8Corpus
 from gensim.models import Word2Vec
 
 from gifter.config import DATA_DIRECTORY
-from gifter.modeling.word2vec.model import MODELS
+from gifter.modeling.word2vec.pretrained_models import MODELS
 
 CORPUS_DIR = os.path.join(DATA_DIRECTORY, 'word2vec', 'corpus')
 
