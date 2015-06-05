@@ -71,7 +71,18 @@ ITEMS_ARGS_PARSER = {
 
 # Data directory
 DATA_DIRECTORY = os.path.join(
-  os.path.abspath(os.path.dirname(__file__)),
-  'modeling',
-  'data'
+    os.path.abspath(os.path.dirname(__file__)),
+    'modeling',
+    'data'
+)
+
+# Suggested
+SUGGESTED_DIRECTORY = os.path.join(
+    DATA_DIRECTORY,
+    'labeled_twitter'
+)
+
+SUGGESTED_CATEGORIES = os.path.join(
+    SUGGESTED_DIRECTORY,
+    'categories.json'
 )
