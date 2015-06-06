@@ -3,10 +3,13 @@ from sklearn.metrics import classification_report
 
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.modeling.word2vec.model import Word2VecModel
-from gifter.modeling.bayes.model import BayesModel
+from gifter.modeling.skmodels.models import (
+    BayesModel,
+    SGDModel,
+)
 
 # Insert here classes
-METHODS = [BayesModel]
+METHODS = [SGDModel]
 
 
 def create_report():

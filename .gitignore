@@ -19,4 +19,4 @@ ebay.yaml
 /gifter/modeling/data/word2vec/model
 /gifter/modeling/data/word2vec/corpus
 /gifter/modeling/data/labeled_twitter/*
-/gifter/modeling/data/bayes
+/gifter/modeling/data/skmodels
