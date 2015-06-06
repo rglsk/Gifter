@@ -1,20 +1,50 @@
-import os
+import numpy as np
 from gensim.models import Word2Vec
-from gifter.config import DATA_DIRECTORY
+
+from gifter.modeling.models import BaseModel
+from gifter.modeling.word2vec.pretrained_models import MODELS
 
 
-MODELS_DIR = os.path.join(DATA_DIRECTORY, 'word2vec', 'model')
-MODELS = {
-    'brown': os.path.join(MODELS_DIR, 'brown.bin'),
-    'movie_reviews': os.path.join(MODELS_DIR, 'movie_reviews.bin'),
-    'treebank': os.path.join(MODELS_DIR, 'treebank.bin'),
-    'text8': os.path.join(MODELS_DIR, 'text8.bin'),
-    'enwiki': os.path.join(MODELS_DIR, 'enwiki.bin'),
-    'google': os.path.join(MODELS_DIR, 'google.bin.gz')
-}
+class Word2VecModel(BaseModel):
 
+    def __init__(self):
+        super(Word2VecModel, self).__init__('Word2Vec', MODELS['text8'])
 
-def get_by_name(name):
-    path = MODELS.get(name)
-    if path:
-        return Word2Vec.load_word2vec_format(path, binary=True)
+    def _get_storage(self):
+        return Word2Vec.load_word2vec_format(self.storage_name, binary=True)
+
+    def train(self, inputs, outputs):
+        """
+        This model does not need training on tweets
+        """
+
+    def _similarity(self, w1, w2):
+        try:
+            return self.clf.similarity(w1, w2)
+        except KeyError:
+            return 0
+
+    def _membership(self, words, tweet_lemmas):
+        return np.mean([
+            np.min([self._similarity(word, tweet_lemma) for word in words])
+            for tweet_lemma in tweet_lemmas
+        ])
+
+    def predict_one(self, one):
+        """
+        :param one: preprocessed twitter DataFrame
+        """
+        df = self.CLASSES.copy()
+        df['values'] = df.lemmatized.apply(
+            lambda categories: one.lemmas.apply(
+                lambda tweet_lemmas:
+                    self._membership(categories, tweet_lemmas)
+            ).sum()
+        )
+        return df.loc[df['values'].argmax()]['name']
+
+    def predict_many(self, inputs):
+        """
+        :param inputs: list of preprocessed twitter DataFrames
+        """
+        return [self.predict_one(i) for i in inputs]
