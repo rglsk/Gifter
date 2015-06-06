@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import (
     TfidfTransformer
 )
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.linear_model import SGDClassifier
+from sklearn.svm import LinearSVC
 from sklearn.pipeline import Pipeline
 from sklearn.grid_search import GridSearchCV
 
@@ -57,11 +57,11 @@ class BayesModel(BaseSkModel):
         super(BayesModel, self).train(inputs, outputs)
 
 
-class SGDModel(BaseSkModel):
+class LinearSVCModel(BaseSkModel):
 
     def __init__(self):
-        super(SGDModel, self).__init__(
-            'SGDModel',
+        super(LinearSVCModel, self).__init__(
+            'LinearSVCModel',
             os.path.join(DATA_DIRECTORY, 'skmodels', 'sgd.pkl')
         )
 
@@ -69,21 +69,20 @@ class SGDModel(BaseSkModel):
         self.clf = Pipeline(
             [('vect', CountVectorizer()),
              ('tfidf', TfidfTransformer()),
-             ('clf', SGDClassifier(alpha=0.001))]
+             ('clf', LinearSVC())]
         )
-        super(SGDModel, self).train(inputs, outputs)
+        super(LinearSVCModel, self).train(inputs, outputs)
 
     def search_parameters(self, inputs, outputs):
         merged = [self._merge(i) for i in inputs]
         parameters = {
             'vect__ngram_range': [(1, 1), (1, 2), (1, 3)],
             'tfidf__use_idf': (True, False),
-            'clf__alpha': (1e-1, 1e-2, 1e-3, 1e-4, 1e-5),
         }
         self.clf = Pipeline(
             [('vect', CountVectorizer()),
              ('tfidf', TfidfTransformer()),
-             ('clf', SGDClassifier())]
+             ('clf', LinearSVC())]
         )
         gs_clf = GridSearchCV(self.clf, parameters, n_jobs=-1)
         gs_clf = gs_clf.fit(merged[:400], outputs[:400])

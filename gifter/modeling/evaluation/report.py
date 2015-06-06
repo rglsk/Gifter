@@ -5,11 +5,11 @@ from gifter.modeling.evaluation.separate import separeted_data
 from gifter.modeling.word2vec.model import Word2VecModel
 from gifter.modeling.skmodels.models import (
     BayesModel,
-    SGDModel,
+    LinearSVCModel,
 )
 
 # Insert here classes
-METHODS = [SGDModel]
+METHODS = [LinearSVCModel]
 
 
 def create_report():
