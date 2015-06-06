@@ -69,7 +69,7 @@ class LinearSVCModel(BaseSkModel):
         self.clf = Pipeline(
             [('vect', CountVectorizer()),
              ('tfidf', TfidfTransformer()),
-             ('clf', LinearSVC())]
+             ('clf', LinearSVC(C=10))]
         )
         super(LinearSVCModel, self).train(inputs, outputs)
 
@@ -78,6 +78,7 @@ class LinearSVCModel(BaseSkModel):
         parameters = {
             'vect__ngram_range': [(1, 1), (1, 2), (1, 3)],
             'tfidf__use_idf': (True, False),
+            'clf__C': [1, 0.1, 10]
         }
         self.clf = Pipeline(
             [('vect', CountVectorizer()),
