@@ -8,7 +8,7 @@ from gifter.modeling.word2vec.pretrained_models import MODELS
 class Word2VecModel(BaseModel):
 
     def __init__(self):
-        super(Word2VecModel, self).__init__('Word2Vec', MODELS['text8'])
+        super(Word2VecModel, self).__init__('Word2Vec', MODELS['google'])
 
     def _get_storage(self):
         return Word2Vec.load_word2vec_format(self.storage_name, binary=True)
