@@ -86,3 +86,11 @@ SUGGESTED_CATEGORIES = os.path.join(
     SUGGESTED_DIRECTORY,
     'categories.json'
 )
+
+LLDA_TRAIN_DIRECTORY = os.path.join(
+    os.path.abspath(os.path.dirname(__file__)),
+    'modeling',
+    'llda',
+    'train_set')
+
+TOPIC_NUMBER = 24

@@ -160,11 +160,9 @@ def main():
     for i in range(options.iteration):
         sys.stderr.write("-- %d " % (i + 1))
         llda.inference()
-    # print llda.z_m_n
 
     phi = llda.phi()
     for v, voca in enumerate(llda.vocas):
-        # print ','.join([voca]+[str(x) for x in llda.n_z_t[:,v]])
         print ','.join([voca] + [str(x) for x in phi[:, v]])
 
 if __name__ == "__main__":
