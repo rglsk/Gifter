@@ -25,8 +25,8 @@ class Word2VecModel(BaseModel):
             return 0
 
     def _membership(self, words, tweet_lemmas):
-        return np.mean([
-            np.min([self._similarity(word, tweet_lemma) for word in words])
+        return np.max([
+            [self._similarity(word, tweet_lemma) for word in words]
             for tweet_lemma in tweet_lemmas
         ])
 

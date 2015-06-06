@@ -50,3 +50,10 @@ class BaseModel(object):
         :param inputs: list of preprocessed twitter DataFrames
         """
         return
+
+
+class MergingBaseModel(BaseModel):
+
+    @staticmethod
+    def _merge(df):
+        return df.lemmas.map(" ".join).sum()

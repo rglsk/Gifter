@@ -1,20 +1,12 @@
-from collections import OrderedDict
 import pandas as pd
 from sklearn.metrics import classification_report
 
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.modeling.word2vec.model import Word2VecModel
-from gifter.modeling.models import BaseModel
 
 
 # Insert here classes
 METHODS = [Word2VecModel]
-
-
-def class_mapper():
-    return OrderedDict(
-        [(key, value) for value, key in enumerate(BaseModel.CLASSES.name.ravel())]
-    )
 
 
 def create_report():
@@ -26,6 +18,7 @@ def create_report():
 
         # get outputs
         preprocessed = inputs_test.preprocessed_filename.tolist()
+
         predicted = model.predict_many(
             [pd.read_json(filename) for filename in preprocessed]
         )
