@@ -5,6 +5,8 @@ import json
 import numpy as np
 import pandas as pd
 
+from gifter.config import DATA_DIRECTORY
+from gifter.modeling.data import lemmatized_frame
 from gifter.modeling.models import BaseModel
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.config import TOPIC_NUMBER
@@ -28,14 +30,10 @@ class LldaModel(BaseModel):
         results = {}
         for k, label in enumerate(labelset):
             results[label] = {}
-            # print "\n-- label %d : %s" % (k, label)
             for w in np.argsort(-phi[k])[:20]:
                 results[label][self.llda.vocas[w]] = phi[k, w]
         with open('train_results.json', 'w+') as outfile:
             json.dump(results, outfile)
-                # print "%s: %.4f" % (llda.vocas[w], phi[k, w])
-
-
 
     def train(self):
         # training_set = {category: [] for category in self.output_train}
@@ -58,7 +56,7 @@ class LldaModel(BaseModel):
                                               len(labelset),
                                               TOPIC_NUMBER)
 
-        for i in range(100):
+        for i in range(50):
             sys.stderr.write("-- %d : %.4f\n" % (i, self.llda.perplexity()))
             self.llda.inference()
         print "perplexity : %.4f" % self.llda.perplexity()
@@ -69,7 +67,24 @@ class LldaModel(BaseModel):
         """
         :param one: preprocessed twitter DataFrame
         """
-        return
+        from gifter.modeling.llda.dupa import DUPA
+        from gifter.modeling.llda.llda_usage import count_words
+
+        results = DUPA.copy()
+        # results.pop('common')
+        lemmatized_words = one.lemmas.sum()
+        counted_words = count_words(lemmatized_words)
+        counted_words.sort(ascending=False)
+
+        category_results = {i.lower(): 0 for i in results.keys()}
+
+        for ww, count in counted_words.iteritems():
+            for category, result in results.iteritems():
+                for word, weight in result.iteritems():
+                    if ww == word:
+                        category_results[category] += count * weight
+
+        import ipdb; ipdb.set_trace()
 
     def predict_many(self, inputs):
         """
@@ -78,8 +93,8 @@ class LldaModel(BaseModel):
         return
 
 
-
 if __name__ == '__main__':
     llda = LldaModel(alpha=0.001, beta=0.001)
-    llda.train()
-    import ipdb; ipdb.set_trace()
+    one = pd.read_json(
+        '/home/rivinek/.virtualenvs/gifter/Gifter/gifter/modeling/data/labeled_twitter/sports/pre_RealMikeWilbon.json')
+    llda.predict_one(one)
