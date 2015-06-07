@@ -34,7 +34,7 @@ class BaseSkModel(MergingBaseModel):
 
     def predict_one(self, one):
         self._check_clf()
-        return self.clf.predict(self._merge(one))
+        return self.clf.predict([self._merge(one)])[0]
 
     def predict_many(self, inputs):
         self._check_clf()
@@ -62,7 +62,7 @@ class LinearSVCModel(BaseSkModel):
     def __init__(self):
         super(LinearSVCModel, self).__init__(
             'LinearSVCModel',
-            os.path.join(DATA_DIRECTORY, 'skmodels', 'sgd.pkl')
+            os.path.join(DATA_DIRECTORY, 'skmodels', 'svc.pkl')
         )
 
     def train(self, inputs, outputs):
