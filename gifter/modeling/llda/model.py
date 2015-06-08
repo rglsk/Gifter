@@ -5,17 +5,16 @@ import json
 import numpy as np
 import pandas as pd
 
-from gifter.config import DATA_DIRECTORY
-from gifter.modeling.data import lemmatized_frame
 from gifter.modeling.models import BaseModel
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.config import TOPIC_NUMBER
+from gifter.modeling.llda.llda_usage import count_words
 from gifter.modeling.llda.llda import LLDA
 
 
 class LldaModel(BaseModel):
 
-    def __init__(self, alpha, beta):
+    def __init__(self, alpha=0.001, beta=0.001):
         super(LldaModel, self).__init__('LLDA', 'storage_name')
         (self.inputs_train, self.inputs_test, self.output_train,
             self.output_test) = separeted_data(test_size=0.7)
@@ -67,15 +66,12 @@ class LldaModel(BaseModel):
         """
         :param one: preprocessed twitter DataFrame
         """
-        from gifter.modeling.llda.dupa import DUPA
-        from gifter.modeling.llda.llda_usage import count_words
+        with open('json_results.json', 'r') as jj:
+            results = json.load(jj)
 
-        results = DUPA.copy()
-        # results.pop('common')
         lemmatized_words = one.lemmas.sum()
         counted_words = count_words(lemmatized_words)
         counted_words.sort(ascending=False)
-
         category_results = {i.lower(): 0 for i in results.keys()}
 
         for ww, count in counted_words.iteritems():
@@ -83,18 +79,10 @@ class LldaModel(BaseModel):
                 for word, weight in result.iteritems():
                     if ww == word:
                         category_results[category] += count * weight
-
-        import ipdb; ipdb.set_trace()
+        return pd.Series(category_results).idxmax()
 
     def predict_many(self, inputs):
         """
         :param inputs: list of preprocessed twitter DataFrames
         """
-        return
-
-
-if __name__ == '__main__':
-    llda = LldaModel(alpha=0.001, beta=0.001)
-    one = pd.read_json(
-        '/home/rivinek/.virtualenvs/gifter/Gifter/gifter/modeling/data/labeled_twitter/sports/pre_RealMikeWilbon.json')
-    llda.predict_one(one)
+        return [self.predict_one(_input) for _input in inputs]
