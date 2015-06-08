@@ -1,3 +1,5 @@
+import random
+
 import pandas as pd
 from sklearn.metrics import classification_report
 
@@ -34,7 +36,8 @@ def create_report():
 def llda_report():
     inputs_test = pd.read_json('trol.json')
     llda = LldaModel()
-    preprocessed = inputs_test.preprocessed_filename.tolist()
+    preprocessed = random.sample(inputs_test.preprocessed_filename.tolist(),
+                                 494)
     output_test = map(get_category_from_filepath, preprocessed)
 
     predicted = llda.predict_many(
