@@ -17,6 +17,7 @@ class Word2VecModel(BaseModel):
         """
         This model does not need training on tweets
         """
+        self.clf = self._get_storage()
 
     def _similarity(self, w1, w2):
         try:

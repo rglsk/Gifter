@@ -7,10 +7,13 @@ from gifter.utils import get_category_from_filepath
 from gifter.modeling.llda.model import LldaModel
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.modeling.word2vec.model import Word2VecModel
-
+from gifter.modeling.skmodels.models import (
+    BayesModel,
+    LinearSVCModel,
+)
 
 # Insert here classes
-METHODS = [Word2VecModel]
+METHODS = [LinearSVCModel]
 
 
 def create_report():
@@ -18,13 +21,13 @@ def create_report():
     for method in METHODS:
         # training
         model = method()
-        model.train(inputs_train, output_train)
-
-        # get outputs
-        preprocessed = inputs_test.preprocessed_filename.tolist()
+        model.train(
+            map(pd.read_json, inputs_train.preprocessed_filename),
+            output_train
+        )
 
         predicted = model.predict_many(
-            [pd.read_json(filename) for filename in preprocessed]
+            map(pd.read_json, inputs_test.preprocessed_filename)
         )
         print model.name
         print classification_report(

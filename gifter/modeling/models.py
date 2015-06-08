@@ -24,7 +24,7 @@ class BaseModel(object):
     def __init__(self, name, storage_name):
         self.name = name
         self.storage_name = storage_name
-        self.clf = self._get_storage()
+        self.clf = None
 
     def __str__(self):
         return self.name
