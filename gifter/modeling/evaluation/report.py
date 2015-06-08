@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.metrics import classification_report
 
 from gifter.utils import get_category_from_filepath
+from gifter.utils import get_data_file_path
 from gifter.modeling.llda.model import LldaModel
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.modeling.word2vec.model import Word2VecModel
@@ -13,7 +14,7 @@ from gifter.modeling.skmodels.models import (
 )
 
 # Insert here classes
-METHODS = [LinearSVCModel]
+METHODS = [Word2VecModel]
 
 
 def create_report():
@@ -37,7 +38,7 @@ def create_report():
 
 
 def llda_report():
-    inputs_test = pd.read_json('trol.json')
+    inputs_test = pd.read_json(get_data_file_path('inputs_test.json'))
     llda = LldaModel()
     preprocessed = random.sample(inputs_test.preprocessed_filename.tolist(),
                                  494)

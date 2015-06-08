@@ -5,6 +5,7 @@ import json
 import numpy as np
 import pandas as pd
 
+from gifter.utils import get_data_file_path
 from gifter.modeling.models import BaseModel
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.config import TOPIC_NUMBER
@@ -18,6 +19,8 @@ class LldaModel(BaseModel):
         super(LldaModel, self).__init__('LLDA', 'storage_name')
         (self.inputs_train, self.inputs_test, self.output_train,
             self.output_test) = separeted_data(test_size=0.7)
+        self.inputs_test.to_json('inputs_test.json')
+        self.output_train.to_json('inputs_train.json')
 
         self.llda = LLDA(TOPIC_NUMBER, alpha, beta)
 
@@ -31,19 +34,17 @@ class LldaModel(BaseModel):
             results[label] = {}
             for w in np.argsort(-phi[k])[:20]:
                 results[label][self.llda.vocas[w]] = phi[k, w]
-        with open('train_results.json', 'w+') as outfile:
+        with open(get_data_file_path('train_results.json'), 'w+') as outfile:
             json.dump(results, outfile)
 
     def train(self):
-        # training_set = {category: [] for category in self.output_train}
-        training_set = []
+        corpus = []
         zipped_data = izip(self.inputs_train.preprocessed_filename,
                            self.output_train)
         for train_path, category in zipped_data:
             tweets_df = pd.read_json(train_path)
-            training_set.append(tweets_df.lemmas.sum())
+            corpus.append(tweets_df.lemmas.sum())
 
-        corpus = training_set
         labels = [[key] for key in self.output_train]
         labelset = list(set(reduce(list.__add__, labels)))
 
@@ -66,7 +67,7 @@ class LldaModel(BaseModel):
         """
         :param one: preprocessed twitter DataFrame
         """
-        with open('json_results.json', 'r') as jj:
+        with open(get_data_file_path('train_results.json'), 'r') as jj:
             results = json.load(jj)
 
         lemmatized_words = one.lemmas.sum()
