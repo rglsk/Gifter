@@ -1,6 +1,11 @@
+import random
+
 import pandas as pd
 from sklearn.metrics import classification_report
 
+from gifter.utils import get_category_from_filepath
+from gifter.utils import get_data_file_path
+from gifter.modeling.llda.model import LldaModel
 from gifter.modeling.evaluation.separate import separeted_data
 from gifter.modeling.word2vec.model import Word2VecModel
 from gifter.modeling.skmodels.models import (
@@ -30,3 +35,20 @@ def create_report():
             output_test,
             predicted,
         )
+
+
+def llda_report():
+    inputs_test = pd.read_json(get_data_file_path('inputs_test.json'))
+    llda = LldaModel()
+    preprocessed = random.sample(inputs_test.preprocessed_filename.tolist(),
+                                 494)
+    output_test = map(get_category_from_filepath, preprocessed)
+
+    predicted = llda.predict_many(
+        [pd.read_json(filename) for filename in preprocessed]
+    )
+    print llda.name
+    print classification_report(
+        output_test,
+        predicted,
+    )
