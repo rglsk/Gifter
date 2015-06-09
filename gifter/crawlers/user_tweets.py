@@ -20,6 +20,8 @@ def timeline(api, screen_name):
 
 
 def get_users_tweets(screen_names):
+    if isinstance(screen_names, str):
+        screen_names = [screen_names]
     api = setup_twitter_api()
     tweets = []
     for screen_name in screen_names:
