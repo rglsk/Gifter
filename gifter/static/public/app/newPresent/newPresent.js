@@ -8,7 +8,7 @@ angular.module('gifter.newPresent', [])
     		this.twitterName = '';
     		this.from = '';
     		this.to = '';
-            this.modalInstance;
+            this.modalInstance = '';
 
             this.openModal = function (size) {
                 this.modalInstance = $modal.open({

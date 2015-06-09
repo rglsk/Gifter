@@ -16,7 +16,7 @@ def get_series(df_tweets, key, name):
 
 
 def get_hashtags_info(screen_name):
-    tweets = get_users_tweets(screen_name)
+    tweets = get_users_tweets([screen_name])
     hashtags = get_series(tweets, 'text', 'hashtags')
     hashtag_counts = hashtags.value_counts().head(10)
     hashtags_dict = hashtag_counts.to_dict()

@@ -14,7 +14,7 @@ from gifter.modeling.skmodels.models import (
 )
 
 # Insert here classes
-METHODS = [Word2VecModel]
+METHODS = [Word2VecModel, BayesModel, LinearSVCModel]
 
 
 def create_report():

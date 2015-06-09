@@ -20,3 +20,6 @@ ebay.yaml
 /gifter/modeling/data/word2vec/corpus
 /gifter/modeling/data/labeled_twitter/*
 /gifter/modeling/data/skmodels
+
+# distribution plot
+distribution.jpg
