@@ -10,24 +10,19 @@ def lda(
     list_of_json=["../data/data.json", "../data/data2.json"],
     documents_list=[],
     num=24,
-    passes=20,
-    save_model_as='../lda/lda.model',
-    save_dic_as='../lda/dictionary.dic'
+    passes=100,
+    save_model_as='lda.model',
+    save_dic_as='dictionary.dic'
 ):
     texts2 = []
-    table = []
     if not documents_list:
-        for document in list_of_json:
-            print str(document)
-            df = pd.io.json.read_json(document)
-            for i in range(df.shape[0]):
-                table = table + df['lemmas'].irow(i)
-            texts2 = texts2 + [table]
+        texts2 = list_of_json
     else:
         texts2 = []
         for d in documents_list:
             texts2 = texts2 + [lemmatize(text=d, with_tags=False)]
     dictionary = corpora.Dictionary(texts2)
+    print "Made dictionary"
     dictionary.save(save_dic_as)
     corpus = [dictionary.doc2bow(text) for text in texts2]
     corpora.MmCorpus.serialize('../lda/corpus.mm', corpus)
@@ -57,22 +52,31 @@ def count_words(lemmatized_words):
     return {word: lemmatized_words.count(word) for word in lemmatized_words}
 
 
-def learned_categories(train=[]):
+def learned_categories(
+    train=[],
+    out=[],
+    dictionary='dictionary.dic',
+    lda='lda.model'
+):
     res = {i: [] for i in xrange(0, 24)}
     result = []
-    for document in train:
-        t = find_topic(frame=pd.io.json.read_json(document))
+    for document, output in zip(train, out):
+        t = find_topic(
+            frame=document,
+            dictionary='dictionary.dic',
+            lda='lda.model'
+        )
         if (t[0][0]):
-            res[t[0][0]].append(document.split('/')[-2])
+            res[t[0][0]].append(output)
     for i in res.keys():
         if len(res[i]) > 0:
             a = sorted(
                 count_words(res[i]).values(), reverse=True
-                )[0]
+            )[0]
             for key, value in count_words(res[i]).iteritems():
                 if (value == a):
                     result.append(key)
-                    a = a+1
+                    a = a + 1
         else:
             result.append(u'science')
     return result

@@ -12,9 +12,10 @@ from gifter.modeling.skmodels.models import (
     BayesModel,
     LinearSVCModel,
 )
+from gifter.modeling.lda.model import LdaModel
 
 # Insert here classes
-METHODS = [Word2VecModel, BayesModel, LinearSVCModel]
+METHODS = [Word2VecModel, BayesModel, LinearSVCModel, LdaModel]
 
 
 def create_report():
