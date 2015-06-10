@@ -8,14 +8,14 @@ from gifter.config import (
 )
 
 
-def timeline(api, screen_name):
+def timeline(api, screen_name, maximal=600):
     cur = tweepy.Cursor(
         api.user_timeline,
         screen_name=screen_name,
         count=200,
     )
 
-    for tweet in cur.items():
+    for tweet in cur.items(maximal):
         yield tweet._json
 
 
