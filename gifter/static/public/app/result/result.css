@@ -3,8 +3,11 @@
 	height: 100%;
 }
 
+.frame {
+  border: .1em solid #F4E4B8;
+}
+
 .present {
-	border: .1em solid #F4E4B8;
   margin: .1em;
 }
 

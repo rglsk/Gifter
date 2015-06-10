@@ -19,7 +19,7 @@ angular.module('gifter.newPresent', [])
     		this.find = function () {
                 that = this;
                 that.openModal();
-    			var url = 'http://127.0.0.1:5000/api/items/' + this.twitterName + '/';
+    			var url = '/api/items/' + this.twitterName + '/';
     			$http.post(url, {
     				'min_price': this.from || 0,
     				'max_price': this.to || 100,
