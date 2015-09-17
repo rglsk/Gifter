@@ -1,38 +1,38 @@
-form label {
-  font-size: .9em;
-}
-
-form {
-  margin: 2% auto;
-  padding: 1em;
-  width: 30%;
-  color: #643211;
-  border: .1em solid #F4E4B8;
-}
-
-.finder input {
-  width: 50%;
+.find-present input[finder="TwitterName"] {
+  width: 100%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
   height: 2em;
   text-indent: .5em;
-  border: .1em solid #F4E4B8;
-  outline-color: #643211;
-  font-size: .8em;
+  border: .1em solid #cccccc;
+  outline-color: #cccccc;
+  font-size: 1.5em;
+  padding: 0 5px;
 }
 
-.finder input[finder="TwitterName"],
-.finder input[finder="FbName"] {
-  width: 100%;
-  margin-bottom: 1em;
+.slider-wrapper {
+  margin: 1em 0 4em 0;
 }
 
-@media screen and (max-width: 800px) {
-  form {
-    width: 60%;
-  }
+rzslider span.rz-pointer,
+rzslider span.rz-bar.rz-selection {
+  background-color: #0e426c;
 }
 
-@media screen and (min-width: 800px) and (max-width: 1000px) {
-  form {
-    width: 50%;
-  }
+rzslider span.rz-pointer {
+/*  width: 22px;
+  height: 22px;
+  top: -9px;*/
+}
+
+rzslider span.rz-pointer:after,
+rzslider span.rz-pointer:hover:after,
+rzslider span.rz-pointer.rz-active:after {
+  background-color: #eeeeee;
+/*  top: 7px;
+  left: 8px;*/
+}
+
+rzslider span.rz-bubble {
+  font-size: 1.1em;
 }
