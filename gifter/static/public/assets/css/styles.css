@@ -12,7 +12,7 @@ body {
   width: 100%;
   position: absolute;
   right: 5%;
-  font-size: 2em;
+  font-size: 1.7em;
   color: #0e426c;
 }
 
@@ -28,16 +28,20 @@ body {
 }
 
 .main-logo {
-  width: 50%;
   display: block;
+  margin-top: 25px;
 }
 
 .centered {
   margin-left: auto;
   margin-right: auto;
+  float: none;
 }
-.find-present {
-  width: 50%;
+
+@media screen and (min-width: 768px) {
+  .find-present {
+    padding: 0 5%;
+  }
 }
 
 .submit {
@@ -53,6 +57,6 @@ body {
 
 .submit:hover,
 .submit:focus {
-  background: #0e426c;
-  outline-color: #0e426c;
+  background: #5f021f;
+  outline-color: #5f021f;
 }
