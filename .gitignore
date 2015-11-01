@@ -7,19 +7,19 @@ __pycache__
 .log
 local_settings.py
 # data for modeling
-/gifter/modeling/data/data.json
+/src/ml/data/data.json
 .ipynb_checkpoints
-/gifter/static/bower_components
-/gifter/static/node_modules
-/gifter/static/www
-category_hierarchy.json
-ebay.yaml
+/src/gifter/static/bower_components
+/src/gifter/static/node_modules
+/src/gifter/static/www
+/src/gifter/category_hierarchy.json
+/src/ebay.yaml
 
 # Corpus and trained model
-/gifter/modeling/data/word2vec/model
-/gifter/modeling/data/word2vec/corpus
-/gifter/modeling/data/labeled_twitter/*
-/gifter/modeling/data/skmodels
+/src/ml/data/word2vec/model
+/src/ml/data/word2vec/corpus
+/src/ml/data/labeled_twitter/*
+/src/ml/data/skmodels
 
 # distribution plot
-distribution.jpg
+/src/distribution.jpg

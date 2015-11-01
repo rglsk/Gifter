@@ -27,5 +27,5 @@ class ItemsNotFoundError(BaseException):
     """Exception error class for not found items"""
 
 
-class UntrainedModelError(Exception):
+class UntrainedModelError(BaseException):
     """Raised if model was not trained"""
