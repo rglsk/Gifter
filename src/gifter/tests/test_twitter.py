@@ -1,6 +1,6 @@
 import unittest
 
-from gifter.crawlers.user_friends import get_user_friends
+from crawlers.user_friends import get_user_friends
 
 
 class TestTwitter(unittest.TestCase):

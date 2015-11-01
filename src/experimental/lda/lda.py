@@ -2,7 +2,7 @@
 import itertools
 import gensim
 from gensim import corpora, models
-from gifter.modeling.tokenizer import lemmatize
+from ml.tokenizer import lemmatize
 import pandas as pd
 
 

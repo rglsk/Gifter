@@ -3,8 +3,8 @@ Base Model class
 """
 import abc
 import pandas as pd
-from gifter.crawlers.suggested import get_categories
-from gifter.modeling.tokenizer import lemmatize
+from crawlers.suggested import get_categories
+from ml.tokenizer import lemmatize
 
 
 def classes():

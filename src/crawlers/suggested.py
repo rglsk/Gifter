@@ -1,13 +1,13 @@
 import json
 import os
 
-from gifter.config import (
+from core.config import (
     setup_twitter_api,
     SUGGESTED_DIRECTORY,
     SUGGESTED_CATEGORIES
 )
-from gifter.crawlers.user_tweets import get_users_tweets
-from gifter.modeling.data import lemmatized_frame
+from crawlers.user_tweets import get_users_tweets
+from ml.data import lemmatized_frame
 
 
 SCREEN_NAMES_FILENAME = 'screen_names.json'

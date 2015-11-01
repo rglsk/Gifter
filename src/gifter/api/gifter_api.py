@@ -4,10 +4,11 @@ from flask import Blueprint
 from flask import jsonify
 from flask.ext.cors import cross_origin
 
-from gifter import config
-from gifter.api.ebay_api import EbayApi
-from gifter.modeling.entities import get_hashtags_info
 from gifter import utils
+from gifter.api.ebay_api import EbayApi
+
+from core import config
+from ml.entities import get_hashtags_info
 
 
 gifter_api = Blueprint('gifter_api', __name__)

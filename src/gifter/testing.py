@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from gifter.manage import app
+from manage import app
 
 
 class BaseApiTest(unittest.TestCase):

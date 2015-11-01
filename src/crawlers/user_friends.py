@@ -1,6 +1,6 @@
 import tweepy
 
-from gifter.config import setup_twitter_api
+from core.config import setup_twitter_api
 
 
 def parse_friend(friend):

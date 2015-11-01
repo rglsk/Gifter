@@ -7,7 +7,7 @@ from rauth.service import OAuth2Service
 import tweepy
 
 try:
-    from gifter.local_settings import *
+    from core.local_settings import *
 except ImportError:
     raise ImportError(
         'Please create file local_settings.py and set basic settings.'
@@ -72,7 +72,8 @@ ITEMS_ARGS_PARSER = {
 # Data directory
 DATA_DIRECTORY = os.path.join(
     os.path.abspath(os.path.dirname(__file__)),
-    'modeling',
+    '..',
+    'ml',
     'data'
 )
 

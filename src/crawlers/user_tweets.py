@@ -2,7 +2,7 @@ import os
 import tweepy
 import pandas as pd
 import argparse
-from gifter.config import (
+from core.config import (
     setup_twitter_api,
     DATA_DIRECTORY
 )

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from gifter.modeling.data import lemmatized_frame
+from ml.data import lemmatized_frame
 
 
 def count_words(lemmatized_words):

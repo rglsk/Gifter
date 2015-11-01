@@ -1,6 +1,6 @@
 import unittest
 
-from gifter import config
+from core import config
 from gifter.testing import BaseApiTest
 
 

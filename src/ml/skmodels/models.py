@@ -10,9 +10,9 @@ from sklearn.svm import LinearSVC
 from sklearn.pipeline import Pipeline
 from sklearn.grid_search import GridSearchCV
 
-from gifter.modeling.models import MergingBaseModel
-from gifter.errors import UntrainedModelError
-from gifter.config import DATA_DIRECTORY
+from ml.models import MergingBaseModel
+from core.errors import UntrainedModelError
+from core.config import DATA_DIRECTORY
 
 
 class BaseSkModel(MergingBaseModel):

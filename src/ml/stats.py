@@ -1,7 +1,7 @@
 # coding: utf-8
 import pandas as pd
 import matplotlib.pylab as plt
-from gifter.modeling.evaluation.separate import get_evaluation_df
+from ml.evaluation.separate import get_evaluation_df
 
 
 def all_tweets_stats(all_df):

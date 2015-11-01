@@ -1,6 +1,6 @@
 import os
 from gensim.models import Word2Vec
-from gifter.config import DATA_DIRECTORY
+from core.config import DATA_DIRECTORY
 
 
 MODELS_DIR = os.path.join(DATA_DIRECTORY, 'word2vec', 'model')

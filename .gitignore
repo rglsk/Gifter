@@ -16,8 +16,8 @@ local_settings.py
 /src/ebay.yaml
 
 # Corpus and trained model
-/src/ml/data/word2vec/model
-/src/ml/data/word2vec/corpus
+/src/experimental/data/word2vec/model
+/src/experimental/data/word2vec/corpus
 /src/ml/data/labeled_twitter/*
 /src/ml/data/skmodels
 

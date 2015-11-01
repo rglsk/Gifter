@@ -1,6 +1,6 @@
 import pandas as pd
 
-from gifter.modeling.tokenizer import (
+from ml.tokenizer import (
     lemmatize,
     preprocess
 )

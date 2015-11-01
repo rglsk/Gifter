@@ -1,5 +1,6 @@
+from core.config import LLDA_RESULTS_DIRECTORY
+
 from gifter.api.ebay_api import EbayApi
-from gifter.config import LLDA_RESULTS_DIRECTORY
 
 
 def convert_hashtag_response(hashtags):

@@ -4,8 +4,8 @@ from ebaysdk.exception import ConnectionError
 from ebaysdk.finding import Connection as finding
 from ebaysdk.trading import Connection as trading
 
-from gifter import errors
-from gifter import config
+from core import errors
+from core import config
 
 
 class EbayApi(object):

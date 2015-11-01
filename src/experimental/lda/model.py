@@ -1,6 +1,6 @@
 from gifter.crawlers.suggested import *
-from gifter.modeling.lda.lda import *
-from gifter.modeling.models import BaseModel
+from experimental.lda.lda import *
+from ml.models import BaseModel
 
 
 class LdaModel(BaseModel):

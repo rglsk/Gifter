@@ -6,9 +6,7 @@ from flask import (
     render_template,
     url_for
 )
-from gifter.config import (
-    DEBUG,
-    SECRET_KEY,
+from core.config import (
     FACEBOOK_AUTH,
     FB_PERMISSIONS
 )
@@ -32,7 +30,7 @@ def login():
 
 @app.route('/facebook/authorized')
 def authorized():
-    if not 'code' in request.args:
+    if 'code' not in request.args:
         flash('You did not authorize the request')
         return redirect(url_for('index'))
 

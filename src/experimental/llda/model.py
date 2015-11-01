@@ -5,12 +5,12 @@ import json
 import numpy as np
 import pandas as pd
 
+from config import TOPIC_NUMBER
 from gifter.utils import get_data_file_path
-from gifter.modeling.models import BaseModel
-from gifter.modeling.evaluation.separate import separeted_data
-from gifter.config import TOPIC_NUMBER
-from gifter.modeling.llda.llda_usage import count_words
-from gifter.modeling.llda.llda import LLDA
+from ml.models import BaseModel
+from ml.evaluation.separate import separeted_data
+from experimental.llda.llda_usage import count_words
+from experimental.llda.llda import LLDA
 
 
 class LldaModel(BaseModel):

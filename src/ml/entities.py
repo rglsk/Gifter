@@ -3,7 +3,7 @@ from unidecode import unidecode
 
 import pandas as pd
 
-from gifter.crawlers.user_tweets import get_users_tweets
+from crawlers.user_tweets import get_users_tweets
 
 
 def get_entitie(obj, key, name):

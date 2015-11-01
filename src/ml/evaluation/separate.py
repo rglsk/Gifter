@@ -1,7 +1,7 @@
 from sklearn import cross_validation
 import pandas as pd
 
-from gifter.crawlers.suggested import files_by_categories
+from crawlers.suggested import files_by_categories
 
 
 def get_evaluation_df():

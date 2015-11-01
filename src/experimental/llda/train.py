@@ -1,8 +1,8 @@
 from itertools import izip
 import pandas as pd
 
-from gifter.modeling.models import MergingBaseModel
-from gifter.config import LLDA_TRAIN_DIRECTORY
+from ml.models import MergingBaseModel
+from core.config import LLDA_TRAIN_DIRECTORY
 
 
 def create_train_documents(train_paths, train_category):

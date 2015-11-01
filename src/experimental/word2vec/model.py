@@ -1,8 +1,8 @@
 import numpy as np
 from gensim.models import Word2Vec
 
-from gifter.modeling.models import BaseModel
-from gifter.modeling.word2vec.pretrained_models import MODELS
+from ml.models import BaseModel
+from experimental.word2vec.pretrained_models import MODELS
 
 
 class Word2VecModel(BaseModel):
