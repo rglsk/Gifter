@@ -1,0 +1,364 @@
+[
+    {
+    	"OurCategoryName" : "art-design",
+        "CategoryName": "Art", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "550", 
+        "CategoryID": "550",
+
+        "CategoryName2": "Collectibles", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "1", 
+        "CategoryID2": "1"
+    },
+    {
+    	"OurCategoryName" : "books",
+    	"CategoryName": "Books", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "267", 
+        "CategoryID": "267",
+
+        "CategoryID2": "172008", 
+        "CategoryLevel2": "1", 
+        "CategoryName2": "Gift Cards & Coupons", 
+        "CategoryParentID2": "172008"
+    },
+    {
+    	"OurCategoryName" : "business",
+    	"CategoryName": "Business & Industrial", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "12576", 
+        "CategoryID": "12576",
+
+        "CategoryName2": "Jewelry & Watches", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "281", 
+        "CategoryID2": "281"
+    },
+    {
+    	"OurCategoryName" : "charity",
+    	"CategoryID": "172008", 
+        "CategoryLevel": "1", 
+        "CategoryName": "Gift Cards & Coupons", 
+        "CategoryParentID": "172008",
+
+        "CategoryName2": "Collectibles", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "1", 
+        "CategoryID2": "1"
+    },
+    {
+    	"OurCategoryName" : "entertainment",
+    	"CategoryName": "Entertainment Memorabilia", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "45100", 
+        "CategoryID": "45100",
+
+        "CategoryName2": "Video Games & Consoles", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "1249", 
+        "CategoryID2": "1249"
+    },
+    {
+    	"OurCategoryName" : "faith-and-religion",
+    	"CategoryName": "Everything Else", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "99", 
+        "CategoryID": "99",
+
+    	"CategoryName2": "Collectibles", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "1", 
+        "CategoryID2": "1"
+    },
+    {
+    	"OurCategoryName" : "family",
+    	"CategoryName": "Home & Garden", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "11700", 
+        "CategoryID": "11700",
+
+        "CategoryName2": "Baby", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "2984", 
+        "CategoryID2": "2984"
+
+    },
+    {
+    	"OurCategoryName" : "fashion",
+        "CategoryName": "Jewelry & Watches", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "281", 
+        "CategoryID": "281",
+
+        "CategoryName2": "Clothing, Shoes & Accessories", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "11450", 
+        "CategoryID2": "11450"
+    },
+    {
+    	"OurCategoryName" : "food-drink",
+    	"CategoryName2": "Pottery & Glass", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "870", 
+        "CategoryID2": "870"
+    },
+    {
+    	"OurCategoryName" : "funny",
+    	"CategoryName": "Dolls & Bears", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "237", 
+        "CategoryID": "237",
+
+        "CategoryName2": "Video Games & Consoles", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "1249", 
+        "CategoryID2": "1249"
+    },
+    {
+    	"OurCategoryName" : "government",
+    	"CategoryName": "Coins & Paper Money", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "11116", 
+        "CategoryID": "11116",
+
+    	"CategoryName2": "Business & Industrial", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "12576", 
+        "CategoryID2": "12576"
+    },
+    {
+    	"OurCategoryName" : "health",
+    	"CategoryName": "Health & Beauty", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "26395", 
+        "CategoryID": "26395"
+    },
+    {
+    	"OurCategoryName" : "mlb",
+    	"CategoryName": "Sporting Goods", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "888", 
+        "CategoryID": "888",
+
+        "CategoryName2": "Sports Mem, Cards & Fan Shop", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "64482", 
+        "CategoryID2": "64482"
+    },
+    {
+    	"OurCategoryName" : "music",
+    	"CategoryName": "Music", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "11233", 
+        "CategoryID": "11233",
+
+        "CategoryName2": "Musical Instruments & Gear", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "619", 
+        "CategoryID2": "619"
+    },
+    {
+    	"OurCategoryName" : "nascar",
+    	"CategoryName": "Antiques", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "20081", 
+        "CategoryID": "20081",
+
+        "LSD": "true", 
+        "CategoryName2": "Travel", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "3252", 
+        "CategoryID2": "3252"
+    },
+    {
+    	"OurCategoryName" : "nba",
+    	"CategoryName": "Sporting Goods", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "888", 
+        "CategoryID": "888",
+
+        "CategoryName2": "Sports Mem, Cards & Fan Shop", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "64482", 
+        "CategoryID2": "64482"
+    },
+    {
+    	"OurCategoryName" : "news",
+    	"CategoryID2": "172008", 
+        "CategoryLevel2": "1", 
+        "CategoryName2": "Gift Cards & Coupons", 
+        "CategoryParentID2": "172008"
+
+    },
+    {
+    	"OurCategoryName" : "nhl",
+    	"CategoryName": "Sporting Goods", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "888", 
+        "CategoryID": "888",
+
+        "CategoryName2": "Sports Mem, Cards & Fan Shop", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "64482", 
+        "CategoryID2": "64482"
+    },
+    {
+    	"OurCategoryName" : "pga",
+    	"CategoryName": "Sporting Goods", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "888", 
+        "CategoryID": "888",
+
+        "CategoryName2": "Sports Mem, Cards & Fan Shop", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "64482", 
+        "CategoryID2": "64482"
+    },
+    {
+    	"OurCategoryName" : "science",
+    	"CategoryName": "Cameras & Photo", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "625", 
+        "CategoryID": "625",
+
+        "CategoryName2": "Cell Phones & Accessories", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "15032", 
+        "CategoryID2": "15032"
+    },
+    {
+    	"OurCategoryName" : "sports",
+    	"CategoryName": "Sporting Goods", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "888", 
+        "CategoryID": "888",
+
+        "CategoryName2": "Sports Mem, Cards & Fan Shop", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "64482", 
+        "CategoryID2": "64482"
+    },
+    {
+    	"OurCategoryName" : "technology",
+    	"CategoryName": "Consumer Electronics", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "293", 
+        "CategoryID": "293",
+
+    	"CategoryName2": "Computers/Tablets & Networking", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "58058", 
+        "CategoryID2": "58058"
+    },
+    {
+    	"OurCategoryName" : "television",
+    	"CategoryName": "DVDs & Movies", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "11232", 
+        "CategoryID": "11232",
+
+        "CategoryName2": "Entertainment Memorabilia", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "45100", 
+        "CategoryID2": "45100"
+    },
+    {
+    	"OurCategoryName" : "travel",
+    	"LSD": "true", 
+        "CategoryName": "Travel", 
+        "CategoryLevel": "1", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "3252", 
+        "CategoryID": "3252",
+
+        "CategoryName2": "Stamps", 
+        "CategoryLevel2": "1", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "260", 
+        "CategoryID2": "260"
+
+    }
+]
