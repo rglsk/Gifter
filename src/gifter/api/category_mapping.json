@@ -8,12 +8,12 @@
         "CategoryParentID": "550", 
         "CategoryID": "550",
 
-        "CategoryName2": "Collectibles", 
-        "CategoryLevel2": "1", 
+        "CategoryName2": "Animation Art & Characters", 
+        "CategoryLevel2": "2", 
         "AutoPayEnabled2": "true", 
         "BestOfferEnabled2": "true", 
         "CategoryParentID2": "1", 
-        "CategoryID2": "1"
+        "CategoryID2": "13658"
     },
     {
     	"OurCategoryName" : "books",
@@ -24,10 +24,13 @@
         "CategoryParentID": "267", 
         "CategoryID": "267",
 
-        "CategoryID2": "172008", 
-        "CategoryLevel2": "1", 
-        "CategoryName2": "Gift Cards & Coupons", 
-        "CategoryParentID2": "172008"
+        "LeafCategory2": "true", 
+        "CategoryName2": "iPads, Tablets & eBook Readers", 
+        "CategoryLevel2": "2", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "58058", 
+        "CategoryID2": "171485"
     },
     {
     	"OurCategoryName" : "business",
@@ -52,12 +55,12 @@
         "CategoryName": "Gift Cards & Coupons", 
         "CategoryParentID": "172008",
 
-        "CategoryName2": "Collectibles", 
-        "CategoryLevel2": "1", 
-        "AutoPayEnabled2": "true", 
-        "BestOfferEnabled2": "true", 
-        "CategoryParentID2": "1", 
-        "CategoryID2": "1"
+        "CategoryName": "Cultures & Ethnicities", 
+        "CategoryLevel": "2", 
+        "AutoPayEnabled": "true", 
+        "BestOfferEnabled": "true", 
+        "CategoryParentID": "1", 
+        "CategoryID": "3913"
     },
     {
     	"OurCategoryName" : "entertainment",
@@ -77,19 +80,19 @@
     },
     {
     	"OurCategoryName" : "faith-and-religion",
-    	"CategoryName": "Everything Else", 
-        "CategoryLevel": "1", 
+    	"CategoryName": "Religion & Spirituality", 
+        "CategoryLevel": "2", 
         "AutoPayEnabled": "true", 
         "BestOfferEnabled": "true", 
-        "CategoryParentID": "99", 
-        "CategoryID": "99",
+        "CategoryParentID": "1", 
+        "CategoryID": "1446",
 
-    	"CategoryName2": "Collectibles", 
-        "CategoryLevel2": "1", 
+    	"CategoryName2": "Religious Products & Supplies", 
+        "CategoryLevel2": "2", 
         "AutoPayEnabled2": "true", 
         "BestOfferEnabled2": "true", 
-        "CategoryParentID2": "1", 
-        "CategoryID2": "1"
+        "CategoryParentID2": "99", 
+        "CategoryID2": "102545"
     },
     {
     	"OurCategoryName" : "family",
@@ -131,7 +134,14 @@
         "AutoPayEnabled2": "true", 
         "BestOfferEnabled2": "true", 
         "CategoryParentID2": "870", 
-        "CategoryID2": "870"
+        "CategoryID2": "870",
+
+        "CategoryName2": "Kitchen, Dining & Bar", 
+        "CategoryLevel2": "2", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "11700", 
+        "CategoryID2": "20625"
     },
     {
     	"OurCategoryName" : "funny",
@@ -172,7 +182,14 @@
         "AutoPayEnabled": "true", 
         "BestOfferEnabled": "true", 
         "CategoryParentID": "26395", 
-        "CategoryID": "26395"
+        "CategoryID": "26395",
+
+        "CategoryName2": "Science & Medicine (Pre-1930)", 
+        "CategoryLevel2": "2", 
+        "AutoPayEnabled2": "true", 
+        "BestOfferEnabled2": "true", 
+        "CategoryParentID2": "20081", 
+        "CategoryID2": "20094"
     },
     {
     	"OurCategoryName" : "mlb",
@@ -265,12 +282,12 @@
     },
     {
     	"OurCategoryName" : "pga",
-    	"CategoryName": "Sporting Goods", 
-        "CategoryLevel": "1", 
+    	"CategoryName": "Tennis & Racquet Sports", 
+        "CategoryLevel": "2", 
         "AutoPayEnabled": "true", 
         "BestOfferEnabled": "true", 
         "CategoryParentID": "888", 
-        "CategoryID": "888",
+        "CategoryID": "159134",
 
         "CategoryName2": "Sports Mem, Cards & Fan Shop", 
         "CategoryLevel2": "1", 
@@ -281,19 +298,19 @@
     },
     {
     	"OurCategoryName" : "science",
-    	"CategoryName": "Cameras & Photo", 
-        "CategoryLevel": "1", 
+    	"CategoryName": "Science & Medicine (1930-Now)", 
+        "CategoryLevel": "2", 
         "AutoPayEnabled": "true", 
         "BestOfferEnabled": "true", 
-        "CategoryParentID": "625", 
-        "CategoryID": "625",
+        "CategoryParentID": "1", 
+        "CategoryID": "412",
 
-        "CategoryName2": "Cell Phones & Accessories", 
-        "CategoryLevel2": "1", 
+        "CategoryName2": "Science & Medicine (Pre-1930)", 
+        "CategoryLevel2": "2", 
         "AutoPayEnabled2": "true", 
         "BestOfferEnabled2": "true", 
-        "CategoryParentID2": "15032", 
-        "CategoryID2": "15032"
+        "CategoryParentID2": "20081", 
+        "CategoryID2": "20094"
     },
     {
     	"OurCategoryName" : "sports",
@@ -336,12 +353,12 @@
         "CategoryParentID": "11232", 
         "CategoryID": "11232",
 
-        "CategoryName2": "Entertainment Memorabilia", 
-        "CategoryLevel2": "1", 
+        "CategoryName2": "Movie Memorabilia", 
+        "CategoryLevel2": "2", 
         "AutoPayEnabled2": "true", 
         "BestOfferEnabled2": "true", 
         "CategoryParentID2": "45100", 
-        "CategoryID2": "45100"
+        "CategoryID2": "196"
     },
     {
     	"OurCategoryName" : "travel",
