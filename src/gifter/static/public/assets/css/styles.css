@@ -1,52 +1,64 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
-
+ 
 body {
-  background-image: url(assets/images/background.jpg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #fff;
+  background-color: #eee;
   font-size: 1.8vh;
+  padding: 2% 5%;
+  font-family: 'Abel';
+  font-weight: 400;
 }
-
+ 
 #panel {
-  background-color: #FCF8E9;
-  width: 80%;
-  padding: 1%;
-  margin-top: 3%;
-  margin-bottom: 2%;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 2em;
-  color: #643211;
-}
-
-#container {
-  background-color: #FCF8E9;
-  width: 80%;
-  padding: 1%;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 1.5em;
-}
-
-.centered {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.submit {
-  margin-top: 1em;
   width: 100%;
-  background: #F4E4B8;
-  color: #361502;
-  font-size: 1.1em;
-  border: .1em solid #F4E4B8;
+  position: absolute;
+  right: 5%;
+  font-size: 1.7em;
+  color: #0e426c;
+}
+ 
+.panel-item {
+    display: inline;   
+    float: right;
+    margin-left: 3%; 
 }
 
+.panel-item:hover {
+  color: #5f021f;
+  text-decoration: none;
+}
+
+.main-logo {
+  display: block;
+  margin-top: 25px;
+}
+ 
+.centered {
+   margin-left: auto;
+   margin-right: auto;
+  float: none;
+}
+
+@media screen and (min-width: 768px) {
+  .find-present {
+    padding: 0 5%;
+  }
+}
+ 
+.submit {
+  display: block;
+  margin-top: 1em;
+  width: 50%;
+  background: #0e426c;
+  color: #eeeeee;
+  font-size: 1.5em;
+  border: .1em solid #0e426c;
+  padding: 5px;
+}
+ 
 .submit:hover,
 .submit:focus {
   background: #F0E0B0;
   outline-color: #F0E0B0;
+  background: #5f021f;
+  outline-color: #5f021f;
 }

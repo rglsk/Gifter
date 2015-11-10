@@ -2,6 +2,7 @@ var app = angular.module("gifter", [
     
     'ui.router',
     'ui.bootstrap',
+    'rzModule',
     'gifter.route',
     
     'gifter.newPresent',

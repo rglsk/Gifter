@@ -1,20 +1,26 @@
-<div id="container" class="centered">
+<div class="find-present centered row">
 
-	<form id="js-form">
-		<div class="finder">
-	  		<label for="TwitterName">Twitter name:</label>
-	  		<input type="text" ng-model="NewPresentCtrl.twitterName" finder="TwitterName" placeholder="Twitter name"/>
-	  		<label for="FbName">Facebook name:</label>
-	  		<input type="text" finder="FbName" placeholder="Facebook name"/>
-	  		<div style="width:100%">
-	  			<label>Budget:</label>
-	  		</div>
-	    	<input type="text" ng-model="NewPresentCtrl.from" finder="from" placeholder="From" />
-	    	<input type="text" ng-model="NewPresentCtrl.to"  finder="to" placeholder="To" />
-	  	</div>
-	  	<button class="submit" ng-click="NewPresentCtrl.find()">
+	<div class="centered col-md-4 col-sm-5 col-xs-7">
+
+		<input
+			type="text"
+			ng-model="NewPresentCtrl.twitterName"
+			finder="TwitterName"
+			placeholder="eg. bckatarzyna"/>
+
+		<div class="slider-wrapper">
+			<rzslider
+			    rz-slider-floor="NewPresentCtrl.priceSlider.floor"
+			    rz-slider-ceil="NewPresentCtrl.priceSlider.ceil"
+			    rz-slider-model="NewPresentCtrl.priceSlider.min"
+			    rz-slider-high="NewPresentCtrl.priceSlider.max"
+			    rz-slider-translate="NewPresentCtrl.translate"></rzslider>
+		</div>
+		
+	  	<button class="submit centered" ng-click="NewPresentCtrl.find()">
 	  		Find present!
 	  	</button>
-	</form>
+
+	</div>
 
 </div>
