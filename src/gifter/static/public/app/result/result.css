@@ -1,28 +1,64 @@
-.presentList {
-	padding: 2% 5%;
-	height: 100%;
+.present-wrapper {
+  margin: 5vh 0;
+  overflow: hidden;
+  height: 22vw;
 }
 
-.frame {
-  border: .1em solid #F4E4B8;
+.present-wrapper > .slider {
+  padding: 0;
+  -webkit-transition: left 1s;
+  -moz-transition: left 1s;
+  -o-transition: left 1s;
+  transition: left 1s;
+  position: absolute;
+  white-space: nowrap;
 }
 
-.present {
-  margin: .1em;
+.slider > .present {
+    position: relative;
+    display: inline-block;
+    width: 30vw;
 }
 
-.title {
-  padding: 2% 5%;
-	font-size: 1.2em;
-	color: #643211;
+.present > .title {
+  width: 18vw;
+  font-size: 1.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-img {
-	padding: 2% 10%;
+.present > .img-wrapper {
+  width: 18vw;
+  height: 18vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.price {
-  padding: 0 5%;
+.img-wrapper > img {
+  max-width: 18vw;
+  max-height: 18vw;
+}
+
+.present > .price {
+  width: 18vw;
+  font-size: 1.2em;
+}
+
+.slider > .present-hidden {
+  opacity: 0.4;
+}
+
+.back {
+  left: 34.2vw;
+}
+
+.middle {
+  left: 4.2vw;
+}
+
+.next {
+  left: -26.8vw;
 }
 
 .submit {

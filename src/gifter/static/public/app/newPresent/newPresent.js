@@ -25,13 +25,14 @@ angular.module('gifter.newPresent', [])
             };
 
     		this.find = function () {
+                // $state.go('main.result');
                 that = this;
                 that.openModal();
     			var url = 'http://localhost:5000/api/items/' + this.twitterName + '/';
     			$http.post(url, {
                     'min_price': this.priceSlider.min || 0,
                     'max_price': this.priceSlider.max || 100,
-    				'limit': 4
+    				'limit': 3
     			}).success(function (res) {
                     storageService.twitterName = that.twitterName;
         			storageService.savePresents(res.gifts);

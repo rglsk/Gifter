@@ -1,23 +1,27 @@
 <div id="container" class="centered">
 
-	<div class="centered presentList">
-
-		<div class="row frame" ng-repeat="present in ResultCtrl.presents">
-			<div class="present col-md-12">
-				<img class="centered presentImg col-md-2 col-sm-2 col-xs-2" ng-src="{{present.img}}" alt="present"/>
-				<div class="title col-md-10">
+	<div class="present-wrapper">
+		<div class="slider"
+			ng-class="{ 'back': ResultCtrl.slider == 0, 'middle': ResultCtrl.slider == 1, 'next': ResultCtrl.slider == 2 }">
+			<div class="present"
+				ng-repeat="present in ResultCtrl.presents"
+				ng-class="{ 'present-hidden': present.hidden }"
+				ng-click="ResultCtrl.changeClass(present)">
+				<div class="img-wrapper">
+					<img class="centered" ng-src="{{present.img}}" alt="present"/>
+				</div>
+				<div class="title centered">
 					{{present.name}}
 				</div>
-				<div class="price col-md-10">
+				<div class="price centered">
 					{{present.price}}
 				</div>
 			</div>
 		</div>
-
-		<button class="submit" ng-click="ResultCtrl.seeMore()">
-		  		See more
-		</button>
-
 	</div>
+
+	<button class="submit centered" ng-click="ResultCtrl.seeMore()">
+	  		See more
+	</button>
 
 </div>
