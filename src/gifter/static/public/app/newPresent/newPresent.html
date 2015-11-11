@@ -1,6 +1,16 @@
+<div class="row" ng-if="NewPresentCtrl.viewReady">
+	<img src="assets/images/gifter-logo.png"
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8">
+</div>
+
+<div class="row" ng-if="!NewPresentCtrl.viewReady">
+	<img src="assets/images/animated-logo.gif"
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8">
+</div>
+
 <div class="find-present centered row">
 
-	<div class="centered col-md-4 col-sm-5 col-xs-7">
+	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-if="NewPresentCtrl.viewReady">
 
 		<input
 			type="text"
@@ -21,6 +31,12 @@
 	  		Find present!
 	  	</button>
 
+	</div>
+
+	<div class="loader-wrapper col-md-4 col-sm-5 col-xs-7" ng-if="!NewPresentCtrl.viewReady">
+		<div class="info">
+			Loading data... It can take a while.
+		</div>
 	</div>
 
 </div>

@@ -29,3 +29,13 @@ rzslider span.rz-bubble {
   font-size: 1.1em;
   top: -38px;
 }
+
+.loader-wrapper {
+  margin-top: 13vh;
+  width: 100%;
+}
+
+.loader-wrapper > .info {
+  text-align: center;
+  font-size: 1.5em;
+}

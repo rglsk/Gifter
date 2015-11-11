@@ -13,6 +13,7 @@ angular.module('gifter.newPresent', [])
                 floor: 0
             };
             this.modalInstance = '';
+            this.viewReady = true;
 
             this.translate = function (value) {
                 return value + '$';
@@ -27,6 +28,7 @@ angular.module('gifter.newPresent', [])
     		this.find = function () {
                 // $state.go('main.result');
                 that = this;
+                this.viewReady = false;
                 that.openModal();
     			var url = 'http://localhost:5000/api/items/' + this.twitterName + '/';
     			$http.post(url, {
