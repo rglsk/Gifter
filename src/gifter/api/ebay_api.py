@@ -11,7 +11,6 @@ from core import config
 class EbayApi(object):
 
     """EbayApi provides connection with eBay API."""
-
     _category_hierarchy_file = '{}/{}'.format(config.PROJECT_DIRECTORY,
                                               'gifter/category_hierarchy.json')
 
@@ -122,7 +121,6 @@ class EbayApi(object):
                 category_name='Sports Mem, Cards & Fan Shop'
             )
         """
-        print category_name
         try:
             api_request = {
                 'keywords': '({})'.format(keywords),
