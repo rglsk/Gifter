@@ -15,7 +15,7 @@ class EbayApi(object):
                                               'gifter/category_hierarchy.json')
 
     def __init__(self):
-        config_file = '{}/{}'.format(config.PROJECT_DIRECTORY, '/ebay.yaml')
+        config_file = '{}/{}'.format(config.PROJECT_DIRECTORY, 'ebay.yaml')
         self.finding_api = finding(domain='svcs.ebay.com',
                                    appid=config.EBAY_PRODUCTION_APP_ID,
                                    config_file=config_file)
