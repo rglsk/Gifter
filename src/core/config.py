@@ -3,7 +3,6 @@ import os
 
 from webargs import Arg
 
-from rauth.service import OAuth2Service
 import tweepy
 
 try:
@@ -12,29 +11,6 @@ except ImportError:
     raise ImportError(
         'Please create file local_settings.py and set basic settings.'
     )
-
-# General
-DEBUG = True
-
-# Facebook
-FB_GRAPH_URL = 'https://graph.facebook.com/'
-FB_AUTHORIZE_URL = 'https://www.facebook.com/dialog/oauth'
-
-access_token_url = FB_GRAPH_URL + 'oauth/access_token'
-FACEBOOK_AUTH = OAuth2Service(name='facebook',
-                              authorize_url=FB_AUTHORIZE_URL,
-                              access_token_url=access_token_url,
-                              client_id=FACEBOOK_APP_ID,
-                              client_secret=FACEBOOK_APP_SECRET,
-                              base_url=FB_GRAPH_URL)
-FB_PERMISSIONS = ['public_profile', 'user_friends', 'email', 'user_about_me',
-                  'user_actions.books', 'user_actions.fitness', 'user_events',
-                  'user_actions.music', 'user_actions.news', 'user_groups',
-                  'user_actions.video', 'user_actions:rivinek-app',
-                  'user_activities', 'user_birthday', 'user_education_history',
-                  'user_interests', 'user_likes', 'user_relationship_details',
-                  'user_relationships', 'read_custom_friendlists',
-                  'read_insights', 'publish_actions']
 
 # Twitter
 TWITTER_AUTH = tweepy.OAuthHandler(
@@ -68,11 +44,15 @@ ITEMS_ARGS_PARSER = {
     'limit': Arg(int, default=ITEMS_LIMIT)
 }
 
+# Project dir
+PROJECT_DIRECTORY = os.path.join(
+    os.path.abspath(os.path.dirname(__file__)),
+    '..'
+)
 
 # Data directory
 DATA_DIRECTORY = os.path.join(
-    os.path.abspath(os.path.dirname(__file__)),
-    '..',
+    PROJECT_DIRECTORY,
     'ml',
     'data'
 )
@@ -99,3 +79,31 @@ LLDA_RESULTS_DIRECTORY = os.path.join(
     'llda')
 
 TOPIC_NUMBER = 24
+
+
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    CSRF_ENABLED = True
+    SECRET_KEY = SECRET_KEY
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+
+
+class ProductionConfig(Config):
+    DEBUG = False
+
+
+class StagingConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+
+class DevelopmentConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+
+class TestingConfig(Config):
+    TESTING = TrueCSRF_ENABLED = True
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']

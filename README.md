@@ -1,8 +1,14 @@
 # Gifter
 
-## Installation
+## Requirements:
+ * [Python 2.7](https://www.python.org/download/releases/2.7/)
+ * [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/)
+ * [Flask](http://flask.pocoo.org/)
+ * [Postgresql](http://www.postgresql.org.pl/)
+ * [Amazon Web Service](http://aws.amazon.com/)
+ * [eBay developers](go.developer.ebay.com)
 
-Note: using `virtualenvwrapper`
+## Installation
 
 ```
 $ mkvirtualenv gifter -a /path/to/gifter/
@@ -27,10 +33,27 @@ $ touch local_settings.py
 # open ebay.yaml and set tokens/ID's
 ```
 
-## Crawling
+## Setting up developer enviroment
+
+### Setting up enviroment variables:
 ```
-$ crawl_tweets
+$ source ./scripts/setup_environ.sh
 ```
+
+### Setting up local database:
+```
+$ ./gifter/db/init_db.sh
+```
+
+## Scripts:
+
+* crawl_tweets
+* crawl_suggested_tweets
+* preprocess_suggested
+* remove_preprocessed
+* generate_ebay_category
+* report
+* stats
 
 ## Running scripts:
 ```
@@ -60,4 +83,9 @@ $ grunt serve
 
 If there will be an error "/usr/bin/env: node: No such file or directory " then:
 $ ln -s /usr/bin/nodejs /usr/bin/node
+```
+
+## Example API usage:
+```
+curl -X POST http://127.0.0.1:5000/api/items/PiotrRogulski/
 ```
