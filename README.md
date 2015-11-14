@@ -91,3 +91,7 @@ $ ln -s /usr/bin/nodejs /usr/bin/node
 ```
 curl -X POST http://127.0.0.1:5000/api/items/PiotrRogulski/
 ```
+
+```
+curl -X POST http://127.0.0.1:5000/api/counter/ --data '{'url': http://www.ebay.pl/itm/Verruckter-Penis-Dildo-Lutscher-Lolli-Penislolli-Penislutscher-Dildololli-GAG-/141248827749', 'category_name': 'Fun', 'item_title': 'Verruckter-Penis-Dildo-Lutscher'}
+```

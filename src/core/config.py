@@ -46,7 +46,6 @@ ITEMS_ARGS_PARSER = {
 
 COUNTER_ARGS_PARSER = {
     'url': Arg(str, default=None),
-    'counter': Arg(int, default=None),
     'category_name': Arg(str, default=None),
     'item_title': Arg(str, default=None)
 }
