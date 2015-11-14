@@ -9,6 +9,7 @@ from core import config
 
 
 class EbayApi(object):
+
     """EbayApi provides connection with eBay API."""
 
     _category_hierarchy_file = '{}/{}'.format(config.PROJECT_DIRECTORY,
@@ -29,7 +30,6 @@ class EbayApi(object):
         def wrapper(self, **kwargs):
             params = {
                 'keywords': self.create_search_query,
-                'category_name': self.get_category_id,
                 'min_price': lambda x: self.add_filter('MinPrice', x),
                 'max_price': lambda x: self.add_filter('MaxPrice', x),
             }
@@ -38,6 +38,8 @@ class EbayApi(object):
             for key, foo in params.iteritems():
                 if kwargs.get(key):
                     kwargs[key] = foo(kwargs[key])
+            kwargs['category_id'] = self.get_category_id(
+                kwargs['category_name'])
             return func(self, **kwargs)
         return wrapper
 
@@ -52,7 +54,7 @@ class EbayApi(object):
     @staticmethod
     def _parse_items(items):
         return {'gifts': [{key: item[key] for key in config.ITEM_DETAILS}
-                for item in items]}
+                          for item in items]}
 
     def get_category_id(self, category_name):
         """Gets a category id from given name.
@@ -92,8 +94,8 @@ class EbayApi(object):
             )
 
     @setup_params
-    def get_items(self, keywords=None, category_name=None, min_price=None,
-                  max_price=None, sort_order='BestMatch',
+    def get_items(self, keywords=None, category_id=None, category_name=None,
+                  min_price=None, max_price=None, sort_order='BestMatch',
                   limit=config.ITEMS_LIMIT):
         """Retrieves items from eBay by given keywords (applies OR logic to
             multiple keywords) or/and category name.
@@ -120,18 +122,21 @@ class EbayApi(object):
                 category_name='Sports Mem, Cards & Fan Shop'
             )
         """
-
+        print category_name
         try:
             api_request = {
                 'keywords': '({})'.format(keywords),
                 'itemFilter': [min_price, max_price],
-                'categoryId': category_name,
+                'categoryId': category_id,
                 'sortOrder': sort_order,
+                'outputSelector': 'PictureURLSuperSize',
             }
             response = self.finding_api.execute('findItemsAdvanced',
                                                 api_request)
             items = response.dict()['searchResult']['item']
-            return self._parse_items(items[:limit])
+            result = self._parse_items(items[:limit])
+            result['category_name'] = category_name
+            return result
         except ConnectionError as e:
             return e
         except KeyError:
