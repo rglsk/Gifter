@@ -44,6 +44,13 @@ ITEMS_ARGS_PARSER = {
     'limit': Arg(int, default=ITEMS_LIMIT)
 }
 
+COUNTER_ARGS_PARSER = {
+    'url': Arg(str, default=None),
+    'counter': Arg(int, default=None),
+    'category_name': Arg(str, default=None),
+    'item_title': Arg(str, default=None)
+}
+
 # Project dir
 PROJECT_DIRECTORY = os.path.join(
     os.path.abspath(os.path.dirname(__file__)),

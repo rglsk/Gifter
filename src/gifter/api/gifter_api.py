@@ -6,6 +6,7 @@ from flask.ext.cors import cross_origin
 
 from gifter import utils
 from gifter.api.ebay_api import EbayApi
+from gifter.models import CounterModel
 
 from core import config
 from ml.entities import get_hashtags_info
@@ -55,3 +56,17 @@ def items_handler(args, screen_name):
     response.update(utils.convert_hashtag_response(hashtags))
 
     return jsonify(response)
+
+
+@gifter_api.route('/api/counter/', methods=['POST'])
+@cross_origin()
+@use_args(config.COUNTER_ARGS_PARSER)
+def counter(args):
+    _filter = CounterModel.url == args.get('url')
+    model = CounterModel.query.filter(_filter).first()
+    if not model:
+        model = CounterModel(**args)
+    model.counter = int(model.counter or 0) + 1
+    model.save()
+
+    return jsonify({'status': 200, 'message': 'Counter increased'})

@@ -43,3 +43,12 @@ class PredictedModel(db.Model, BaseModel):
     def __init__(self, screen_name, predicted_category):
         self.screen_name = screen_name
         self.predicted_category = predicted_category
+
+
+class CounterModel(db.Model, BaseModel):
+    id = db.Column(db.Integer, primary_key=True)
+
+    url = db.Column(db.String)
+    counter = db.Column(db.Integer, default=0)
+    category_name = db.Column(db.String)
+    item_title = db.Column(db.String)

@@ -17,7 +17,7 @@ done
 read -d '' sql << EOF
 DROP DATABASE gifter;
 DROP USER gifter;
-CREATE USER gifter WITH PASSWORD '{password}';
+CREATE USER gifter WITH PASSWORD 'password';
 CREATE DATABASE gifter OWNER gifter;
 EOF
 

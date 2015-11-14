@@ -35,6 +35,8 @@ $ touch local_settings.py
 
 ## Setting up developer enviroment
 
+Note: Remember to set up passwords.
+
 ### Setting up enviroment variables:
 ```
 $ source ./scripts/setup_environ.sh
