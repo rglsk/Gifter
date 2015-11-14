@@ -24,7 +24,7 @@ class BaseModel(object):
 class SearchedModel(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True)
 
-    screen_name = db.Column(db.String(), unique=True)
+    screen_name = db.Column(db.String())
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     gift_category = db.Column(db.String())
 
@@ -36,7 +36,7 @@ class SearchedModel(db.Model, BaseModel):
 class PredictedModel(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True)
 
-    screen_name = db.Column(db.String(), unique=True)
+    screen_name = db.Column(db.String())
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     predicted_category = db.Column(db.String())
 
