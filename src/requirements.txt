@@ -22,3 +22,4 @@ ebaysdk==2.1.1
 ipdb==0.8
 webargs==0.13.0
 Flask-Cors==2.0.0
+Flask-SQLAlchemy==2.1
