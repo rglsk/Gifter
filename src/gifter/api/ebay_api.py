@@ -32,7 +32,10 @@ class EbayApi(object):
                 'min_price': lambda x: self.add_filter('MinPrice', x),
                 'max_price': lambda x: self.add_filter('MaxPrice', x),
             }
-            if not isinstance(kwargs['keywords'], list):
+            if (
+                kwargs.get('keywords') is not None and
+                not isinstance(kwargs['keywords'], list)
+            ):
                 kwargs['keywords'] = list(kwargs['keywords'])
             for key, foo in params.iteritems():
                 if kwargs.get(key):
@@ -51,9 +54,14 @@ class EbayApi(object):
         return ','.join(keywords)
 
     @staticmethod
-    def _parse_items(items):
-        return {'gifts': [{key: item[key] for key in config.ITEM_DETAILS}
-                          for item in items]}
+    def _parse_items(items, limit):
+        gifts = []
+        for item in items:
+            if set(config.ITEM_DETAILS) < set(item.keys()):
+                gifts.append({key: item[key] for key in config.ITEM_DETAILS})
+            if len(gifts) == limit:
+                break
+        return {'gifts': gifts}
 
     def get_category_id(self, category_name):
         """Gets a category id from given name.
@@ -121,18 +129,21 @@ class EbayApi(object):
                 category_name='Sports Mem, Cards & Fan Shop'
             )
         """
-        try:
-            api_request = {
+        api_request = {
+            'itemFilter': [min_price, max_price],
+            'categoryId': category_id,
+            'sortOrder': sort_order,
+            'outputSelector': 'PictureURLSuperSize',
+        }
+        if keywords is not None:
+            api_request.update({
                 'keywords': '({})'.format(keywords),
-                'itemFilter': [min_price, max_price],
-                'categoryId': category_id,
-                'sortOrder': sort_order,
-                'outputSelector': 'PictureURLSuperSize',
-            }
+            })
+        try:
             response = self.finding_api.execute('findItemsAdvanced',
                                                 api_request)
             items = response.dict()['searchResult']['item']
-            result = self._parse_items(items[:limit])
+            result = self._parse_items(items, limit)
             result['category_name'] = category_name
             return result
         except ConnectionError as e:

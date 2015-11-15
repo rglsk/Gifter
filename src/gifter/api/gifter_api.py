@@ -9,7 +9,12 @@ from gifter.api.ebay_api import EbayApi
 from gifter.models import CounterModel
 
 from core import config
+from core import errors
+
+from crawlers.user_tweets import get_users_tweets
+
 from ml.entities import get_hashtags_info
+from ml.gifts.process import get_ebay_categories
 
 
 gifter_api = Blueprint('gifter_api', __name__)
@@ -48,13 +53,28 @@ def items_handler(args, screen_name):
                        {u'count': 113, u'name': u'opportunityforall'}]}
     """
 
-    hashtags = get_hashtags_info(screen_name)
-    args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
-
+    df = get_users_tweets([screen_name])
+    hashtags = get_hashtags_info(df)
+    ebay_categories = get_ebay_categories(df)
     ebay_api = EbayApi()
-    response = ebay_api.get_items(**args)
-    response.update(utils.convert_hashtag_response(hashtags))
+    response = None
+    for ebay_category in ebay_categories:
+        try:
+            args.update({'category_name': ebay_category})
+            response = ebay_api.get_items(**args)
+        except errors.ItemsNotFoundError:
+            pass
+    if response is None:
+        try:
+            args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
+            response = ebay_api.get_items(**args)
+        except errors.ItemsNotFoundError:
+            pass
 
+    if response is None:
+        # we did not find gifts at all -- error response should be created here
+        response = {}
+    response.update(utils.convert_hashtag_response(hashtags))
     return jsonify(response)
 
 
