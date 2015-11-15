@@ -29,5 +29,6 @@ def get_ebay_categories(df):
     mappings = get_ebay_categories_mapping()
     df = lemmatize_dataframe(df)
     if not df.empty:
-        return mappings.get(interest_class(df), [])
-    return []
+        interest = interest_class(df)
+        return mappings.get(interest, []), interest
+    return [], None

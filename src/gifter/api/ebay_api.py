@@ -144,7 +144,6 @@ class EbayApi(object):
                                                 api_request)
             items = response.dict()['searchResult']['item']
             result = self._parse_items(items, limit)
-            result['category_name'] = category_name
             return result
         except ConnectionError as e:
             return e

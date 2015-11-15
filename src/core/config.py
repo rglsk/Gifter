@@ -37,7 +37,7 @@ EBAY_PRODUCTION_DOMAIN = 'ebay.com'
 
 # gifter API
 ITEMS_LIMIT = 6
-ITEM_DETAILS = ['title', 'sellingStatus', 'pictureURLSuperSize']
+ITEM_DETAILS = ['title', 'sellingStatus', 'pictureURLSuperSize', 'primaryCategory']
 ITEMS_ARGS_PARSER = {
     'min_price': Arg(int, default=None),
     'max_price': Arg(int, default=None),

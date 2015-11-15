@@ -59,15 +59,18 @@ def items_handler(args, screen_name):
         return jsonify({'error': 'user_not_found'})
 
     hashtags = get_hashtags_info(df)
-    ebay_categories = get_ebay_categories(df)
+    ebay_categories, interest_class = get_ebay_categories(df)
     ebay_api = EbayApi()
     response = None
     for ebay_category in ebay_categories:
         try:
             args.update({'category_name': ebay_category})
             response = ebay_api.get_items(**args)
+            response['category'] = interest_class
+            break
         except errors.ItemsNotFoundError:
             pass
+
     if response is None:
         try:
             args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
