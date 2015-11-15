@@ -29,7 +29,7 @@ Define your settings:
 ```
 $ cd gifter
 $ touch local_settings.py
-# open settings.py and change it
+# open local_settings.py and change it
 # open ebay.yaml and set tokens/ID's
 ```
 

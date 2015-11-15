@@ -1,4 +1,5 @@
 from webargs.flaskparser import use_args
+from tweepy.error import TweepError
 
 from flask import Blueprint
 from flask import jsonify
@@ -52,8 +53,11 @@ def items_handler(args, screen_name):
                        {u'count': 138, u'name': u'getcovered'},
                        {u'count': 113, u'name': u'opportunityforall'}]}
     """
+    try:
+        df = get_users_tweets([screen_name])
+    except TweepError:
+        return jsonify({'error': 'user_not_found'})
 
-    df = get_users_tweets([screen_name])
     hashtags = get_hashtags_info(df)
     ebay_categories = get_ebay_categories(df)
     ebay_api = EbayApi()
@@ -69,11 +73,10 @@ def items_handler(args, screen_name):
             args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
             response = ebay_api.get_items(**args)
         except errors.ItemsNotFoundError:
-            pass
+            response = {
+                'error': 'presents_not_found'
+            }
 
-    if response is None:
-        # we did not find gifts at all -- error response should be created here
-        response = {}
     response.update(utils.convert_hashtag_response(hashtags))
     return jsonify(response)
 
