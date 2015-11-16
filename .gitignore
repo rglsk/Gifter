@@ -23,3 +23,5 @@ local_settings.py
 
 # distribution plot
 /src/distribution.jpg
+
+/scripts/local_setup_environ.sh

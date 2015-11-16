@@ -7,7 +7,7 @@ from flask.ext.cors import cross_origin
 
 from gifter import utils
 from gifter.api.ebay_api import EbayApi
-from gifter.models import CounterModel
+from gifter.models import GifterStats
 
 from core import config
 from core import errors
@@ -84,15 +84,20 @@ def items_handler(args, screen_name):
     return jsonify(response)
 
 
-@gifter_api.route('/api/counter/', methods=['POST'])
+@gifter_api.route('/api/save/', methods=['POST'])
 @cross_origin()
 @use_args(config.COUNTER_ARGS_PARSER)
-def counter(args):
-    _filter = CounterModel.url == args.get('url')
-    model = CounterModel.query.filter(_filter).first()
-    if not model:
-        model = CounterModel(**args)
-    model.counter = int(model.counter or 0) + 1
-    model.save()
-
-    return jsonify({'status': 200, 'message': 'Counter increased'})
+def save_category(args):
+    """
+    /api/save/
+    POST arguments:
+        gift_category
+        interest_category
+        screen_name
+    """
+    GifterStats(
+        screen_name=args.get('screen_name'),
+        gift_category=args.get('gift_category'),
+        interest_category=args.get('interest_category'),
+    ).save()
+    return jsonify({'status': 200, 'message': 'Entity saved'})
