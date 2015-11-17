@@ -4,8 +4,11 @@ from tweepy.error import TweepError
 from flask import Blueprint
 from flask import jsonify
 from flask.ext.cors import cross_origin
+from flask_wtf.csrf import generate_csrf
 
 from gifter import utils
+from gifter.csrf import csrf
+
 from gifter.api.ebay_api import EbayApi
 from gifter.models import GifterStats
 
@@ -19,6 +22,15 @@ from ml.gifts.process import get_ebay_categories
 
 
 gifter_api = Blueprint('gifter_api', __name__)
+
+
+@gifter_api.route('/set_cookie', methods=['GET'])
+@cross_origin()
+@csrf.exempt
+def set_cookie():
+    response = jsonify({'status': 200, 'message': 'cookies updated'})
+    response.set_cookie('X-CSRF', value=generate_csrf())
+    return response
 
 
 @gifter_api.route('/api/items/<screen_name>/', methods=['POST'])

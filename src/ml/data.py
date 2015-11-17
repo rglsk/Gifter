@@ -16,6 +16,8 @@ def lemmatize_dataframe(df, last_rows=300, with_tags=True):
     df.sort('created_at', ascending=False, inplace=True)
     df.reset_index(inplace=True)
     df = df[:last_rows+10]
+    if df.empty:
+        return df
 
     # bug in pandas it's a hack
     df['text_len'] = df.text.map(lambda text: len(text.split()))
