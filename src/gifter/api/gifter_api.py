@@ -33,6 +33,7 @@ def get_csrf():
 
 @gifter_api.route('/api/items/<screen_name>/', methods=['POST'])
 @cross_origin()
+@csrf.exempt
 @use_args(config.ITEMS_ARGS_PARSER)
 def items_handler(args, screen_name):
     """Retrives items from eBay.
@@ -99,6 +100,7 @@ def items_handler(args, screen_name):
 
 @gifter_api.route('/api/save/', methods=['POST'])
 @cross_origin()
+@csrf.exempt
 @use_args(config.COUNTER_ARGS_PARSER)
 def save_category(args):
     """

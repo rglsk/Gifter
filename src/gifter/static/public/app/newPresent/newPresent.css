@@ -1,3 +1,7 @@
+.find-present {
+  margin-top: 2em;
+}
+
 .find-present input[finder="TwitterName"] {
   width: 100%;
   margin-top: 1.5em;
