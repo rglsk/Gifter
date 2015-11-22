@@ -18,6 +18,7 @@
     position: relative;
     display: inline-block;
     width: 30vw;
+    cursor: pointer;
 }
 
 .present > .title {

@@ -17,9 +17,15 @@ angular.module('gifter.newPresent', [])
                 floor: 0
             };
             this.viewReady = true;
+            this.error = '';
 
             this.translate = function (value) {
                 return value + '$';
+            };
+
+            this.findNew = function () {
+                this.error = '';
+                this.viewReady = true;
             };
 
     		this.find = function () {
@@ -32,11 +38,28 @@ angular.module('gifter.newPresent', [])
     				'limit': 3,
                     '_csrf_token': storageService.csrf
     			}).success(function (res) {
-                    storageService.twitterName = that.twitterName;
-        			storageService.savePresents(res.gifts);
-                    storageService.category = res.category;
-                    storageService.hashtags = res.hashtags;
-        			$state.go('main.result');
+                    if (res.gifts) {
+                        storageService.twitterName = that.twitterName;
+            			storageService.savePresents(res.gifts);
+                        storageService.category = res.category;
+                        storageService.hashtags = res.hashtags;
+            			$state.go('main.result');
+                    } else {
+                        that.viewReady = true;
+                        switch (res.error) {
+                            case 'user_not_found':
+                                that.error = "We are sorry, this user doesn't exist. Please, check another one.";
+                                break;
+                            case 'presents_not_found':
+                                that.error = "We are sorry, we haven't found suitable presents for given person. Please, check antoher one.";
+                                break;
+                            case 'no_tweets':
+                                that.error = "We are sorry, this user has no tweets. Please, check another one.";
+                                break;
+                            default:
+                                that.error = "We are sorry, some errors occurred. Please, try again.";
+                        }
+                    }
         		});
     		};
 
