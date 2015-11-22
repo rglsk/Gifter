@@ -1,3 +1,5 @@
+import random
+
 from webargs.flaskparser import use_args
 from tweepy.error import TweepError
 
@@ -74,11 +76,13 @@ def items_handler(args, screen_name):
 
     hashtags = get_hashtags_info(df)
     ebay_categories, interest_class = get_ebay_categories(df)
+    random.shuffle(ebay_categories)
     ebay_api = EbayApi()
     response = None
     for ebay_category in ebay_categories:
         try:
-            args.update({'category_name': ebay_category})
+            args.update({'keywords': hashtags.keys()[:3],
+                         'category_name': ebay_category})
             response = ebay_api.get_items(**args)
             response['category'] = interest_class
             break
