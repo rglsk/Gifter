@@ -68,6 +68,9 @@ def items_handler(args, screen_name):
     except TweepError:
         return jsonify({'error': 'user_not_found'})
 
+    if df.empty:
+        return jsonify({'error': 'no_tweets'})
+
     hashtags = get_hashtags_info(df)
     ebay_categories, interest_class = get_ebay_categories(df)
     ebay_api = EbayApi()
