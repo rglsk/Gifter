@@ -24,7 +24,7 @@ from ml.gifts.process import get_ebay_categories
 gifter_api = Blueprint('gifter_api', __name__)
 
 
-@gifter_api.route('/set_cookie', methods=['GET'])
+@gifter_api.route('/set_cookie/', methods=['GET'])
 @cross_origin()
 @csrf.exempt
 def set_cookie():
