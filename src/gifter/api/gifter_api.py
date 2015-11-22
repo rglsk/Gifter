@@ -24,13 +24,11 @@ from ml.gifts.process import get_ebay_categories
 gifter_api = Blueprint('gifter_api', __name__)
 
 
-@gifter_api.route('/set_cookie/', methods=['GET'])
+@gifter_api.route('/csrf/', methods=['GET'])
 @cross_origin()
 @csrf.exempt
-def set_cookie():
-    response = jsonify({'status': 200, 'message': 'cookies updated'})
-    response.set_cookie('X-CSRF', value=generate_csrf())
-    return response
+def get_csrf():
+    return jsonify({'status': 200, 'token': generate_csrf()})
 
 
 @gifter_api.route('/api/items/<screen_name>/', methods=['POST'])
