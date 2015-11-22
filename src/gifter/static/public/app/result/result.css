@@ -45,6 +45,12 @@
   font-size: 1.2em;
 }
 
+.present > .ebay-link {
+  cursor: pointer;
+  width: 18vw;
+  font-size: 1.2em;
+}
+
 .slider > .present-hidden {
   opacity: 0.4;
 }
@@ -73,4 +79,15 @@
 .submit:hover {
   background: #F0E0B0;
   outline-color: #F0E0B0;
+}
+
+.category {
+  font-size: 1.7em;
+  width: 70%;
+  text-align: center;
+  margin: 2% 0 -1% 0;
+}
+
+.small {
+  height: 2.5em;
 }

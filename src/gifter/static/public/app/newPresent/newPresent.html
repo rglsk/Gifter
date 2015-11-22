@@ -10,7 +10,7 @@
 
 <div class="find-present centered row">
 
-	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-if="NewPresentCtrl.viewReady">
+	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-show="NewPresentCtrl.viewReady">
 
 		<input
 			type="text"
@@ -27,7 +27,7 @@
 			    rz-slider-translate="NewPresentCtrl.translate"></rzslider>
 		</div>
 		
-	  	<button class="submit centered" ng-click="NewPresentCtrl.find()">
+	  	<button id="find" class="submit centered" ng-click="NewPresentCtrl.find()">
 	  		Find present!
 	  	</button>
 

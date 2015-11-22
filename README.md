@@ -81,6 +81,7 @@ $ npm install -g grunt-cli
 ## To run app in browser (default google-chrome):
 ```
 $ cd /path/to/static
+$ bower install
 $ grunt serve
 
 If there will be an error "/usr/bin/env: node: No such file or directory " then:

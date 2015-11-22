@@ -11,14 +11,10 @@ var app = angular.module("gifter", [
     'gifter.result',
     'gifter.result.route',
 
-    'gifter.analysis',
-    'gifter.analysis.route',
-
     'gifter.viewComponents.panel',
 
     'gifter.services.stateService',
-    'gifter.services.storageService'
-
+    'gifter.services.storageService',
 ])
 
     .run(function($rootScope, $modalStack) {
