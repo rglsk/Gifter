@@ -81,7 +81,7 @@ def items_handler(args, screen_name):
     response = None
     for ebay_category in ebay_categories:
         try:
-            args.update({'keywords': hashtags.keys()[:3],
+            args.update({'keywords': hashtags.keys(),
                          'category_name': ebay_category})
             response = ebay_api.get_items(**args)
             response['category'] = interest_class
