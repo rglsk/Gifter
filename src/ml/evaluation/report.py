@@ -8,7 +8,7 @@ from ml.skmodels.models import (
 )
 
 # Insert here classes
-METHODS = [BayesModel]
+METHODS = [BayesModel, LinearSVCModel]
 
 
 def create_report():

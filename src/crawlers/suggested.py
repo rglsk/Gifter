@@ -32,8 +32,11 @@ def get_categories():
         to_remove_categories = [
             'Television',
             'Family',
-            'Entertainment',
+            'PGA',
             'NASCAR',
+            'MLB',
+            'NHL',
+            'NBA',
         ]
         for category in to_remove_categories:
             del suggested[category]
