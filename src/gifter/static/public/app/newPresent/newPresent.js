@@ -5,10 +5,6 @@ angular.module('gifter.newPresent', [])
 
     		stateService.setState($state.current.name);
 
-            $http.get('http://localhost:5000/csrf/', {}).success(function (res) {
-                storageService.csrf = res.token;
-            });
-
     		this.twitterName = '';
     		this.priceSlider = {
                 min: 0,
