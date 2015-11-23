@@ -82,7 +82,8 @@ def items_handler(args, screen_name):
 
     if len(items) < limit:
         try:
-            args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
+            args.update({'keywords': hashtags.keys(), 'category_name': 'Books',
+                         'limit': max(limit-len(items), 0), })
             items += ebay_api.get_items(**args)
         except errors.ItemsNotFoundError:
             response = {
