@@ -68,25 +68,28 @@ def items_handler(args, screen_name):
     ebay_categories, interest_class = get_ebay_categories(df)
     random.shuffle(ebay_categories)
     ebay_api = EbayApi()
-    response = None
+    response = {'category': interest_class}
+    items = []
+    limit = args['limit']
     for ebay_category in ebay_categories:
         try:
             args.update({'keywords': hashtags.keys(),
-                         'category_name': ebay_category})
-            response = ebay_api.get_items(**args)
-            response['category'] = interest_class
-            break
+                         'category_name': ebay_category,
+                         'limit': max(limit-len(items), 0), })
+            items += ebay_api.get_items(**args)
         except errors.ItemsNotFoundError:
             pass
 
-    if response is None:
+    if len(items) < limit:
         try:
             args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
-            response = ebay_api.get_items(**args)
+            items += ebay_api.get_items(**args)
         except errors.ItemsNotFoundError:
             response = {
                 'error': 'presents_not_found'
             }
+
+    response['gifts'] = items[:limit]
 
     response.update(utils.convert_hashtag_response(hashtags))
     return jsonify(response)
