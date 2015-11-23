@@ -28,7 +28,16 @@ def get_suggested_topics():
 
 def get_categories():
     with open(SUGGESTED_CATEGORIES, 'r') as f:
-        return json.load(f)
+        suggested = json.load(f)
+        to_remove_categories = [
+            'Television',
+            'Family',
+            'Entertainment',
+            'NASCAR',
+        ]
+        for category in to_remove_categories:
+            del suggested[category]
+        return suggested
 
 
 def categories_dirnames(categories):
