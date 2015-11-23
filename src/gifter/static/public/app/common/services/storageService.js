@@ -4,9 +4,8 @@ angular.module('gifter.services.storageService', [])
 
     		var presents = [],
                 hashtags = [],
-                twitterName = '',
-                csrf = '';
-                category = '';
+                twitterName = ''
+                category = '',
                 savePresents = function(gifts) {
                     presents = [];
                     gifts.forEach(function(gift) {
@@ -37,12 +36,6 @@ angular.module('gifter.services.storageService', [])
                 },
                 get twitterName() {
                     return twitterName;
-                },
-                set csrf(c) {
-                    csrf = c;
-                },
-                get csrf() {
-                    return csrf;
                 },
                 set category(cat) {
                     category = cat;

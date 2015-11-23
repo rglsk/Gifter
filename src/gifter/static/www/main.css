@@ -1,0 +1,208 @@
+.find-present {
+  margin-top: 2em;
+}
+
+.find-present > .centered > .error {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 2.5em 0 4.5em 0;
+}
+
+.find-present input[finder="TwitterName"] {
+  width: 100%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  height: 2em;
+  text-indent: .5em;
+  border: .1em solid #cccccc;
+  outline-color: #cccccc;
+  font-size: 1.5em;
+  padding: 0 5px;
+}
+
+.slider-wrapper {
+  margin: 1em 0 4em 0;
+}
+
+rzslider span.rz-pointer,
+rzslider span.rz-bar.rz-selection {
+  background-color: #0e426c;
+}
+ 
+rzslider span.rz-pointer:after,
+rzslider span.rz-pointer:hover:after,
+rzslider span.rz-pointer.rz-active:after {
+  background-color: #eeeeee;
+}
+
+rzslider span.rz-bubble {
+  font-size: 1.1em;
+  top: -38px;
+}
+
+.loader-wrapper {
+  margin-top: 13vh;
+  width: 100%;
+}
+
+.loader-wrapper > .info {
+  text-align: center;
+  font-size: 1.5em;
+}
+.present-wrapper {
+  margin: 5vh 0;
+  overflow: hidden;
+  height: 22vw;
+}
+
+.present-wrapper > .slider {
+  padding: 0;
+  -webkit-transition: left 1s;
+  -moz-transition: left 1s;
+  -o-transition: left 1s;
+  transition: left 1s;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.slider > .present {
+    position: relative;
+    display: inline-block;
+    width: 30vw;
+    cursor: pointer;
+}
+
+.present > .title {
+  width: 18vw;
+  font-size: 1.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.present > .img-wrapper {
+  width: 18vw;
+  height: 18vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-wrapper > img {
+  max-width: 18vw;
+  max-height: 18vw;
+}
+
+.present > .price {
+  width: 18vw;
+  font-size: 1.2em;
+}
+
+.present > .ebay-link {
+  cursor: pointer;
+  width: 18vw;
+  font-size: 1.2em;
+}
+
+.slider > .present-hidden {
+  opacity: 0.4;
+}
+
+.back {
+  left: 34.2vw;
+}
+
+.middle {
+  left: 4.2vw;
+}
+
+.next {
+  left: -26.8vw;
+}
+
+.submit {
+  margin-top: 1em;
+  width: 100%;
+  background: #F4E4B8;
+  color: #361502;
+  font-size: 1em;
+  border: .1em solid #F4E4B8;
+}
+
+.submit:hover {
+  background: #F0E0B0;
+  outline-color: #F0E0B0;
+}
+
+.category {
+  font-size: 1.7em;
+  width: 70%;
+  text-align: center;
+  margin: 2% 0 -1% 0;
+}
+
+.small {
+  height: 2.5em;
+}
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+ 
+body {
+  background-color: #eee;
+  font-size: 1.8vh;
+  padding: 2vw 4.2vw;
+  font-family: 'Abel';
+  font-weight: 400;
+}
+ 
+#panel {
+  width: 100%;
+  position: absolute;
+  right: 5%;
+  font-size: 1.7em;
+  color: #0e426c;
+}
+ 
+.panel-item {
+    display: inline;   
+    float: right;
+    margin-left: 3%; 
+}
+
+.panel-item:hover {
+  color: #5f021f;
+  text-decoration: none;
+}
+
+.main-logo {
+  display: block;
+}
+ 
+.centered {
+   margin-left: auto;
+   margin-right: auto;
+  float: none;
+}
+
+@media screen and (min-width: 768px) {
+  .find-present {
+    padding: 0 5%;
+  }
+}
+ 
+.submit {
+  display: block;
+  margin-top: 1em;
+  width: 50%;
+  background: #0e426c;
+  color: #eeeeee;
+  font-size: 1.5em;
+  border: .1em solid #0e426c;
+  padding: 5px;
+}
+ 
+.submit:hover,
+.submit:focus {
+  background: #F0E0B0;
+  outline-color: #F0E0B0;
+  background: #5f021f;
+  outline-color: #5f021f;
+}

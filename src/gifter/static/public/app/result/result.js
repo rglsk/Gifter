@@ -36,11 +36,9 @@ angular.module('gifter.result', [])
                 $http.post(url, {
                     'screen_name': storageService.twitterName || '',
                     'gift_category': present.category || '',
-                    'interest_category': storageService.category || '',
-                    '_csrf_token': storageService.csrf
-                }).success(function (res) {
-                    // $event.stopPropagation();                
-                   $window.open(present.url, '_blank');
+                    'interest_category': storageService.category || ''
+                }).success(function (res) {              
+                    $window.open(present.url, '_blank');
                 });
             };
 
