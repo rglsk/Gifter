@@ -8,7 +8,8 @@ from core.config import (
 )
 
 
-def timeline(api, screen_name, maximal=600):
+def timeline(api, screen_name, maximal=600,
+             columns=['created_at', 'lang', 'text', 'entities']):
     cur = tweepy.Cursor(
         api.user_timeline,
         screen_name=screen_name,
@@ -16,16 +17,16 @@ def timeline(api, screen_name, maximal=600):
     )
 
     for tweet in cur.items(maximal):
-        yield tweet._json
+        yield {column: tweet._json.get(column) for column in columns}
 
 
-def get_users_tweets(screen_names):
+def get_users_tweets(screen_names, maximal=400):
     if isinstance(screen_names, str):
         screen_names = [screen_names]
     api = setup_twitter_api()
     tweets = []
     for screen_name in screen_names:
-        tweets += list(timeline(api, screen_name))
+        tweets += list(timeline(api, screen_name, maximal))
     return pd.DataFrame(tweets)
 
 

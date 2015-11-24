@@ -1,22 +1,41 @@
+import random
+
 from webargs.flaskparser import use_args
+from tweepy.error import TweepError
 
 from flask import Blueprint
 from flask import jsonify
 from flask.ext.cors import cross_origin
+from flask_wtf.csrf import generate_csrf
 
 from gifter import utils
+from gifter.csrf import csrf
+
 from gifter.api.ebay_api import EbayApi
-from gifter.models import CounterModel
+from gifter.models import GifterStats
 
 from core import config
+from core import errors
+
+from crawlers.user_tweets import get_users_tweets
+
 from ml.entities import get_hashtags_info
+from ml.gifts.process import get_ebay_categories
 
 
 gifter_api = Blueprint('gifter_api', __name__)
 
 
+@gifter_api.route('/csrf/', methods=['GET'])
+@cross_origin()
+@csrf.exempt
+def get_csrf():
+    return jsonify({'status': 200, 'token': generate_csrf()})
+
+
 @gifter_api.route('/api/items/<screen_name>/', methods=['POST'])
 @cross_origin()
+@csrf.exempt
 @use_args(config.ITEMS_ARGS_PARSER)
 def items_handler(args, screen_name):
     """Retrives items from eBay.
@@ -47,26 +66,57 @@ def items_handler(args, screen_name):
                        {u'count': 138, u'name': u'getcovered'},
                        {u'count': 113, u'name': u'opportunityforall'}]}
     """
+    try:
+        df = get_users_tweets([screen_name])
+    except TweepError:
+        return jsonify({'error': 'user_not_found'})
 
-    hashtags = get_hashtags_info(screen_name)
-    args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
+    if df.empty:
+        return jsonify({'error': 'no_tweets'})
 
+    hashtags = get_hashtags_info(df)
+    ebay_categories, interest_class = get_ebay_categories(df)
+    random.shuffle(ebay_categories)
     ebay_api = EbayApi()
-    response = ebay_api.get_items(**args)
-    response.update(utils.convert_hashtag_response(hashtags))
+    response = None
+    for ebay_category in ebay_categories:
+        try:
+            args.update({'keywords': hashtags.keys(),
+                         'category_name': ebay_category})
+            response = ebay_api.get_items(**args)
+            response['category'] = interest_class
+            break
+        except errors.ItemsNotFoundError:
+            pass
 
+    if response is None:
+        try:
+            args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
+            response = ebay_api.get_items(**args)
+        except errors.ItemsNotFoundError:
+            response = {
+                'error': 'presents_not_found'
+            }
+
+    response.update(utils.convert_hashtag_response(hashtags))
     return jsonify(response)
 
 
-@gifter_api.route('/api/counter/', methods=['POST'])
+@gifter_api.route('/api/save/', methods=['POST'])
 @cross_origin()
+@csrf.exempt
 @use_args(config.COUNTER_ARGS_PARSER)
-def counter(args):
-    _filter = CounterModel.url == args.get('url')
-    model = CounterModel.query.filter(_filter).first()
-    if not model:
-        model = CounterModel(**args)
-    model.counter = int(model.counter or 0) + 1
-    model.save()
-
-    return jsonify({'status': 200, 'message': 'Counter increased'})
+def save_category(args):
+    """
+    /api/save/
+    POST arguments:
+        gift_category
+        interest_category
+        screen_name
+    """
+    GifterStats(
+        screen_name=args.get('screen_name'),
+        gift_category=args.get('gift_category'),
+        interest_category=args.get('interest_category'),
+    ).save()
+    return jsonify({'status': 200, 'message': 'Entity saved'})

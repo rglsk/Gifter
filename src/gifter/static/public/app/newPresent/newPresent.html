@@ -1,22 +1,22 @@
-<div class="row" ng-if="NewPresentCtrl.viewReady">
+<div class="row" ng-if="NewPresentCtrl.viewReady || NewPresentCtrlError">
 	<img src="assets/images/gifter-logo.png"
 	class="centered main-logo col-md-4 col-sm-6 col-xs-8">
 </div>
 
-<div class="row" ng-if="!NewPresentCtrl.viewReady">
+<div class="row" ng-if="!NewPresentCtrl.viewReady && !NewPresentCtrl.error">
 	<img src="assets/images/animated-logo.gif"
 	class="centered main-logo col-md-4 col-sm-6 col-xs-8">
 </div>
 
 <div class="find-present centered row">
 
-	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-if="NewPresentCtrl.viewReady">
+	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-show="NewPresentCtrl.viewReady && !NewPresentCtrl.error">
 
 		<input
 			type="text"
 			ng-model="NewPresentCtrl.twitterName"
 			finder="TwitterName"
-			placeholder="eg. bckatarzyna"/>
+			placeholder="eg. taylorswift13"/>
 
 		<div class="slider-wrapper">
 			<rzslider
@@ -27,8 +27,20 @@
 			    rz-slider-translate="NewPresentCtrl.translate"></rzslider>
 		</div>
 		
-	  	<button class="submit centered" ng-click="NewPresentCtrl.find()">
+	  	<button id="find" class="submit centered" ng-click="NewPresentCtrl.find()">
 	  		Find present!
+	  	</button>
+
+	</div>
+
+	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-show="NewPresentCtrl.error">
+
+		<div class="error">
+			{{NewPresentCtrl.error}}
+		</div>
+		
+	  	<button id="find" class="submit centered" ng-click="NewPresentCtrl.findNew()">
+	  		Try again
 	  	</button>
 
 	</div>

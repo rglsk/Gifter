@@ -4,15 +4,18 @@ angular.module('gifter.services.storageService', [])
 
     		var presents = [],
                 hashtags = [],
-                twitterName = '',
+                twitterName = ''
+                category = '',
                 savePresents = function(gifts) {
                     presents = [];
                     gifts.forEach(function(gift) {
                         presents.push({
                             'name': gift.title,
-                            'img': gift.galleryURL,
+                            'img': gift.pictureURLSuperSize,
                             'price': gift.sellingStatus.convertedCurrentPrice.value +
-                            gift.sellingStatus.convertedCurrentPrice._currencyId 
+                            gift.sellingStatus.convertedCurrentPrice._currencyId,
+                            'url': gift.viewItemURL,
+                            'category': gift.primaryCategory.categoryName
                         });
                     });
                 };
@@ -33,6 +36,12 @@ angular.module('gifter.services.storageService', [])
                 },
                 get twitterName() {
                     return twitterName;
+                },
+                set category(cat) {
+                    category = cat;
+                },
+                get category() {
+                    return category;
                 }
     		};
 

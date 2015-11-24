@@ -37,7 +37,8 @@ EBAY_PRODUCTION_DOMAIN = 'ebay.com'
 
 # gifter API
 ITEMS_LIMIT = 6
-ITEM_DETAILS = ['title', 'sellingStatus', 'galleryURL']
+ITEM_DETAILS = ['title', 'sellingStatus', 'pictureURLSuperSize',
+                'primaryCategory', 'viewItemURL']
 ITEMS_ARGS_PARSER = {
     'min_price': Arg(int, default=None),
     'max_price': Arg(int, default=None),
@@ -45,9 +46,9 @@ ITEMS_ARGS_PARSER = {
 }
 
 COUNTER_ARGS_PARSER = {
-    'url': Arg(str, default=None),
-    'category_name': Arg(str, default=None),
-    'item_title': Arg(str, default=None)
+    'gift_category': Arg(str, default=None),
+    'interest_category': Arg(str, default=None),
+    'screen_name': Arg(str, default=None)
 }
 
 # Project dir

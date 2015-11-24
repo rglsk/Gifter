@@ -1,0 +1,39 @@
+<div class="row">
+	<img src="assets/images/gifter-logo.png"
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8">
+</div>
+
+<div id="container" class="centered">
+
+	<div class="category centered" ng-if="ResultCtrl.category">
+		<strong>Category: {{ ResultCtrl.category }}</strong>
+	</div>
+
+	<div class="present-wrapper" ng-class="{small: !ResultCtrl.presents.length}">
+		<div class="slider"
+			ng-class="{ 'back': ResultCtrl.slider == 0, 'middle': ResultCtrl.slider == 1, 'next': ResultCtrl.slider == 2 }">
+			<div class="present"
+				ng-repeat="present in ResultCtrl.presents"
+				ng-class="{ 'present-hidden': present.hidden }"
+				ng-click="ResultCtrl.changeClass(present)">
+				<div class="img-wrapper">
+					<img class="centered" ng-src="{{ present.img }}" alt="present"/>
+				</div>
+				<div class="title centered">
+					{{ present.name }}
+				</div>
+				<div class="price centered">
+					{{ present.price }}
+				</div>
+				<div class="ebay-link centered">
+					<a ng-click="ResultCtrl.seePresent($event, present)">See on eBay >></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<button class="submit centered" ng-click="ResultCtrl.findNew()">
+	  		Find new
+	</button>
+
+</div>

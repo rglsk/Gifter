@@ -11,7 +11,6 @@ local_settings.py
 .ipynb_checkpoints
 /src/gifter/static/bower_components
 /src/gifter/static/node_modules
-/src/gifter/static/www
 /src/gifter/category_hierarchy.json
 /src/ebay.yaml
 
@@ -23,3 +22,5 @@ local_settings.py
 
 # distribution plot
 /src/distribution.jpg
+
+/scripts/local_setup_environ.sh
