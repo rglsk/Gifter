@@ -1,0 +1,10 @@
+python-pip
+python-dev
+libpq-dev
+libxft-dev
+gfortran
+libopenblas-dev
+liblapack-dev
+libxml2
+libxslt1-dev libxslt1.1 libxml2-dev libxml2 libssl-dev
+uwsgi-plugin-python
