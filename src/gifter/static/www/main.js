@@ -145,6 +145,7 @@ angular.module('gifter.newPresent', [])
     		stateService.setState($state.current.name);
 
     		this.twitterName = '';
+            this.breakFunction = false;
     		this.priceSlider = {
                 min: 0,
                 max: 180,
@@ -163,8 +164,14 @@ angular.module('gifter.newPresent', [])
                 this.viewReady = true;
             };
 
+            this.reset = function () {
+                this.viewReady = true;
+                this.breakFunction = true;
+            };
+
     		this.find = function () {
                 that = this;
+                this.breakFunction = false;
                 this.viewReady = false;
     			var url = 'http://localhost:5000/api/items/' + this.twitterName + '/';
     			$http.post(url, {
@@ -173,26 +180,28 @@ angular.module('gifter.newPresent', [])
     				'limit': 3,
                     '_csrf_token': storageService.csrf
     			}).success(function (res) {
-                    if (res.gifts) {
-                        storageService.twitterName = that.twitterName;
-            			storageService.savePresents(res.gifts);
-                        storageService.category = res.category;
-                        storageService.hashtags = res.hashtags;
-            			$state.go('main.result');
-                    } else {
-                        that.viewReady = true;
-                        switch (res.error) {
-                            case 'user_not_found':
-                                that.error = "We are sorry, this user doesn't exist. Please, check another one.";
-                                break;
-                            case 'presents_not_found':
-                                that.error = "We are sorry, we haven't found suitable presents for given person. Please, check antoher one.";
-                                break;
-                            case 'no_tweets':
-                                that.error = "We are sorry, this user has no tweets. Please, check another one.";
-                                break;
-                            default:
-                                that.error = "We are sorry, some errors occurred. Please, try again.";
+                    if (!that.breakFunction) {
+                        if (res.gifts) {
+                            storageService.twitterName = that.twitterName;
+                			storageService.savePresents(res.gifts);
+                            storageService.category = res.category;
+                            storageService.hashtags = res.hashtags;
+                			$state.go('main.result');
+                        } else {
+                            that.viewReady = true;
+                            switch (res.error) {
+                                case 'user_not_found':
+                                    that.error = "We are sorry, this user doesn't exist. Please, check another one.";
+                                    break;
+                                case 'presents_not_found':
+                                    that.error = "We are sorry, we haven't found suitable presents for given person. Please, check antoher one.";
+                                    break;
+                                case 'no_tweets':
+                                    that.error = "We are sorry, this user has no tweets. Please, check another one.";
+                                    break;
+                                default:
+                                    that.error = "We are sorry, some errors occurred. Please, try again.";
+                            }
                         }
                     }
         		});

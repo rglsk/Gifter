@@ -1,11 +1,13 @@
 <div class="row" ng-if="NewPresentCtrl.viewReady || NewPresentCtrlError">
 	<img src="assets/images/gifter-logo.png"
-	class="centered main-logo col-md-4 col-sm-6 col-xs-8">
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8"
+	ui-sref="main.newPresent">
 </div>
 
 <div class="row" ng-if="!NewPresentCtrl.viewReady && !NewPresentCtrl.error">
 	<img src="assets/images/animated-logo.gif"
-	class="centered main-logo col-md-4 col-sm-6 col-xs-8">
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8"
+	ng-click="NewPresentCtrl.reset()">
 </div>
 
 <div class="find-present centered row">

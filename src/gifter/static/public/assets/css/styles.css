@@ -29,6 +29,7 @@ body {
 
 .main-logo {
   display: block;
+  cursor: pointer;
 }
  
 .centered {
