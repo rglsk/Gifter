@@ -11,6 +11,9 @@ local_settings.py
 .ipynb_checkpoints
 /src/gifter/static/bower_components
 /src/gifter/static/node_modules
+/src/whoami/static/bower_components
+/src/whoami/static/node_modules
+/src/whoami/static/www
 /src/gifter/category_hierarchy.json
 /src/ebay.yaml
 

@@ -1,0 +1,24 @@
+.submit {
+  margin-top: 1em;
+  width: 100%;
+  background: #F4E4B8;
+  color: #361502;
+  font-size: 1em;
+  border: .1em solid #F4E4B8;
+}
+
+.submit:hover {
+  background: #F0E0B0;
+  outline-color: #F0E0B0;
+}
+
+.category {
+  font-size: 1.7em;
+  width: 70%;
+  text-align: center;
+  margin: 2% 0 -1% 0;
+}
+
+.small {
+  height: 2.5em;
+}

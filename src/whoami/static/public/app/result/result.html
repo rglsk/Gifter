@@ -1,0 +1,18 @@
+<div class="row">
+	<img src="assets/images/whoami-logo.png"
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8"
+	ui-sref="main">
+</div>
+
+<div id="container" class="centered">
+
+	<div class="category centered" ng-if="ResultCtrl.category">
+		<strong>Category: {{ ResultCtrl.category }}</strong>
+	</div>
+
+
+	<button class="submit centered" ng-click="ResultCtrl.findNew()">
+	  		Find new
+	</button>
+
+</div>
