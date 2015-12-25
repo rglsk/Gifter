@@ -6,13 +6,23 @@
 
 <div id="container" class="centered">
 
-	<div class="category centered" ng-if="ResultCtrl.category">
-		<strong>Category: {{ ResultCtrl.category }}</strong>
+	<div class="result centered">
+		{{ ResultCtrl.twitterName }}, you are <strong>{{ ResultCtrl.person.name }}.</strong>
 	</div>
 
+	<div class="person-block col-md-6 col-sm-6 col-xs-7 centered">
 
-	<button class="submit centered" ng-click="ResultCtrl.findNew()">
-	  		Find new
+		<div class="row">
+			<img class="person-img col-md-4 col-sm-4 col-xs-12" ng-src="{{ ResultCtrl.person.imgUrl }}">
+			<div class="person-desc col-md-8 col-sm-8 col-xs-12 vcenter">
+				{{ ResultCtrl.person.desc }}
+			</div>
+		</div>
+
+	</div>
+
+	<button class="submit result-submit centered" ng-click="ResultCtrl.findNew()">
+	  	Find again!
 	</button>
 
 </div>

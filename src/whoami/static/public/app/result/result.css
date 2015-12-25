@@ -1,24 +1,25 @@
-.submit {
-  margin-top: 1em;
-  width: 100%;
-  background: #F4E4B8;
-  color: #361502;
-  font-size: 1em;
-  border: .1em solid #F4E4B8;
-}
-
-.submit:hover {
-  background: #F0E0B0;
-  outline-color: #F0E0B0;
-}
-
-.category {
+.result {
   font-size: 1.7em;
   width: 70%;
   text-align: center;
-  margin: 2% 0 -1% 0;
+  margin: 1.5% 0 2%;
+  color: #f5ad28;
 }
 
 .small {
   height: 2.5em;
+}
+
+.person-block {
+  margin-bottom: 4%;
+}
+
+.person-block > .row > .person-img {
+  display: inline-block;
+}
+
+.person-block > .row > .person-desc {
+  display: inline-block;
+  font-size: 1.5em;
+  color: #666666;
 }
