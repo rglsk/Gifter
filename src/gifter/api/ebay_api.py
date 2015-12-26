@@ -61,7 +61,7 @@ class EbayApi(object):
                 gifts.append({key: item[key] for key in config.ITEM_DETAILS})
             if len(gifts) == limit:
                 break
-        return {'gifts': gifts}
+        return gifts
 
     def get_category_id(self, category_name):
         """Gets a category id from given name.

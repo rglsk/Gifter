@@ -6,10 +6,8 @@ from tweepy.error import TweepError
 from flask import Blueprint
 from flask import jsonify
 from flask.ext.cors import cross_origin
-from flask_wtf.csrf import generate_csrf
 
 from gifter import utils
-from gifter.csrf import csrf
 
 from gifter.api.ebay_api import EbayApi
 from gifter.models import GifterStats
@@ -26,16 +24,8 @@ from ml.gifts.process import get_ebay_categories
 gifter_api = Blueprint('gifter_api', __name__)
 
 
-@gifter_api.route('/csrf/', methods=['GET'])
-@cross_origin()
-@csrf.exempt
-def get_csrf():
-    return jsonify({'status': 200, 'token': generate_csrf()})
-
-
 @gifter_api.route('/api/items/<screen_name>/', methods=['POST'])
 @cross_origin()
-@csrf.exempt
 @use_args(config.ITEMS_ARGS_PARSER)
 def items_handler(args, screen_name):
     """Retrives items from eBay.
@@ -78,25 +68,29 @@ def items_handler(args, screen_name):
     ebay_categories, interest_class = get_ebay_categories(df)
     random.shuffle(ebay_categories)
     ebay_api = EbayApi()
-    response = None
+    response = {'category': interest_class}
+    items = []
+    limit = args['limit']
     for ebay_category in ebay_categories:
         try:
             args.update({'keywords': hashtags.keys(),
-                         'category_name': ebay_category})
-            response = ebay_api.get_items(**args)
-            response['category'] = interest_class
-            break
+                         'category_name': ebay_category,
+                         'limit': max(limit-len(items), 0), })
+            items += ebay_api.get_items(**args)
         except errors.ItemsNotFoundError:
             pass
 
-    if response is None:
+    if len(items) < limit:
         try:
-            args.update({'keywords': hashtags.keys(), 'category_name': 'Books'})
-            response = ebay_api.get_items(**args)
+            args.update({'keywords': hashtags.keys(), 'category_name': 'Books',
+                         'limit': max(limit-len(items), 0), })
+            items += ebay_api.get_items(**args)
         except errors.ItemsNotFoundError:
             response = {
                 'error': 'presents_not_found'
             }
+
+    response['gifts'] = items[:limit]
 
     response.update(utils.convert_hashtag_response(hashtags))
     return jsonify(response)
@@ -104,7 +98,6 @@ def items_handler(args, screen_name):
 
 @gifter_api.route('/api/save/', methods=['POST'])
 @cross_origin()
-@csrf.exempt
 @use_args(config.COUNTER_ARGS_PARSER)
 def save_category(args):
     """

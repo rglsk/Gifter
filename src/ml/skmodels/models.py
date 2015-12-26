@@ -3,7 +3,7 @@ import os
 from sklearn.externals import joblib
 from sklearn.feature_extraction.text import (
     CountVectorizer,
-    TfidfTransformer
+    TfidfTransformer,
 )
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
