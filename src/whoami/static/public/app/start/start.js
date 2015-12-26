@@ -10,6 +10,7 @@ angular.module('whoami.start', [])
 
             this.findNew = function () {
                 this.error = '';
+                this.twitterName = '';
                 this.viewReady = true;
             };
 

@@ -6,6 +6,7 @@
   font-size: 1.5em;
   text-align: center;
   margin: 2.5em 0 4.5em 0;
+  color: #f5ad28;
 }
 
 .find-person input[finder="TwitterName"] {
