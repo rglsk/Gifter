@@ -11,7 +11,7 @@ def get_evaluation_df():
     )
 
 
-def separeted_data(test_size=0.1):
+def separeted_data(test_size=0.25):
     df = get_evaluation_df()
     inputs = df[['filename', 'preprocessed_filename']]
     outputs = df['slug'].ravel()

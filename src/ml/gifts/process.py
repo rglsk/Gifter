@@ -5,7 +5,7 @@ import pandas as pd
 
 from core.config import DATA_DIRECTORY
 from ml.data import lemmatize_dataframe
-from ml.skmodels.models import LinearSVCModel
+from ml.skmodels.models import BayesModel
 
 
 def get_ebay_categories_mapping():
@@ -21,7 +21,7 @@ def get_ebay_categories_mapping():
 
 
 def interest_class(df):
-    clf = LinearSVCModel()
+    clf = BayesModel()
     return clf.predict_one(df)
 
 
