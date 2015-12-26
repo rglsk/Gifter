@@ -15,6 +15,11 @@ from core.errors import UntrainedModelError
 from core.config import DATA_DIRECTORY
 
 
+def interest_class(df):
+    clf = BayesModel()
+    return clf.predict_one(df)
+
+
 class BaseSkModel(MergingBaseModel):
 
     def _get_storage(self):

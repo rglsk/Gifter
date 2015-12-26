@@ -98,7 +98,7 @@ def items_handler(args, screen_name):
 
 @gifter_api.route('/api/save/', methods=['POST'])
 @cross_origin()
-@use_args(config.COUNTER_ARGS_PARSER)
+@use_args(config.SAVE_GITER_ARGS_PARSER)
 def save_category(args):
     """
     /api/save/

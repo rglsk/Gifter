@@ -5,7 +5,7 @@ import pandas as pd
 
 from core.config import DATA_DIRECTORY
 from ml.data import lemmatize_dataframe
-from ml.skmodels.models import BayesModel
+from ml.skmodels.models import interest_class
 
 
 def get_ebay_categories_mapping():
@@ -18,11 +18,6 @@ def get_ebay_categories_mapping():
                 [category for category in categories
                  if not pd.isnull(category)], ebay_categories))
     )
-
-
-def interest_class(df):
-    clf = BayesModel()
-    return clf.predict_one(df)
 
 
 def get_ebay_categories(df):
