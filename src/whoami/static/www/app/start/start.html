@@ -1,0 +1,51 @@
+<div class="row" ng-if="StartCtrl.viewReady || StartCtrlError">
+	<img src="assets/images/whoami-logo.png"
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8"
+	ui-sref="main">
+</div>
+
+<div class="row" ng-if="!StartCtrl.viewReady && !StartCtrl.error">
+	<img src="assets/images/whoami-logo.png"
+	class="centered main-logo col-md-4 col-sm-6 col-xs-8"
+	ng-click="StartCtrl.reset()">
+</div>
+
+<div class="find-person centered row">
+
+	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-show="StartCtrl.viewReady && !StartCtrl.error">
+
+		<div class="instruction">
+			Type Twitter screen name and check which fictional character you are!
+		</div>
+
+		<input
+			type="text"
+			ng-model="StartCtrl.twitterName"
+			finder="TwitterName"
+			placeholder="eg. taylorswift13"/>
+
+	  	<button id="find" class="submit centered" ng-click="StartCtrl.find()">
+	  		Find matching!
+	  	</button>
+
+	</div>
+
+	<div class="centered col-md-4 col-sm-5 col-xs-7" ng-show="StartCtrl.error">
+
+		<div class="error">
+			{{StartCtrl.error}}
+		</div>
+		
+	  	<button id="find" class="submit centered" ng-click="StartCtrl.findNew()">
+	  		Try again
+	  	</button>
+
+	</div>
+
+	<div class="loader-wrapper col-md-4 col-sm-5 col-xs-7" ng-if="!StartCtrl.viewReady">
+		<div class="info">
+			Loading data... It can take a while.
+		</div>
+	</div>
+
+</div>

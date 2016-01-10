@@ -1,0 +1,126 @@
+.result {
+  font-size: 1.7em;
+  width: 70%;
+  text-align: center;
+  margin: 1.5% 0 2%;
+  color: #f5ad28;
+}
+
+.small {
+  height: 2.5em;
+}
+
+.person-block {
+  margin-bottom: 4%;
+}
+
+.person-block > .row > .person-img {
+  display: inline-block;
+}
+
+.person-block > .row > .person-desc {
+  display: inline-block;
+  font-size: 1.5em;
+  color: #666666;
+}
+.find-person {
+  margin-top: 2em;
+}
+
+.find-person > .centered > .error {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 2.5em 0 4.5em 0;
+  color: #f5ad28;
+}
+
+.find-person input[finder="TwitterName"] {
+  width: 100%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  height: 2em;
+  text-indent: .5em;
+  border: .1em solid #cccccc;
+  outline-color: #cccccc;
+  font-size: 1.5em;
+  padding: 0 5px;
+}
+
+.loader-wrapper {
+  margin-top: 13vh;
+  width: 100%;
+}
+
+.loader-wrapper > .info {
+  text-align: center;
+  font-size: 1.5em;
+  color: #f5ad28;
+}
+
+.instruction {
+  text-align: center;
+  font-size: 1.5em;
+  color: #f5ad28;
+}
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+ 
+body {
+  background-color: #2e2f2f;
+  font-size: 1.8vh;
+  padding: 2vw 4.2vw;
+  font-family: 'Abel';
+  font-weight: 400;
+}
+ 
+#panel {
+  width: 100%;
+  position: absolute;
+  right: 5%;
+  font-size: 1.7em;
+  color: #0e426c;
+}
+ 
+.panel-item {
+  display: inline;   
+  float: right;
+  margin-left: 3%; 
+}
+
+.panel-item:hover {
+  color: #5f021f;
+  text-decoration: none;
+}
+
+.main-logo {
+  display: block;
+  cursor: pointer;
+}
+ 
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+@media screen and (min-width: 768px) {
+  .find-present {
+    padding: 0 5%;
+  }
+}
+ 
+.submit {
+  display: block;
+  margin-top: 1em;
+  width: 50%;
+  background: #666666;
+  color: #f5ad28;
+  font-size: 1.5em;
+  border: .1em solid #666666;
+  padding: 5px;
+}
+ 
+.submit:hover,
+.submit:focus {
+  background: #444444;
+  outline-color: #F0E0B0;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Who am I</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css"/>
+
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
+    
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+     
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+     
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
+    
+    <!-- minified .js file -->
+    <script src="main.js"></script>
+
+
+</head>
+
+<body ng-app="whoami">
+
+	<div ui-view="panel"></div>
+    <div ui-view="content"></div>
+
+</body>
