@@ -45,8 +45,13 @@ ITEMS_ARGS_PARSER = {
     'limit': Arg(int, default=ITEMS_LIMIT)
 }
 
-COUNTER_ARGS_PARSER = {
+SAVE_GITER_ARGS_PARSER = {
     'gift_category': Arg(str, default=None),
+    'interest_category': Arg(str, default=None),
+    'screen_name': Arg(str, default=None)
+}
+
+SAVE_WHOAMI_ARGS_PARSER = {
     'interest_category': Arg(str, default=None),
     'screen_name': Arg(str, default=None)
 }
