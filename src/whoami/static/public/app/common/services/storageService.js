@@ -35,6 +35,9 @@ angular.module('whoami.services.storageService', [])
                 },
                 get category() {
                     return category;
+                },
+                get person() {
+                    return person;
                 }
     		};
 
