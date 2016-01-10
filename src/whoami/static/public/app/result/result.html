@@ -18,7 +18,8 @@
 				{{ ResultCtrl.person.desc }}
 					<a ng-href="https://twitter.com/intent/tweet?button_hashtag=whoami_ninja&text=I%20am%20{{ResultCtrl.person.name}}%20!%20Check%20who%20you%20are%20at%20http%3A%2F%2Fwhoami.ninja !"
 						class="twitter-hashtag-button"
-						data-size="large">
+						data-size="large"
+						ng-click="ResultCtrl.saveTweet()">
 						Tweet #whoami_ninja
 					</a>
 			</div>
