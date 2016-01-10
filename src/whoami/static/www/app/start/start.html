@@ -24,7 +24,7 @@
 			finder="TwitterName"
 			placeholder="eg. taylorswift13"/>
 
-	  	<button id="find" class="submit centered" ng-click="StartCtrl.find()">
+	  	<button id="find" class="submit centered" ng-click="StartCtrl.find()" ng-disabled="!StartCtrl.twitterName.length">
 	  		Find matching!
 	  	</button>
 

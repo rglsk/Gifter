@@ -46,6 +46,11 @@
   padding: 0 5px;
 }
 
+.submit[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
 .loader-wrapper {
   margin-top: 13vh;
   width: 100%;
@@ -117,6 +122,7 @@ body {
   font-size: 1.5em;
   border: .1em solid #666666;
   padding: 5px;
+  cursor: pointer;
 }
  
 .submit:hover,
