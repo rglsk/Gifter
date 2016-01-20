@@ -21,6 +21,11 @@
   padding: 0 5px;
 }
 
+.submit[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
 .loader-wrapper {
   margin-top: 13vh;
   width: 100%;

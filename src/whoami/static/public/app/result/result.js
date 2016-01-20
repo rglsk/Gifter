@@ -5,13 +5,15 @@ angular.module('whoami.result', [])
 
             this.twitterName = storageService.twitterName;
             this.person = storageService.person;
-            // this.twitterName = 'bckatarzyna';
-            // this.person = {
-            // 	'name': 'Khaleesi',
-            // 	'desc': 'You like dragons or another stupid staff chosen by our overfitted algorithm. But it\'s great, everybody wants to be her! Omg this app is so cool.',
-            // 	'imgUrl': '/assets/images/khaleesi.jpg'
-            // };
             this.category = storageService.category;
+
+            this.saveTweet = function() {
+                var url = 'http://localhost:5000/api/save/person/';
+                $http.post(url, {
+                    'screen_name': storageService.twitterName || '',
+                    'interest_category': storageService.category || ''
+                });
+            };
 
     		this.findNew = function() {
     			$state.go('main');
