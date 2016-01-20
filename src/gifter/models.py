@@ -25,7 +25,7 @@ class GifterStats(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True)
 
     screen_name = db.Column(db.String())
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    created_at = db.Column(db.DateTime(timezone=True), default=datetime.datetime.utcnow)
     gift_category = db.Column(db.String())
     interest_category = db.Column(db.String())
 
@@ -40,7 +40,7 @@ class FunStats(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True)
 
     screen_name = db.Column(db.String())
-    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    created_at = db.Column(db.DateTime(timezone=True), default=datetime.datetime.utcnow)
     interest_category = db.Column(db.String())
 
     def __init__(self, screen_name, interest_category):
