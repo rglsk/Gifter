@@ -1,4 +1,4 @@
-from manage_gifter import create_app
+from gifter import create_app
 from gifter.models import db
 
 
