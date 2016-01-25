@@ -72,7 +72,7 @@ angular.module('gifter.services.storageService', [])
 
     		var presents = [],
                 hashtags = [],
-                twitterName = ''
+                twitterName = '',
                 category = '',
                 savePresents = function(gifts) {
                     presents = [];
@@ -181,7 +181,7 @@ angular.module('gifter.newPresent', [])
                     '_csrf_token': storageService.csrf
     			}).success(function (res) {
                     if (!that.breakFunction) {
-                        if (res.gifts) {
+                        if (!res.error) {
                             storageService.twitterName = that.twitterName;
                 			storageService.savePresents(res.gifts);
                             storageService.category = res.category;
@@ -198,6 +198,9 @@ angular.module('gifter.newPresent', [])
                                     break;
                                 case 'no_tweets':
                                     that.error = "We are sorry, this user has no tweets. Please, check another one.";
+                                    break;
+                                case 'something_went_wrong':
+                                    that.error = "Ops... Something went wrong. Please, try again later.";
                                     break;
                                 default:
                                     that.error = "We are sorry, some errors occurred. Please, try again.";

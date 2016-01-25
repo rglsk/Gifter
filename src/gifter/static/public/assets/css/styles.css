@@ -53,6 +53,7 @@ body {
   font-size: 1.5em;
   border: .1em solid #0e426c;
   padding: 5px;
+  cursor: pointer;
 }
  
 .submit:hover,

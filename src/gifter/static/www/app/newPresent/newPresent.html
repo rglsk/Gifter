@@ -29,7 +29,7 @@
 			    rz-slider-translate="NewPresentCtrl.translate"></rzslider>
 		</div>
 		
-	  	<button id="find" class="submit centered" ng-click="NewPresentCtrl.find()">
+	  	<button id="find" class="submit centered" ng-click="NewPresentCtrl.find()" ng-disabled="!NewPresentCtrl.twitterName">
 	  		Find present!
 	  	</button>
 

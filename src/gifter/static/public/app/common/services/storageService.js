@@ -4,7 +4,7 @@ angular.module('gifter.services.storageService', [])
 
     		var presents = [],
                 hashtags = [],
-                twitterName = ''
+                twitterName = '',
                 category = '',
                 savePresents = function(gifts) {
                     presents = [];

@@ -49,6 +49,11 @@ rzslider span.rz-bubble {
   text-align: center;
   font-size: 1.5em;
 }
+
+.submit[disabled] {
+   opacity: 0.6;
+   cursor: default;
+ }
 .present-wrapper {
   margin: 5vh 0;
   overflow: hidden;
@@ -198,6 +203,7 @@ body {
   font-size: 1.5em;
   border: .1em solid #0e426c;
   padding: 5px;
+  cursor: pointer;
 }
  
 .submit:hover,
