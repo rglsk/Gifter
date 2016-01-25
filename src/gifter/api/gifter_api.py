@@ -1,4 +1,5 @@
 import random
+import json
 
 from webargs.flaskparser import use_args
 from tweepy.error import TweepError
@@ -58,8 +59,17 @@ def items_handler(args, screen_name):
     """
     try:
         df = get_users_tweets([screen_name])
-    except TweepError:
-        return jsonify({'error': 'user_not_found'})
+    except TweepError as e:
+        something_wrong = {'error': 'something_went_wrong'}
+        try:
+            response = json.loads(e.reason)
+        except ValueError:
+            return jsonify(something_wrong)
+        else:
+            for error in response['errors']:
+                if error['code'] == 34:
+                    return jsonify({'error': 'user_not_found'})
+        return jsonify(something_wrong)
 
     if df.empty:
         return jsonify({'error': 'no_tweets'})
